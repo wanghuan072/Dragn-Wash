@@ -1,0 +1,217 @@
+.footer {
+  position: relative;
+  margin-top: 42px;
+  border-top: 3px solid #76664e;
+  background:
+    linear-gradient(90deg, transparent 0 24.9%, #ffffff05 25%, transparent 25.1%, transparent 49.9%, #ffffff05 50%, transparent 50.1%, transparent 74.9%, #ffffff05 75%, transparent 75.1%),
+    linear-gradient(#172224, #0a1011);
+  box-shadow: inset 0 7px 0 #080d0e, inset 0 8px 0 #33403f, 0 -12px 32px #0007;
+}
+.footer:before,
+.footer:after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid #635640;
+  border-radius: 50%;
+  background: #b59a6f;
+  box-shadow: inset 0 1px 2px #fff8;
+}
+.footer:before { left: 18px; }
+.footer:after { right: 18px; }
+.inner {
+  display: grid;
+  grid-template-columns: 1.45fr repeat(3, minmax(170px, 1fr));
+  gap: 0;
+  padding-top: 34px;
+  padding-bottom: 18px;
+}
+.inner > div:not(.note) {
+  position: relative;
+  min-width: 0;
+  padding: 4px 28px 24px;
+  border-right: 1px solid #3b4948;
+}
+.inner > div:first-child { padding-left: 6px; }
+.inner > div:nth-child(4) { border-right: 0; }
+.inner > div:not(.note):before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -3px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #9c875f;
+}
+.inner > div:nth-child(4):before { display: none; }
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #f4eddf;
+  font-family: Impact, "Arial Narrow", Arial, sans-serif;
+  line-height: 1;
+}
+.brand img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 5px #0009);
+}
+.brand span,
+.brand b,
+.brand small { display: block; }
+.brand b {
+  color: #f4eddf;
+  font-size: 1.7rem;
+  font-weight: 500;
+  font-style: italic;
+  text-shadow: 0 3px #000;
+}
+.brand em { color: #47d6e8; font-style: inherit; }
+.brand small {
+  margin-top: 5px;
+  color: #8ea4a2;
+  font: 800 .48rem "Courier New", monospace;
+  letter-spacing: .14em;
+}
+.inner > div:first-child > p {
+  max-width: 330px;
+  margin: 13px 0 18px;
+  color: #9fb0ae;
+  font-size: .78rem;
+  line-height: 1.55;
+}
+.inner > div:first-child > div {
+  display: flex;
+  width: fit-content;
+  margin-bottom: 17px;
+  border-top: 1px solid #465351;
+  border-bottom: 1px solid #465351;
+}
+.inner > div:first-child > div span {
+  padding: 8px 13px;
+  color: #91a4a2;
+  font: 700 .54rem "Courier New", monospace;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.inner > div:first-child > div span + span { border-left: 1px solid #465351; }
+.inner > div:first-child > div b {
+  margin-right: 3px;
+  color: #f0e4d1;
+  font: 500 1.05rem Impact, "Arial Narrow", sans-serif;
+}
+.inner > div:first-child > a:last-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 34px;
+  padding: 0 14px;
+  border: 1px solid #8a795f;
+  color: #152022;
+  background: #eadcc2;
+  font-size: .7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 0 100%);
+}
+.inner > div:first-child > a:last-child:hover { background: #fff0d5; }
+.inner > div:first-child > a:last-child span { color: #087f91; font-size: 1rem; }
+.inner > div > strong {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 14px;
+  padding-bottom: 9px;
+  border-bottom: 2px solid #796b55;
+  color: #eadcc2;
+  font: 500 1.03rem Impact, "Arial Narrow", Arial, sans-serif;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+.inner > div > strong small {
+  color: #45c8d5;
+  font: 800 .53rem "Courier New", monospace;
+}
+.inner nav { display: grid; gap: 1px; }
+.inner nav a {
+  position: relative;
+  display: block;
+  padding: 7px 16px 7px 12px;
+  border-bottom: 1px solid #33413f;
+  color: #d9e0dc;
+  font-size: .74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.inner nav a:after {
+  content: "›";
+  position: absolute;
+  right: 2px;
+  top: 7px;
+  color: #47cbd8;
+}
+.inner nav a:hover { padding-left: 16px; color: #fff; background: #ffffff08; }
+.inner nav a span {
+  display: block;
+  margin-top: 2px;
+  color: #758b88;
+  font: 400 .58rem "Courier New", monospace;
+  text-transform: none;
+}
+.note {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 22px;
+  margin-top: 5px;
+  padding: 16px 7px 0;
+  border-top: 1px solid #665a47;
+}
+.note > div:first-child span,
+.note > div:first-child b { display: block; }
+.note > div:first-child span {
+  color: #718683;
+  font: 700 .47rem "Courier New", monospace;
+  letter-spacing: .12em;
+}
+.note > div:first-child b {
+  margin-top: 4px;
+  color: #dce4df;
+  font: 700 .58rem "Courier New", monospace;
+}
+.note i {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: #68d753;
+  box-shadow: 0 0 7px #68d753;
+}
+.note > div:nth-child(2) { padding-left: 20px; border-left: 1px solid #45514f; }
+.note p { margin: 2px 0; color: #7f918e; font-size: .62rem; line-height: 1.45; }
+.note > a { color: #a9bab7; font: 700 .58rem "Courier New", monospace; text-transform: uppercase; }
+.note > a:hover { color: #47d6e8; }
+@media (max-width: 1024px) {
+  .inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .inner > div:not(.note) { border-bottom: 1px solid #3b4948; }
+  .inner > div:nth-child(2) { border-right: 0; }
+  .inner > div:first-child { padding-left: 28px; }
+  .note { grid-column: 1 / -1; }
+}
+@media (max-width: 768px) {
+  .inner { grid-template-columns: 1fr; gap: 0; padding-top: 30px; padding-bottom: 18px; }
+  .inner > div:not(.note) { padding: 20px 16px; border-right: 0; }
+  .inner > div:first-child { padding-top: 4px; }
+  .inner > div:not(.note):before { display: none; }
+  .inner nav { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 14px; }
+  .note { grid-column: 1; grid-template-columns: 1fr; gap: 11px; padding: 18px 16px 0; }
+  .note > div:nth-child(2) { padding: 10px 0 0; border-top: 1px solid #45514f; border-left: 0; }
+  .note > a { justify-self: start; }
+}

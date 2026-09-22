@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "future-of-drag-n-wash",
+    "date": "2026-09-16",
+    "title": "Future of Drag'n Wash",
+    "tag": "DEVELOPMENT",
+    "description": "Steam Workshop support is the team's first development priority; further content is planned after that update.",
+    "image": "/images/updates/steam-7.webp",
+    "imageAlt": "Purple dragon inside the Drag'n Wash station"
+  },
+  {
+    "slug": "steam-deck-verified",
+    "date": "2026-09-15",
+    "title": "Steam Deck Verified",
+    "tag": "PLATFORMS",
+    "description": "The game is officially Steam Deck Verified, following work on its native Linux build.",
+    "image": "/images/updates/steam-5.webp",
+    "imageAlt": "Dragon in a dark wash station scene"
+  },
+  {
+    "slug": "kobold-hotfix",
+    "date": "2026-09-13",
+    "title": "Kobold Hotfix",
+    "tag": "PATCH",
+    "description": "Unstick Kobold, motion and mouse options, and fixes for several softlocks and platform issues.",
+    "image": "/images/updates/steam-1.webp",
+    "imageAlt": "Close-up of a pale dragon during washing"
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "slug": "beginner-guide",
+    "title": "Complete Beginner Guide",
+    "description": "Your first wash, the core loop, and what to check before moving on.",
+    "seoTitle": "DRAG'N WASH - Complete Beginner Guide & First Shift",
+    "seoDescription": "Start Drag'n Wash with a step-by-step beginner guide to the phone, gate, first dragon, washing tools, progress checks, dialogue, saves, and early fixes.",
+    "image": "/images/guides/steam-0.webp",
+    "imageAlt": "First-person sprayer washing a pale dragon in the Drag'n Wash station",
+    "updatedAt": "2026-09-21",
+    "category": "START HERE"
+  },
+  {
+    "slug": "how-to-wash",
+    "title": "How to Wash a Dragon",
+    "description": "A practical washing sequence and what to try when progress stalls.",
+    "seoTitle": "DRAG'N WASH - How to Wash Every Dragon Cleanly",
+    "seoDescription": "Learn how to wash a dragon in Drag'n Wash, from preparing water and using the sponge to rinsing soap, finding missed spots, and advancing the scene.",
+    "image": "/images/guides/steam-11.webp",
+    "imageAlt": "First-person wash tool spraying a red dragon in the station",
+    "updatedAt": "2026-09-21",
+    "category": "GAMEPLAY"
+  },
+  {
+    "slug": "washing-tools",
+    "title": "Washing Tools",
+    "description": "Choose a tool for the current task and avoid repeating the wrong action.",
+    "seoTitle": "DRAG'N WASH - Washing Tools, Soap & Sprayer Wiki",
+    "seoDescription": "Use every Drag'n Wash washing tool with confidence, including the bucket, sponge and sprayer, plus practical switching tips when a task stops progressing.",
+    "image": "/images/guides/steam-2.webp",
+    "imageAlt": "A faucet filling a soapy bucket inside the Drag'n Wash station",
+    "updatedAt": "2026-09-21",
+    "category": "TOOLS"
+  },
+  {
+    "slug": "controls",
+    "title": "Controls & Comfort Settings",
+    "description": "Controller support, camera comfort and the Unstick option.",
+    "seoTitle": "DRAG'N WASH - Controls, Controller & Comfort Settings",
+    "seoDescription": "Set up Drag'n Wash controls for keyboard or controller, adjust camera comfort, use invert look and reduced sprayer motion, and recover with Unstick safely.",
+    "image": "/images/guides/steam-1.webp",
+    "imageAlt": "Close-up of a pale dragon during a wash interaction",
+    "updatedAt": "2026-09-21",
+    "category": "CONTROLS"
+  },
+  {
+    "slug": "cleaning-tips",
+    "title": "Cleaning Tips",
+    "description": "A focused checklist for missed spots and stalled wash progress.",
+    "seoTitle": "DRAG'N WASH - Cleaning Tips for Missed Spots",
+    "seoDescription": "Use focused Drag'n Wash cleaning tips to find stubborn dirt, rinse lingering soap, check the tail and neck, read progress cues, and finish a stalled wash.",
+    "image": "/images/guides/steam-9.webp",
+    "imageAlt": "A red dragon being cleaned with a first-person wash tool",
+    "updatedAt": "2026-09-21",
+    "category": "GAMEPLAY"
+  }
+]

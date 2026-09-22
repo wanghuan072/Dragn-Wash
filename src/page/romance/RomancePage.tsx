@@ -1,0 +1,31 @@
+import Link from "next/link";
+import EditorialPage from "@/components/content/EditorialPage";
+import { metadataFor } from "@/seo/metadata";
+import styles from "@/style/content/editorial-page.module.css";
+
+export const metadata = metadataFor("romance", "/romance");
+
+export default function RomancePage() {
+  return <EditorialPage
+    path="/romance"
+    reviewedAt="2026-09-21"
+    breadcrumbs={[{label:"Dragons",href:"/dragons"}]}
+    eyebrow="CHARACTERS & CHOICES"
+    keyword="DRAG'N WASH ROMANCE"
+    title="Drag'n Wash Romance – Alexander, Ryan & Conrad Choices"
+    displayTitle="RELATIONSHIP CHOICES"
+    subtitle="Alexander, Ryan & Conrad"
+    lead="Follow the relationship moments that players notice across one shared run, including later dialogue changes and the reported Ryan–Conrad pairing, without relying on invented affection points."
+    image="/images/home/steam-4.webp"
+    imageAlt="A dragon speaking to the player during a Drag'n Wash scene"
+    answer={<><p>You meet all three dragons in a run. Player accounts describe a consequential romance choice: dating one dragon can alter later dialogue with the others. Several players also report helping Ryan and Conrad get together. The developer has not published a numerical affection system or complete choice chart.</p><p className={styles.source}><span className="badge muted">COMMUNITY</span> <a href="https://steamcommunity.com/app/4739660/discussions/0/525387040750137310/" target="_blank" rel="noreferrer">Firsthand Steam discussion ↗</a> · <a href="https://steamcommunity.com/app/4739660/" target="_blank" rel="noreferrer">Player review on the Steam hub ↗</a></p></>}
+    sections={[
+      {id:"how-choices-connect",title:"How the characters connect",content:<><p>These are not isolated character-select campaigns. Each customer appears within the same sequence of visits, and a later conversation can acknowledge a relationship established earlier. One player reports Alexander responding differently after a date with Conrad; another reports a Ryan romance closing other openings. Treat those as observations, not guaranteed rules for every dialogue option.</p><table className={styles.table}><thead><tr><th>Choice area</th><th>What players observed</th><th>What remains unknown</th></tr></thead><tbody><tr><td>Dating one dragon</td><td>Later conversations can reference the date; other opportunities may close.</td><td>The exact locking response and whether every earlier interaction matters.</td></tr><tr><td>Ryan and Conrad</td><td>Players report being able to encourage the two to pair up.</td><td>A complete, current-build sequence of required choices.</td></tr><tr><td>Alexander later in the story</td><td>Players report a date invitation when not already dating Ryan or Conrad.</td><td>Whether other conditions also affect the invitation.</td></tr></tbody></table></>},
+      {id:"plan-a-run",title:"Plan a run without invented numbers",content:<><ol><li>Meet all three dragons and finish each active wash or story request.</li><li>When a response clearly concerns dating or another character, note its wording and the result.</li><li>Finish the ending before comparing a second run. Change one consequential response at a time.</li><li>Use the <Link href="/endings#replay-strategy">ending replay strategy</Link> for the limits of current save behavior.</li></ol><p>Do not follow a guide claiming a hidden “70% affection” requirement unless it supplies direct, reproducible evidence. Neither official store description publishes such a threshold.</p></>},
+      {id:"character-notes",title:"Explore each character",content:<div className={styles.cards}><Link href="/dragons/alexander"><strong>Alexander</strong><span>Late dialogue and its connection to earlier dating choices</span></Link><Link href="/dragons/ryan"><strong>Ryan</strong><span>Picnic scene, relationship choices and pairing reports</span></Link><Link href="/dragons/conrad"><strong>Conrad</strong><span>Character interactions and patched scene issues</span></Link><a href="#ryan-conrad"><strong>Ryan–Conrad pairing</strong><span>What players saw, and what is still unverified</span></a></div>},
+      {id:"ryan-conrad",title:"Ryan and Conrad: a player-reported pairing",content:<><p>Multiple players describe helping Ryan and Conrad get together; another reports seeing the pair while pursuing Alexander. That establishes an interesting community observation, not an official fourth ending or a confirmed sequence of exact responses.</p><ol><li>Keep notes on conversations involving both dragons.</li><li>Watch for responses about their relationship rather than assuming a hidden affection score.</li><li>Finish the run and record any shared scene you actually see.</li><li>On a replay, change one relevant response to test whether it mattered.</li></ol><p>A guaranteed unlock sequence has not yet been repeated on the current build, so treat any exact recipe as provisional.</p><p className={styles.source}><span className="badge muted">COMMUNITY</span> <a href="https://steamcommunity.com/app/4739660/discussions/0/525387040750137310/" target="_blank" rel="noreferrer">Player discussion ↗</a> · <a href="https://steamcommunity.com/app/4739660/discussions/0/525387040750132029/" target="_blank" rel="noreferrer">Another run report ↗</a></p></>},
+      {id:"source-status",title:"What is official and what is not",content:<><p><span className="badge">OFFICIAL</span> The developer describes three male dragons, conversation and requests that become more personal as customers grow comfortable. The official description lists three endings.</p><p><span className="badge muted">COMMUNITY</span> Exclusive dating behavior and the Ryan–Conrad pairing come from players describing their own runs. Exact romance thresholds, a fixed points table and named “true” endings are not published by the developer.</p><p className={styles.source}><a href="https://gatordragongames.itch.io/dragnwash" target="_blank" rel="noreferrer">Official game description ↗</a></p></>},
+    ]}
+    related={[{label:"All endings",href:"/endings"},{label:"Scenes and replay",href:"/endings#feature-status"},{label:"Meet the dragons",href:"/dragons"},{label:"Replay planning",href:"/endings#replay-strategy"},{label:"How route claims are checked",href:"/sources"}]}
+  />;
+}

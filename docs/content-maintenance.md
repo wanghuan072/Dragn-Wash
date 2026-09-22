@@ -1,0 +1,15 @@
+# Content and image maintenance
+
+This is an independent fan guide. The source of record for release, platforms, developer, three endings and the approximate 90-minute length is the [official Steam store page](https://store.steampowered.com/app/4739660/Dragn_Wash/). The September 13 hotfix and September 14–15 announcements are summarized from the [official Steam news feed](https://steamcommunity.com/app/4739660/allnews/). Review announcements again before publishing an update.
+
+Images under `public/images/` are optimized local copies of screenshots from the official Steam store media API for app 4739660, grouped by page area. They are editorial game imagery, not proof of a route condition. Replace or remove them if the publisher requests it. The homepage Hero uses a 1600×900 WebP made from the first official full-size screenshot. Other WebP files use Steam's thumbnail variants.
+
+`src/data/guides/guides.json`, `src/data/dragons/dragons.json`, and `src/data/updates/updates.json` are hand-maintained listing data. Detailed guidance is in `src/page/`. When a game update changes a fix, update the affected article and its cross-links together. Keep `Official`, `Tested`, and `Community` claims distinct; do not invent exact ending thresholds or patch version numbers.
+
+The primary navigation stays at six categories: Home, Guides, Dragons, Endings, Help, and Updates. `src/config/navigation.ts` owns the compact second-level menus. Guides contains five core hands-on articles; game modes, romance, replay, platforms, mods, and discoveries have their own canonical pages and are reached through relevant section links, search, and the sitemap rather than another global navigation row. Do not create a standalone page merely for a paragraph of speculative content. The old Ryan–Conrad, Steam-vs-itch.io, and out-of-bounds URLs permanently redirect to sections on their parent pages.
+
+The [developer's September 10 save/load reply](https://steamcommunity.com/app/4739660/discussions/0/525387040750131252/) says the feature is requested and on the team's radar. Do not publish manual save-slot instructions unless a later official build confirms them. The [official itch page](https://gatordragongames.itch.io/dragnwash) includes a player report about tail/neck ink missed during cleaning; keep this labeled Community rather than universal guidance. Steam's app details API lists full controller support. A [community VR project](https://randomcat4.itch.io/dragn-wash-vr-mod) exists, but native VR and Workshop release status must be checked independently before changing site copy.
+
+The production origin is `https://testdragnwash.com`, which is also the fallback for `NEXT_PUBLIC_SITE_URL`. Canonical URLs, social previews, `robots.txt`, and the sitemap share this setting. The in-game third dragon is named Conrad in official patch notes; the supplied concept's “Dagon” label was not used as a character fact.
+
+Run `npm run lint` and `npm run build` after content changes. Review all static routes in build output and confirm referenced local images resolve.

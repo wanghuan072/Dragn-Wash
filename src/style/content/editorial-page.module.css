@@ -1,0 +1,151 @@
+.linkList { display: grid; counter-reset: field-link; }
+.linkList a { position: relative; display: block; padding: 8px 0 8px 28px; border-bottom: 1px solid #455354; font-size: .8rem; }
+.linkList a:before { counter-increment: field-link; content: counter(field-link, decimal-leading-zero); position: absolute; left: 0; color: #47d6e8; font: 700 .64rem "Courier New", monospace; }
+.linkList a:last-child { border-bottom: 0; }
+.table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.table th, .table td { border: 1px solid #9b8b72; padding: 10px; text-align: left; vertical-align: top; }
+.table th { background: #243234; color: #f4eadb; font: 700 .72rem "Courier New", monospace; text-transform: uppercase; }
+.table td { color: #303b3c; background: #f2e8d5; }
+.source { margin-top: 14px; font: 700 .72rem "Courier New", monospace !important; color: #596566 !important; }
+.source a { color: #087f91; }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.cards a { display: block; padding: 12px; border: 1px solid #a18e70; border-radius: 3px; background: #f6ecd9; color: #172021; box-shadow: 0 4px 10px #5a463526; }
+.cards strong, .cards span { display: block; }
+.cards span { color: #596465; font-size: .78rem; margin-top: 4px; }
+.reference { grid-template-columns: minmax(0, 1.6fr) minmax(250px, .65fr); }
+.reference img { max-height: 205px; }
+.checklist { grid-template-columns: minmax(0, 1.4fr) minmax(260px, .7fr); }
+.checklist img { max-height: 240px; }
+.page { --section-line: #94846d; }
+.article > section {
+  scroll-margin-top: 86px;
+}
+.checklistPage .layout {
+  grid-template-columns: minmax(0, 1fr) 280px;
+}
+.checklistArticle {
+  counter-reset: journey;
+  position: relative;
+  padding: 20px 34px 28px;
+  border: 2px solid #756957;
+  color: #172021;
+  background:
+    radial-gradient(circle at 13% 10%, #806b5518 0 1px, transparent 2px),
+    linear-gradient(120deg, #f3e9d6, #e2d2b8);
+  background-size: 14px 14px, auto;
+  box-shadow: inset 0 0 34px #80644920, 0 16px 38px #0007;
+  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 0 100%);
+}
+.checklistArticle:before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 11px;
+  left: 11px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #6e6456;
+  border-radius: 50%;
+  background: #afa18a;
+  box-shadow: inset 0 1px 2px #fff7;
+}
+.checklistArticle > section {
+  position: relative;
+  margin: 0 !important;
+  padding: 38px 10px 38px 54px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--section-line) !important;
+  border-radius: 0 !important;
+  color: #172021 !important;
+  background: transparent !important;
+  overflow: visible !important;
+}
+.checklistArticle > section h2,
+.checklistArticle > section h3 {
+  color: #172021 !important;
+}
+.checklistArticle > section p,
+.checklistArticle > section li {
+  color: #344041 !important;
+}
+.checklistArticle > section:not(:first-child) {
+  counter-increment: journey;
+}
+.checklistArticle > section:not(:first-child):before {
+  content: counter(journey, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 39px;
+  color: #087f91;
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-size: 1.05rem;
+}
+.checklistArticle > section:not(:first-child):after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 70px;
+  bottom: -1px;
+  width: 1px;
+  background: linear-gradient(#b29d7b, transparent);
+}
+.checklistArticle > section:first-child {
+  margin-bottom: 18px !important;
+  padding: 24px 26px !important;
+  border: 2px solid #267f88 !important;
+  border-left: 7px solid #168fa0 !important;
+  border-radius: 4px !important;
+  background: linear-gradient(135deg, #d9f2ed, #bcded9) !important;
+  box-shadow: inset 0 0 24px #267f8818, 0 8px 18px #5a463522 !important;
+}
+.referencePage .layout {
+  grid-template-columns: minmax(0, 1fr) 270px;
+}
+.referenceArticle {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.referenceArticle > section {
+  margin: 0 !important;
+  padding: 24px !important;
+  border-color: #786b58 !important;
+  background: linear-gradient(145deg, #f3e9d6, #dfcfb5) !important;
+  box-shadow: 0 9px 22px #0004, inset 0 0 24px #80644916;
+  clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 13px, 100% 100%, 0 100%);
+}
+.referenceArticle > section:nth-child(1),
+.referenceArticle > section:nth-child(2),
+.referenceArticle > section:nth-child(3),
+.referenceArticle > section:nth-child(6),
+.referenceArticle > section:nth-child(7),
+.referenceArticle > section:nth-child(8),
+.referenceArticle > section:nth-child(11) {
+  grid-column: 1 / -1;
+}
+.referenceArticle > section:nth-child(4),
+.referenceArticle > section:nth-child(9) {
+  background: linear-gradient(150deg, #f5ead6, #d9c4a4) !important;
+}
+.referenceArticle > section:nth-child(5),
+.referenceArticle > section:nth-child(10) {
+  background: linear-gradient(150deg, #e9ddc7, #ceb995) !important;
+}
+.sidebar > :global(.panel) {
+  border: 2px solid #596263;
+  border-radius: 4px;
+  background: linear-gradient(145deg, #202c2e, #101719);
+  box-shadow: 0 14px 34px #020b1160;
+}
+.sidebar > :global(.panel):nth-child(2) { border-color: #9b8359; background: linear-gradient(145deg, #2c2921, #171713); }
+.panelLabel { margin: 0 0 3px !important; color: #47d6e8 !important; font: 800 .58rem "Courier New", monospace !important; letter-spacing: .1em; }
+@media (max-width: 768px) { .cards { grid-template-columns: 1fr; } .table { font-size: .77rem; } .table th, .table td { padding: 7px; } }
+@media (max-width: 1024px) {
+  .reference, .checklist { grid-template-columns: 1fr; }
+  .referencePage .layout,
+  .checklistPage .layout { grid-template-columns: 1fr; }
+  .referenceArticle { grid-template-columns: 1fr; }
+  .referenceArticle > section { grid-column: 1 !important; }
+  .checklistArticle { padding: 14px 18px 22px; }
+  .checklistArticle > section { padding-left: 42px !important; }
+}
