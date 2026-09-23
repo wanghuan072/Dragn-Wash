@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/DocumentLink";
 import Image from "next/image";
 import { siteName } from "@/config/site";
 import { steamStore } from "@/lib/content";

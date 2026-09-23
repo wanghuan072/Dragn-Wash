@@ -1,10 +1,38 @@
-import Link from "next/link";
+import Link from "@/components/DocumentLink";
 import styles from "@/style/page/inner.module.css";
 import InnerPageHero from "@/components/content/InnerPageHero";
+import { siteName, siteUrl } from "@/config/site";
 export default function HelpDetailPage({ slug }: { slug: string }) {
   const stuck = slug === "stuck";
+  const path = stuck ? "/troubleshooting/stuck-softlock" : "/troubleshooting/wash-progress";
+  const title = stuck ? "Drag'n Wash Stuck or Softlock Recovery" : "Drag'n Wash Clean Bar and Wash Progress Fix";
+  const description = stuck
+    ? "Safe recovery steps for a stuck Drag'n Wash character, interaction or scene before restarting the current run."
+    : "A symptom-first checklist for missed dirt, soap residue, a full clean bar and wash scenes that will not advance.";
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: title,
+      description,
+      image: `${siteUrl}${stuck ? "/images/home/steam-2.webp" : "/images/guides/steam-11.webp"}`,
+      dateModified: "2026-09-23",
+      mainEntityOfPage: `${siteUrl}${path}`,
+      publisher: { "@type": "Organization", name: siteName },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "Troubleshooting", item: `${siteUrl}/troubleshooting` },
+        { "@type": "ListItem", position: 3, name: stuck ? "Stuck or Softlock" : "Wash Progress", item: `${siteUrl}${path}` },
+      ],
+    },
+  ];
   return (
     <main className="container inner-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <InnerPageHero
         eyebrow="FAST RECOVERY"
         keyword="DRAG'N WASH TROUBLESHOOTING"
@@ -13,7 +41,7 @@ export default function HelpDetailPage({ slug }: { slug: string }) {
         lead={stuck ? "Try the in-game recovery option before throwing away your progress." : "A short checklist for a wash that looks complete but does not advance."}
         image={stuck ? "/images/home/steam-2.webp" : "/images/guides/steam-11.webp"}
         imageAlt={stuck ? "Drag'n Wash station during a troubleshooting check" : "A dragon being rinsed while checking wash progress"}
-        reviewedAt="2026-09-21"
+        reviewedAt="2026-09-23"
         plate="RECOVERY PROCEDURE"
         stamp={"TRY THIS\nFIRST"}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Troubleshooting", href: "/troubleshooting" }, { label: stuck ? "Stuck or Softlock" : "Wash Progress" }]}
@@ -92,7 +120,7 @@ export default function HelpDetailPage({ slug }: { slug: string }) {
         </article>
         <aside className={styles.sidebar}>
           <div className="panel">
-            <h2>Patch context</h2>
+            <p className={styles.sidebarTitle}>Patch context</p>
             <p>
               <span className="badge">OFFICIAL</span> Unstick Kobold and several
               softlock fixes arrived Sep 13, 2026.

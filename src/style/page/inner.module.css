@@ -172,7 +172,11 @@
   scrollbar-width: thin;
   scrollbar-color: #47aeb9 #101719;
 }
-.sidebar h2 {
+.sidebar h2,
+.sidebarTitle {
+  display: block;
+  margin: 0 0 10px;
+  color: var(--text);
   font-family: Impact, "Arial Narrow", Arial, sans-serif;
   font-size: 1.25rem;
   font-weight: 500;
@@ -821,7 +825,7 @@
   border-color: #267f88;
   background: linear-gradient(135deg, #d9f2ed, #bcded9);
 }
-.characterArticle > section:nth-child(3) img {
+.characterArticle > section[id="character"] img {
   max-height: 440px;
   border-radius: 3px 3px 35px 3px;
 }

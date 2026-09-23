@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/DocumentLink";
 import { guides } from "@/lib/content";
 import { siteName, siteUrl } from "@/config/site";
 import InnerPageHero from "@/components/content/InnerPageHero";
@@ -25,6 +25,16 @@ type GuideConfig = {
   mistakes: [string, string][];
   faq: [string, string][];
   related: { label: string; href: string }[];
+};
+
+type GuideHeadings = {
+  answer: string;
+  purpose: string;
+  before: string;
+  steps: string;
+  reference: string;
+  mistakes: string;
+  sources: string;
 };
 
 const images = {
@@ -148,6 +158,54 @@ const configs: Record<string, GuideConfig> = {
   },
 };
 
+const headings: Record<string, GuideHeadings> = {
+  "beginner-guide": {
+    answer: "Your First Drag'n Wash Shift in Brief",
+    purpose: "What This Beginner Guide Helps You Finish",
+    before: "Before Your First Shift",
+    steps: "First-Shift Walkthrough: Phone Call to Final Rinse",
+    reference: "First-Run Progress Checks",
+    mistakes: "Beginner Mistakes and Quick Corrections",
+    sources: "What Can Change in a Future Build",
+  },
+  "how-to-wash": {
+    answer: "The Drag'n Wash Cleaning Order",
+    purpose: "What This Washing Guide Solves",
+    before: "Before You Pick Up the Sponge",
+    steps: "How to Wash a Dragon Step by Step",
+    reference: "Wash Progress and Tool Checks",
+    mistakes: "Washing Mistakes That Stall Progress",
+    sources: "Wash Behavior That May Change",
+  },
+  "washing-tools": {
+    answer: "Which Drag'n Wash Tool to Use",
+    purpose: "What the Tool Guide Helps You Diagnose",
+    before: "Before Testing a Washing Tool",
+    steps: "Bucket, Sponge, Sprayer and Contextual Tools",
+    reference: "Drag'n Wash Tool Reference",
+    mistakes: "Tool Assumptions That Waste Time",
+    sources: "Tools and Interactions That May Change",
+  },
+  controls: {
+    answer: "Drag'n Wash Controls at a Glance",
+    purpose: "What the Controls Guide Helps You Fix",
+    before: "Before Changing Controls",
+    steps: "Controller, Camera and Recovery Setup",
+    reference: "Control and Comfort Options",
+    mistakes: "Control Problems Commonly Misdiagnosed",
+    sources: "Control Options That May Change",
+  },
+  "cleaning-tips": {
+    answer: "How to Finish a Stubborn Wash",
+    purpose: "What These Cleaning Tips Help You Find",
+    before: "Before Repeating the Same Cleaning Pass",
+    steps: "Missed-Spot and Rinse Checklist",
+    reference: "Stalled Wash Symptom Table",
+    mistakes: "Cleaning Habits That Hide the Real Problem",
+    sources: "Missed-Spot Advice That May Change",
+  },
+};
+
 function slugify(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
@@ -155,6 +213,7 @@ function slugify(value: string) {
 export default function GuideDetailPage({ slug }: { slug: string }) {
   const guide = guides.find((item) => item.slug === slug)!;
   const config = configs[slug];
+  const sectionHeadings = headings[slug];
   const sectionLinks = [
     ["What this guide solves", "purpose"], ["Before you start", "before-starting"], ["Step-by-step", "step-by-step"],
     ["Quick check table", "reference"], ["Common mistakes", "mistakes"], ["FAQ", "faq"], ["What can change", "sources"],
@@ -183,11 +242,11 @@ export default function GuideDetailPage({ slug }: { slug: string }) {
       />
       <div className={styles.articleGrid}>
         <article className={`${styles.article} ${styles.guideArticle}`}>
-          <section className={styles.answer} id="quick-answer"><span className="badge">QUICK ANSWER</span><h2>What to do</h2><p>{config.answer}</p></section>
-          <section id="purpose"><h2>What this guide solves</h2><p>{config.purpose}</p><div className={styles.inlineLinks}><Link href="/walkthrough">Complete story walkthrough →</Link><Link href="/troubleshooting">Find a specific fix →</Link></div></section>
-          <section id="before-starting"><h2>Before you start</h2><ul>{config.before.map((item) => <li key={item}>{item}</li>)}</ul></section>
+          <section className={styles.answer} id="quick-answer"><span className="badge">QUICK ANSWER</span><h2>{sectionHeadings.answer}</h2><p>{config.answer}</p></section>
+          <section id="purpose"><h2>{sectionHeadings.purpose}</h2><p>{config.purpose}</p><div className={styles.inlineLinks}><Link href="/walkthrough">Complete story walkthrough →</Link><Link href="/troubleshooting">Find a specific fix →</Link></div></section>
+          <section id="before-starting"><h2>{sectionHeadings.before}</h2><ul>{config.before.map((item) => <li key={item}>{item}</li>)}</ul></section>
           <section id="step-by-step">
-            <h2>Step-by-step process</h2>
+            <h2>{sectionHeadings.steps}</h2>
             <div className={styles.guideSteps}>
               {config.steps.map((step, index) => <article className={styles.guideStep} id={`step-${index + 1}-${slugify(step.title)}`} key={step.title}>
                 <Image src={step.image} width={520} height={293} alt={step.imageAlt} />
@@ -195,15 +254,15 @@ export default function GuideDetailPage({ slug }: { slug: string }) {
               </article>)}
             </div>
           </section>
-          <section id="reference"><h2>Quick check table</h2><div className={styles.compare}><div><strong>Item or state</strong><strong>What it means</strong><strong>What to do</strong></div>{config.reference.map(([name, meaning, action]) => <div key={name}><strong>{name}</strong><span>{meaning}</span><span>{action}</span></div>)}</div></section>
-          <section id="mistakes"><h2>Common mistakes and corrections</h2><div className={styles.compare}><div><strong>Mistake</strong><strong>Correction</strong><strong>Related help</strong></div>{config.mistakes.map(([mistake, correction]) => <div key={mistake}><strong>{mistake}</strong><span>{correction}</span><Link href="/troubleshooting">Diagnose →</Link></div>)}</div></section>
+          <section id="reference"><h2>{sectionHeadings.reference}</h2><div className={styles.compare}><div><strong>Item or state</strong><strong>What it means</strong><strong>What to do</strong></div>{config.reference.map(([name, meaning, action]) => <div key={name}><strong>{name}</strong><span>{meaning}</span><span>{action}</span></div>)}</div></section>
+          <section id="mistakes"><h2>{sectionHeadings.mistakes}</h2><div className={styles.compare}><div><strong>Mistake</strong><strong>Correction</strong><strong>Related help</strong></div>{config.mistakes.map(([mistake, correction]) => <div key={mistake}><strong>{mistake}</strong><span>{correction}</span><Link href="/troubleshooting">Open Drag&apos;n Wash troubleshooting →</Link></div>)}</div></section>
           <section id="faq"><h2>{guide.title} FAQ</h2>{config.faq.map(([question, answer]) => <div className={styles.faqItem} key={question}><h3>{question}</h3><p>{answer}</p></div>)}</section>
-          <section id="sources"><h2>What may change after an update</h2><p><span className="badge">CURRENT GAME</span> Platform features, the three-ending count and patch changes are checked against the game&apos;s store pages and announcements.</p><p><span className="badge muted">PLAYER-REPORTED</span> Opening actions and missed-area checks are practical observations, not universal hidden rules.</p><p>Exact affinity values, tool bonuses and ending thresholds are left out unless they can be repeated on a named build.</p><div className={styles.inlineLinks}><Link href="/sources">How changing details are checked →</Link><a href="https://gatordragongames.itch.io/dragnwash" target="_blank" rel="noreferrer">Official game page ↗</a></div></section>
+          <section id="sources"><h2>{sectionHeadings.sources}</h2><p><span className="badge">CURRENT GAME</span> Platform features, the three-ending count and patch changes are checked against the game&apos;s store pages and announcements.</p><p><span className="badge muted">PLAYER-REPORTED</span> Opening actions and missed-area checks are practical observations, not universal hidden rules.</p><p>Exact affinity values, tool bonuses and ending thresholds are left out unless they can be repeated on a named build.</p><div className={styles.inlineLinks}><Link href="/sources">How changing details are checked →</Link><a href="https://gatordragongames.itch.io/dragnwash" target="_blank" rel="noreferrer">Official game page ↗</a></div></section>
         </article>
         <aside className={`${styles.sidebar} ${styles.guideSidebar}`}>
-          <div className="panel"><p className="eyebrow">PAGE GUIDE</p><h2>On this page</h2>{sectionLinks.map(([label, href]) => <a href={`#${href}`} key={href}>{label} →</a>)}</div>
-          <div className="panel"><p className="eyebrow">KEEP PLAYING</p><h2>Continue the run</h2>{config.related.map((item) => <Link href={item.href} key={item.href}>{item.label} →</Link>)}</div>
-          <div className="panel"><p className="eyebrow">LAST CHECKED</p><h2>Current-build note</h2><p>Reviewed Sep 21, 2026. Route claims reported by players stay labeled until they can be repeated on a named build.</p><Link href="/sources">How changing details are checked →</Link></div>
+          <div className="panel"><p className="eyebrow">PAGE GUIDE</p><p className={styles.sidebarTitle}>On this page</p>{sectionLinks.map(([label, href]) => <a href={`#${href}`} key={href}>{label} →</a>)}</div>
+          <div className="panel"><p className="eyebrow">KEEP PLAYING</p><p className={styles.sidebarTitle}>Continue the run</p>{config.related.map((item) => <Link href={item.href} key={item.href}>{item.label} →</Link>)}</div>
+          <div className="panel"><p className="eyebrow">LAST CHECKED</p><p className={styles.sidebarTitle}>Current-build note</p><p>Reviewed {new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${guide.updatedAt}T00:00:00Z`))}. Route claims reported by players stay labeled until they can be repeated on a named build.</p><Link href="/sources">How changing details are checked →</Link></div>
         </aside>
       </div>
     </main>

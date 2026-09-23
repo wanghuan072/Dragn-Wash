@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
+import Link from "@/components/DocumentLink";
 import InnerPageHero from "@/components/content/InnerPageHero";
 import { siteName, siteUrl } from "@/config/site";
 import styles from "@/style/page/inner.module.css";
@@ -122,7 +122,7 @@ export default function EditorialPage({
         <aside className={`${styles.sidebar} ${editorial.sidebar}`}>
           <div className="panel">
             <p className={editorial.panelLabel}>PAGE GUIDE</p>
-            <h2>On this page</h2>
+            <p className={styles.sidebarTitle}>On this page</p>
             <nav className={editorial.linkList} aria-label="Page sections">
               {sections.map((section) => (
                 <a key={section.title} href={`#${section.id ?? section.title.toLowerCase().replaceAll(" ", "-")}`}>
@@ -133,7 +133,7 @@ export default function EditorialPage({
           </div>
           <div className="panel">
             <p className={editorial.panelLabel}>KEEP PLAYING</p>
-            <h2>Where to go next</h2>
+            <p className={styles.sidebarTitle}>Where to go next</p>
             <nav className={editorial.linkList} aria-label="Related pages">
               {related.map((item) => (
                 <Link key={item.href} href={item.href}>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/DocumentLink";
 import EditorialPage from "@/components/content/EditorialPage";
 import IssueFinder from "@/components/IssueFinder";
 import { knownIssues } from "@/data/knowledge";

@@ -18,7 +18,7 @@ type LegalContent = {
 const content: Record<LegalKind, LegalContent> = {
   privacy: {
     eyebrow: "LEGAL & PRIVACY",
-    keyword: "DRAG'N WASH PRIVACY POLICY",
+    keyword: "DRAG'N WASH LEGAL",
     title: "PRIVACY POLICY",
     subtitle: "How this fan guide handles visitor information",
     lead: "This policy explains the limited information that may be processed when you browse the site, follow an external link or email us directly.",
@@ -38,7 +38,7 @@ const content: Record<LegalKind, LegalContent> = {
   },
   terms: {
     eyebrow: "LEGAL & USE",
-    keyword: "DRAG'N WASH TERMS OF SERVICE",
+    keyword: "DRAG'N WASH LEGAL",
     title: "TERMS OF SERVICE",
     subtitle: "Rules for using this independent fan resource",
     lead: "These terms describe permitted use of the guide, the limits of its gameplay information and the responsibilities attached to external links.",
@@ -60,7 +60,7 @@ const content: Record<LegalKind, LegalContent> = {
   },
   copyright: {
     eyebrow: "LEGAL & OWNERSHIP",
-    keyword: "DRAG'N WASH COPYRIGHT",
+    keyword: "DRAG'N WASH LEGAL",
     title: "COPYRIGHT",
     subtitle: "Game ownership, fan commentary and notice requests",
     lead: "This page separates the game owner's material from the original writing and design created for this independent player guide.",
@@ -79,7 +79,7 @@ const content: Record<LegalKind, LegalContent> = {
   },
   about: {
     eyebrow: "ABOUT THE SITE",
-    keyword: "ABOUT DRAG'N WASH GUIDE",
+    keyword: "DRAG'N WASH GUIDE",
     title: "ABOUT US",
     subtitle: "A practical field manual made for players",
     lead: "We organize walkthroughs, character notes, endings, fixes and changing feature status so players can solve a problem without sorting through conflicting claims.",
@@ -98,7 +98,7 @@ const content: Record<LegalKind, LegalContent> = {
   },
   contact: {
     eyebrow: "CONTACT & CORRECTIONS",
-    keyword: "CONTACT DRAG'N WASH GUIDE",
+    keyword: "DRAG'N WASH GUIDE",
     title: "CONTACT US",
     subtitle: "Send a correction, question or rights notice",
     lead: "Use the published email for factual corrections, broken links, accessibility feedback, privacy questions and copyright notices.",

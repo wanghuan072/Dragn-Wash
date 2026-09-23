@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/DocumentLink";
 import Image from "next/image";
 import { dragons, guides, updates, steamStore } from "@/lib/content";
 import { screenshotRecords } from "@/data/knowledge";
@@ -232,7 +232,7 @@ export default function HomePage() {
           </section>
 
           <aside className={styles.routeRail} aria-label="Choose a dragon story">
-            <h2>Choose a Focus</h2>
+            <p className={styles.routeRailTitle}>Choose a Focus</p>
             {dragons.slice(0, 3).map((dragon, index) => (
               <Link href={`/dragons/${dragon.slug}`} className={styles.routeTicket} key={dragon.slug}>
                 <Image
@@ -258,7 +258,7 @@ export default function HomePage() {
         className={`container ${styles.quickAccess}`}
         aria-label="Quick access"
       >
-        <h2 className="sr-only">Quick access</h2>
+        <h2 className="sr-only">Drag&apos;n Wash Quick Guides</h2>
         {access.map((item) => (
           <Link href={item.href} className={styles.accessCard} key={item.title}>
             <span className={styles.accessIcon}><ManualIcon name={item.icon} /></span>
@@ -276,10 +276,10 @@ export default function HomePage() {
             <div className="section-heading">
               <div>
                 <p className={styles.boardEyebrow}>YOUR ACTIVE MANUAL</p>
-                <h2>Continue Your Run</h2>
+                <h2>Drag&apos;n Wash Walkthrough &amp; Guides</h2>
                 <p>Pick up where you left off, or dive into a new guide.</p>
               </div>
-              <Link href="/guides">View all guides →</Link>
+              <Link href="/guides">Browse all Drag&apos;n Wash guides →</Link>
             </div>
             <div className={styles.guideGrid}>
               {guides
@@ -333,10 +333,10 @@ export default function HomePage() {
           <section className={styles.routeBoard}>
             <div className="section-heading">
               <div>
-                <h2>Follow the Dragon Stories</h2>
+                <h2>Drag&apos;n Wash Dragons: Alexander, Ryan &amp; Conrad</h2>
                 <p>You meet all three in a run. Your relationship choices can affect later scenes.</p>
               </div>
-              <Link href="/romance">Relationship choices →</Link>
+              <Link href="/romance">Drag&apos;n Wash relationship choices →</Link>
             </div>
             <div className={styles.dragonStack}>
               {dragons.map((dragon) => (
@@ -354,7 +354,7 @@ export default function HomePage() {
                   <div>
                     <h3>{dragon.name}</h3>
                     <p>{dragon.description}</p>
-                    <span>View route →</span>
+                    <span>View {dragon.name} route guide →</span>
                   </div>
                 </Link>
               ))}
@@ -364,10 +364,10 @@ export default function HomePage() {
         <section className="panel">
           <div className="section-heading">
             <div>
-              <h2>Quick Fixes</h2>
+              <h2>Drag&apos;n Wash Troubleshooting &amp; Fixes</h2>
               <p>Start with the symptom you can see, then open the focused fix if it still will not move.</p>
             </div>
-            <Link href="/troubleshooting">Open troubleshooting →</Link>
+            <Link href="/troubleshooting">Open Drag&apos;n Wash troubleshooting →</Link>
           </div>
           <div className={styles.fixTable}>
             <div className={styles.fixHead}>
@@ -468,7 +468,7 @@ export default function HomePage() {
               <h2>Latest Updates</h2>
               <p>Official news, translated into what you should do next.</p>
             </div>
-            <Link href="/updates">View all updates →</Link>
+            <Link href="/updates">View all Drag&apos;n Wash updates →</Link>
           </div>
           <div className={styles.updateGrid}>
             {updates.map((item) => (
@@ -490,7 +490,7 @@ export default function HomePage() {
                   <h3>{item.title}</h3>
                   <time dateTime={item.date}>{item.date}</time>
                   <p>{item.description}</p>
-                  <span>Read update →</span>
+                  <span>Read {item.title} →</span>
                 </div>
               </Link>
             ))}

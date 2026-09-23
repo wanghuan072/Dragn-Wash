@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/DocumentLink";
 import EditorialPage from "@/components/content/EditorialPage";
 import { metadataFor } from "@/seo/metadata";
 import styles from "@/style/content/editorial-page.module.css";

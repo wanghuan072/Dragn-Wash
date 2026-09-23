@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/DocumentLink";
 import styles from "@/style/content/inner-page-hero.module.css";
 
 type Breadcrumb = { label: string; href?: string };

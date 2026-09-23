@@ -1,13 +1,36 @@
-import Link from "next/link";
+import Link from "@/components/DocumentLink";
 import { metadataFor } from "@/seo/metadata";
 import styles from "@/style/page/inner.module.css";
 import InnerPageHero from "@/components/content/InnerPageHero";
+import { siteName, siteUrl } from "@/config/site";
 
 export const metadata = metadataFor("launchPerformance", "/troubleshooting/launch-performance");
 
 export default function LaunchPerformancePage() {
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: "Drag'n Wash Launch and Performance Troubleshooting",
+      description: "Startup, shader, frame-rate, Linux, Steam Deck, resolution and ultrawide checks for Drag'n Wash.",
+      image: `${siteUrl}/images/home/steam-2.webp`,
+      dateModified: "2026-09-23",
+      mainEntityOfPage: `${siteUrl}/troubleshooting/launch-performance`,
+      publisher: { "@type": "Organization", name: siteName },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "Troubleshooting", item: `${siteUrl}/troubleshooting` },
+        { "@type": "ListItem", position: 3, name: "Launch & Performance", item: `${siteUrl}/troubleshooting/launch-performance` },
+      ],
+    },
+  ];
   return (
     <main className="container inner-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <InnerPageHero
         eyebrow="STARTUP & PERFORMANCE"
         keyword="DRAG'N WASH TROUBLESHOOTING"
@@ -16,7 +39,7 @@ export default function LaunchPerformancePage() {
         lead="Identify whether the problem is startup, performance during play, platform graphics or a frozen scene before trying a fix."
         image="/images/home/steam-2.webp"
         imageAlt="Drag'n Wash wash station used for launch and performance troubleshooting"
-        reviewedAt="2026-09-21"
+        reviewedAt="2026-09-23"
         plate="DIAGNOSTIC FILE"
         stamp={"CHECK\nFIRST"}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Troubleshooting", href: "/troubleshooting" }, { label: "Launch & Performance" }]}
@@ -67,7 +90,7 @@ export default function LaunchPerformancePage() {
           </section>
         </article>
         <aside className={styles.sidebar}>
-          <div className="panel"><h2>Other quick fixes</h2><Link href="/troubleshooting">Search known issues →</Link><Link href="/troubleshooting/wash-progress">Wash progress stuck →</Link><Link href="/troubleshooting/stuck-softlock">Character or scene stuck →</Link><Link href="/guides/controls">Controls &amp; comfort →</Link></div>
+          <div className="panel"><p className={styles.sidebarTitle}>Other quick fixes</p><Link href="/troubleshooting">Search known issues →</Link><Link href="/troubleshooting/wash-progress">Wash progress stuck →</Link><Link href="/troubleshooting/stuck-softlock">Character or scene stuck →</Link><Link href="/guides/controls">Controls &amp; comfort →</Link></div>
         </aside>
       </div>
     </main>

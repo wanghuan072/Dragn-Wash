@@ -1,9 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/DocumentLink";
 import { metadataFor } from "@/seo/metadata";
 import { officialNews, updates } from "@/lib/content";
 import styles from "@/style/page/inner.module.css";
 import InnerPageHero from "@/components/content/InnerPageHero";
+import { siteName, siteUrl } from "@/config/site";
 
 export const metadata = metadataFor("updates", "/updates");
 
@@ -56,8 +57,36 @@ const details: Record<string, { summary: string; changes: string[]; impact: stri
 };
 
 export default function UpdatesPage() {
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Drag'n Wash Updates and Patch Timeline",
+      description: "A dated Drag'n Wash update timeline with official changes, practical player impact and current feature status.",
+      url: `${siteUrl}/updates`,
+      isPartOf: { "@type": "WebSite", name: siteName, url: siteUrl },
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: updates.map((update, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: update.title,
+          url: `${siteUrl}/updates#${update.slug}`,
+        })),
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "Updates", item: `${siteUrl}/updates` },
+      ],
+    },
+  ];
   return (
     <main className={`container inner-page ${styles.updatesPage}`}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <InnerPageHero
         eyebrow="OFFICIAL CHANGE LOG"
         keyword="DRAG'N WASH UPDATES"

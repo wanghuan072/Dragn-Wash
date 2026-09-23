@@ -1,13 +1,35 @@
 import { metadataFor } from "@/seo/metadata";
-import Link from "next/link";
+import Link from "@/components/DocumentLink";
 import Image from "next/image";
 import { dragons } from "@/lib/content";
 import styles from "@/style/page/inner.module.css";
 import InnerPageHero from "@/components/content/InnerPageHero";
+import { siteName, siteUrl } from "@/config/site";
 export const metadata = metadataFor("endings", "/endings");
 export default function EndingsPage() {
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: "Drag'n Wash Endings: Three Outcomes and Replay Guide",
+      description: "A spoiler-aware guide to the three confirmed Drag'n Wash endings, relationship choices, replay limits and current route evidence.",
+      image: `${siteUrl}/images/home/steam-5.webp`,
+      dateModified: "2026-09-23",
+      mainEntityOfPage: `${siteUrl}/endings`,
+      publisher: { "@type": "Organization", name: siteName },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "Endings", item: `${siteUrl}/endings` },
+      ],
+    },
+  ];
   return (
     <main className={`container inner-page ${styles.endingsPage}`}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <InnerPageHero
         eyebrow="ROUTES & OUTCOMES"
         keyword="DRAG'N WASH ENDINGS"
@@ -16,7 +38,7 @@ export default function EndingsPage() {
         lead="There are three confirmed endings, but the game does not publish a complete choice chart. Learn what to watch during a run, what remains uncertain and how to compare a different outcome without changing everything at once."
         image="/images/home/steam-5.webp"
         imageAlt="A later Drag'n Wash story scene used for the endings field record"
-        reviewedAt="2026-09-22"
+        reviewedAt="2026-09-23"
         plate="ENDING GUIDE"
         stamp={"SPOILER\nAHEAD"}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Endings" }]}
@@ -190,7 +212,7 @@ export default function EndingsPage() {
         <aside className={styles.sidebar}>
           <div className="panel">
             <p className="eyebrow">PAGE GUIDE</p>
-            <h2>On this page</h2>
+            <p className={styles.sidebarTitle}>On this page</p>
             <a href="#overview">Ending overview →</a>
             <a href="#characters">Character focus →</a>
             <a href="#confirmed">Confirmed facts →</a>
@@ -204,8 +226,8 @@ export default function EndingsPage() {
           </div>
           <div className="panel">
             <p className="eyebrow">KEEP PLAYING</p>
-            <h2>Plan the next run</h2>
-            <Link href="/dragons">Compare routes →</Link>
+            <p className={styles.sidebarTitle}>Plan the next run</p>
+            <Link href="/dragons">Compare Drag&apos;n Wash dragon routes →</Link>
             <Link href="/romance">Relationship choices →</Link>
             <Link href="/walkthrough#playtime">Playtime and current modes →</Link>
             <Link href="/dragons#story-moments">Dragon visits and story moments →</Link>
@@ -213,7 +235,7 @@ export default function EndingsPage() {
           </div>
           <div className="panel">
             <p className="eyebrow">RECOVERY</p>
-            <h2>Progress stalled?</h2>
+            <p className={styles.sidebarTitle}>Progress stalled?</p>
             <Link href="/troubleshooting/stuck-softlock">Stuck / softlock fix →</Link>
           </div>
         </aside>

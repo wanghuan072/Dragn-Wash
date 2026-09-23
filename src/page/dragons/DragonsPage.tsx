@@ -1,13 +1,42 @@
 import { metadataFor } from "@/seo/metadata";
-import Link from "next/link";
+import Link from "@/components/DocumentLink";
 import Image from "next/image";
 import { dragons } from "@/lib/content";
 import styles from "@/style/page/inner.module.css";
 import InnerPageHero from "@/components/content/InnerPageHero";
+import { siteName, siteUrl } from "@/config/site";
 export const metadata = metadataFor("dragons", "/dragons");
 export default function DragonsPage() {
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Drag'n Wash Characters: Alexander, Ryan and Conrad",
+      description: "Character and route guides for all three dragons in the shared Drag'n Wash story.",
+      url: `${siteUrl}/dragons`,
+      isPartOf: { "@type": "WebSite", name: siteName, url: siteUrl },
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: dragons.map((dragon, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: dragon.name,
+          url: `${siteUrl}/dragons/${dragon.slug}`,
+        })),
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "Dragons", item: `${siteUrl}/dragons` },
+      ],
+    },
+  ];
   return (
     <main className={`container inner-page ${styles.dragonsIndexPage}`}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <InnerPageHero
         eyebrow="MEET THE DRAGONS"
         keyword="DRAG'N WASH CHARACTERS"
@@ -16,7 +45,7 @@ export default function DragonsPage() {
         lead="All three dragons visit during the same story. Choose a character below to follow his wash visits, later conversations, relationship moments and patch-related issues."
         image="/images/home/steam-7.webp"
         imageAlt="A dragon in the Drag'n Wash station"
-        reviewedAt="2026-09-22"
+        reviewedAt="2026-09-23"
         plate="MEET THE DRAGONS"
         stamp={"THREE\nSTORIES"}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Dragons" }]}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/DocumentLink";
 import { knownIssues } from "@/data/knowledge";
 import styles from "@/style/content/knowledge-tools.module.css";
 
@@ -62,7 +62,7 @@ export default function IssueFinder() {
               <div><dt>Status</dt><dd>{issue.evidence}</dd></div>
             </dl>
             <div className={styles.issueLinks}>
-              <Link href={issue.relatedHref}>Open detailed help →</Link>
+              <Link href={issue.relatedHref}>Open {issue.title} troubleshooting →</Link>
               <a href={issue.sourceUrl} target="_blank" rel="noreferrer">Evidence source ↗</a>
             </div>
           </article>

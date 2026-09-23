@@ -405,7 +405,7 @@
 .routeRail:after { content: ""; position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #a88b5b; box-shadow: 0 0 0 1px #322719; }
 .routeRail:before { top: 8px; left: 8px; }
 .routeRail:after { top: 8px; right: 8px; }
-.routeRail h2 {
+.routeRailTitle {
   margin: 0;
   padding: 13px 8px;
   border: 2px solid #8c7b62;
@@ -970,7 +970,7 @@
     padding: 12px;
   }
   .railNote { display: none; }
-  .routeRail h2 {
+  .routeRailTitle {
     grid-column: 1 / -1;
     margin: 0;
   }
