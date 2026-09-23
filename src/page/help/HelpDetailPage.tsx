@@ -57,7 +57,7 @@ export default function HelpDetailPage({ slug }: { slug: string }) {
               {(stuck
                 ? [
                     "Pause the game.",
-                    "Choose Unstick Kobold in the game menu (added in the September 13 hotfix).",
+                    "Choose Unstick Kobold in the game menu (added in the September 2026 hotfix).",
                     "Check whether the current scene still expects an interaction or request.",
                     "If you remain locked, verify the game is updated; restart the scene or run only after trying Unstick.",
                   ]
@@ -77,7 +77,7 @@ export default function HelpDetailPage({ slug }: { slug: string }) {
             <h2>Why this can happen</h2>
             <p>
               {stuck
-                ? "The official September 13 hotfix addressed multiple scene softlocks and input issues. Older reports may describe bugs that have already been fixed, so the game version matters."
+                ? "The official September 2026 hotfix addressed multiple scene softlocks and input issues. Older reports may describe bugs that have already been fixed, so the game version matters."
                 : "A nearly full progress indicator does not prove every required action has been completed. Sometimes the next step is a scene prompt rather than more cleaning. A rare arrival-already-clean issue was also addressed in the official hotfix."}
             </p>
           </section>
@@ -123,7 +123,7 @@ export default function HelpDetailPage({ slug }: { slug: string }) {
             <p className={styles.sidebarTitle}>Patch context</p>
             <p>
               <span className="badge">OFFICIAL</span> Unstick Kobold and several
-              softlock fixes arrived Sep 13, 2026.
+              softlock fixes arrived in September 2026.
             </p>
             <Link href="/updates#kobold-hotfix">Read player impact →</Link>
           </div>

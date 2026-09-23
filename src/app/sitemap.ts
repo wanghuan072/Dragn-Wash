@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { dragons, guides } from "@/lib/content";
-import { screenshotRecords } from "@/data/knowledge";
 import { siteUrl } from "@/config/site";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     ["", "2026-09-23", 1], ["/guides", "2026-09-23", .9], ["/walkthrough", "2026-09-22", .9],
@@ -23,11 +23,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...detailPages,
   ].map(({ path, modified, priority }) => ({
     url: `${siteUrl}${path}`,
-    lastModified: new Date(`${modified}T00:00:00Z`),
+    lastModified: modified,
     changeFrequency: path === "/updates" ? "weekly" as const : "monthly" as const,
     priority,
-    ...(path === ""
-      ? { images: screenshotRecords.map((item) => `${siteUrl}${item.image}`) }
-      : {}),
   }));
 }

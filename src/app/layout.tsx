@@ -18,7 +18,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>
+      <body id="top">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

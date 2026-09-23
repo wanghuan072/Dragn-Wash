@@ -61,7 +61,7 @@ export default function LaunchPerformancePage() {
             <h2>Slow boot or no main menu</h2>
             <ol>
               <li>Confirm you have the latest game build from your storefront.</li>
-              <li>On first boot, give shader preloading time to complete. The developer warned that this can delay the menu after the September 13 hotfix.</li>
+              <li>On first boot, give shader preloading time to complete. The developer warned that this can delay the menu after the September 2026 hotfix.</li>
               <li>If the menu never appears, check the current <a href="https://store.steampowered.com/app/4739660/Dragn_Wash/" target="_blank" rel="noreferrer">store requirements ↗</a> for your operating system and hardware.</li>
               <li>Use your storefront&apos;s install verification or re-download option only after those checks. Preserve any local files you may need before changing the installation.</li>
             </ol>
@@ -74,7 +74,7 @@ export default function LaunchPerformancePage() {
           </section>
           <section id="platforms">
             <h2>Linux and Steam Deck checks</h2>
-            <p>The September 13 hotfix addressed visual glitches on the native Linux build with Nvidia GPUs and continuous spinning after Steam Deck touch input. Check that the update is installed before using an older workaround. Steam Deck Verified status was announced afterward; it does not guarantee identical performance on every graphics setting.</p>
+            <p>The September 2026 hotfix addressed visual glitches on the native Linux build with Nvidia GPUs and continuous spinning after Steam Deck touch input. Check that the update is installed before using an older workaround. Steam Deck Verified status was announced afterward; it does not guarantee identical performance on every graphics setting.</p>
             <Link href="/#buy">See store and platform status →</Link>
           </section>
           <section id="display">

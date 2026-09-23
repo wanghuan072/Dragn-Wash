@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "@/components/DocumentLink";
+import { formatMonthYear } from "@/lib/dates";
 import styles from "@/style/content/inner-page-hero.module.css";
 
 type Breadcrumb = { label: string; href?: string };
@@ -31,14 +32,7 @@ export default function InnerPageHero({
   stamp?: string;
   priority?: boolean;
 }) {
-  const reviewedLabel = reviewedAt
-    ? new Intl.DateTimeFormat("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-        timeZone: "UTC",
-      }).format(new Date(`${reviewedAt}T00:00:00Z`))
-    : undefined;
+  const reviewedLabel = reviewedAt ? formatMonthYear(reviewedAt) : undefined;
 
   return (
     <header className={styles.hero}>

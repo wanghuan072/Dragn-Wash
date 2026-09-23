@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "@/components/DocumentLink";
 import { guides } from "@/lib/content";
 import { siteName, siteUrl } from "@/config/site";
+import { formatMonthYear } from "@/lib/dates";
 import InnerPageHero from "@/components/content/InnerPageHero";
 import styles from "@/style/page/inner.module.css";
 
@@ -136,7 +137,7 @@ const configs: Record<string, GuideConfig> = {
     ],
     reference: [["Full controller support", "Listed by Steam", "Base game"], ["Invert Look Y", "Added in Kobold Hotfix", "Mouse/camera preference"], ["Sprayer Reduce Motion", "Added in Kobold Hotfix", "Motion comfort"], ["Unstick Kobold", "Added in Kobold Hotfix", "Movement/interaction recovery"]],
     mistakes: [["Publishing guessed key bindings", "Use current prompts until verified per device."], ["Using Unstick during credits or normal waits", "Reserve it for a real lock."], ["Diagnosing a route problem as input failure", "Check whether the scene awaits dialogue or an item."], ["Testing with mods active", "Reproduce in the unmodified game first."]],
-    faq: [["Does Drag'n Wash support controllers?", "Steam lists full controller support, including controller feature badges."], ["Is there an invert-Y option?", "Yes. It was added in the September 13 Kobold Hotfix."], ["What if I spin on Steam Deck?", "The hotfix says it fixed touchscreen-triggered endless spinning; update before trying other workarounds."]],
+    faq: [["Does Drag'n Wash support controllers?", "Steam lists full controller support, including controller feature badges."], ["Is there an invert-Y option?", "Yes. It was added in the September 2026 Kobold Hotfix."], ["What if I spin on Steam Deck?", "The hotfix says it fixed touchscreen-triggered endless spinning; update before trying other workarounds."]],
     related: [{ label: "Stores & platforms", href: "/#buy" }, { label: "Launch & performance", href: "/troubleshooting/launch-performance" }, { label: "Softlock recovery", href: "/troubleshooting/stuck-softlock" }, { label: "Update timeline", href: "/updates#kobold-hotfix" }],
   },
   "cleaning-tips": {
@@ -262,7 +263,7 @@ export default function GuideDetailPage({ slug }: { slug: string }) {
         <aside className={`${styles.sidebar} ${styles.guideSidebar}`}>
           <div className="panel"><p className="eyebrow">PAGE GUIDE</p><p className={styles.sidebarTitle}>On this page</p>{sectionLinks.map(([label, href]) => <a href={`#${href}`} key={href}>{label} →</a>)}</div>
           <div className="panel"><p className="eyebrow">KEEP PLAYING</p><p className={styles.sidebarTitle}>Continue the run</p>{config.related.map((item) => <Link href={item.href} key={item.href}>{item.label} →</Link>)}</div>
-          <div className="panel"><p className="eyebrow">LAST CHECKED</p><p className={styles.sidebarTitle}>Current-build note</p><p>Reviewed {new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${guide.updatedAt}T00:00:00Z`))}. Route claims reported by players stay labeled until they can be repeated on a named build.</p><Link href="/sources">How changing details are checked →</Link></div>
+          <div className="panel"><p className="eyebrow">LAST CHECKED</p><p className={styles.sidebarTitle}>Current-build note</p><p>Reviewed {formatMonthYear(guide.updatedAt)}. Route claims reported by players stay labeled until they can be repeated on a named build.</p><Link href="/sources">How changing details are checked →</Link></div>
         </aside>
       </div>
     </main>

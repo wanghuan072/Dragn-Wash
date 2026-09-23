@@ -53,7 +53,7 @@ const routeNotes: Record<
     overview:
       "Ryan is one of the three returning dragon customers. Players describe his expressions as especially lively; treat that as a community impression, not a hidden score indicator.",
     focus:
-      "Follow Ryan's requests in order and pay special attention to the picnic interaction. Choices involving the other dragons may affect later dialogue, so note any response you want to compare. The September 13 hotfix corrected a picnic-scene edge case.",
+      "Follow Ryan's requests in order and pay special attention to the picnic interaction. Choices involving the other dragons may affect later dialogue, so note any response you want to compare. The September 2026 hotfix corrected a picnic-scene edge case.",
     atGlanceTitle: "Ryan Route at a Glance",
     identityTitle: "Ryan Profile and Visual Identification",
     overviewTitle: "Ryan's Character and Wash-Station Role",
@@ -79,7 +79,7 @@ const routeNotes: Record<
     overview:
       "Conrad is the smaller red dragon. The official hotfix explicitly names him, which is why this site uses Conrad instead of the Dagon label found in some early fan guides.",
     focus:
-      "Pay attention to prompts and relationship choices involving Conrad and Ryan. Players report that the two can be paired, so note what you chose without treating an incomplete choice chain as proven. The September 13 hotfix fixed two level 8 issues involving Conrad.",
+      "Pay attention to prompts and relationship choices involving Conrad and Ryan. Players report that the two can be paired, so note what you chose without treating an incomplete choice chain as proven. The September 2026 hotfix fixed two level 8 issues involving Conrad.",
     atGlanceTitle: "Conrad Route at a Glance",
     identityTitle: "Why Some Guides Call Conrad Dagon",
     overviewTitle: "Conrad's Character and Wash-Station Role",
@@ -274,21 +274,21 @@ export default function DragonDetailPage({ slug }: { slug: string }) {
             <h2>{notes.issueTitle}</h2>
             {slug === "conrad" ? (
               <p>
-                <span className="badge">OFFICIAL</span> The September 13 Kobold
+                <span className="badge">OFFICIAL</span> The September 2026 Kobold
                 Hotfix addressed a level 8 interaction-order softlock, a
                 separate level 8 window issue, and a level 14 texture issue
                 involving Conrad. Update before retrying those scenes.
               </p>
             ) : slug === "ryan" ? (
               <p>
-                <span className="badge">OFFICIAL</span> The September 13 hotfix
+                <span className="badge">OFFICIAL</span> The September 2026 hotfix
                 addressed edge cases during Ryan&apos;s picnic scene. If your
                 scene gets stuck, update first and then try{" "}
                 <Link href="/troubleshooting/stuck-softlock">Unstick or a restart</Link>.
               </p>
             ) : (
               <p>
-                <span className="badge">OFFICIAL</span> The September 13 hotfix
+                <span className="badge">OFFICIAL</span> The September 2026 hotfix
                 included a model-clipping fix for Alexander. No exact
                 route-choice table was published in that update.
               </p>

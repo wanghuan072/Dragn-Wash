@@ -3,6 +3,7 @@ import Image from "next/image";
 import { dragons, guides, updates, steamStore } from "@/lib/content";
 import { screenshotRecords } from "@/data/knowledge";
 import { siteName, siteUrl } from "@/config/site";
+import { formatMonthYear, monthDateTime } from "@/lib/dates";
 import styles from "@/style/page/home/home.module.css";
 
 const access = [
@@ -88,7 +89,7 @@ const faq = [
   ],
   [
     "Does Drag'n Wash work on Steam Deck?",
-    "Yes. The developers announced Steam Deck Verified status on September 15, 2026.",
+    "Yes. The developers announced Steam Deck Verified status in September 2026.",
   ],
   [
     "Does Drag'n Wash support a controller?",
@@ -96,7 +97,7 @@ const faq = [
   ],
   [
     "Can I reload a choice from a manual save?",
-    "Do not count on it in the current release. On September 10 a developer described save/load as a highly requested feature still on the team's radar. Plan another run and record important responses instead.",
+    "Do not count on it in the current release. In September 2026 a developer described save/load as a highly requested feature still on the team's radar. Plan another run and record important responses instead.",
   ],
   [
     "Is there VR or Workshop support?",
@@ -488,7 +489,7 @@ export default function HomePage() {
                 <div>
                   <small className="badge">{item.tag}</small>
                   <h3>{item.title}</h3>
-                  <time dateTime={item.date}>{item.date}</time>
+                  <time dateTime={monthDateTime(item.date)}>{formatMonthYear(item.date)}</time>
                   <p>{item.description}</p>
                   <span>Read {item.title} →</span>
                 </div>
@@ -539,7 +540,7 @@ export default function HomePage() {
             </div>
             <div>
               <dt>Release</dt>
-              <dd>itch.io Sep 8 · Steam Sep 10, 2026</dd>
+              <dd>itch.io and Steam, September 2026</dd>
             </div>
             <div>
               <dt>Platforms</dt>

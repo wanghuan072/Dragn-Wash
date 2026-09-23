@@ -1,4 +1,11 @@
 import Link from "@/components/DocumentLink";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Page not found | Drag'n Wash Guide",
+  robots: { index: false, follow: true },
+};
+
 export default function NotFound() {
   return (
     <main className="container inner-page">

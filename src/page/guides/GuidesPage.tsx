@@ -5,6 +5,7 @@ import { guides } from "@/lib/content";
 import styles from "@/style/page/inner.module.css";
 import InnerPageHero from "@/components/content/InnerPageHero";
 import { siteName, siteUrl } from "@/config/site";
+import { formatMonthYear, monthDateTime } from "@/lib/dates";
 export const metadata = metadataFor("guides", "/guides");
 const groups = [
   {
@@ -85,8 +86,8 @@ export default function GuidesPage() {
                       <small className="badge">{g.category}</small>
                       <h3>{g.title}</h3>
                       <p>{g.description}</p>
-                      <time dateTime={g.updatedAt}>
-                        Updated {new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${g.updatedAt}T00:00:00Z`))}
+                      <time dateTime={monthDateTime(g.updatedAt)}>
+                        Updated {formatMonthYear(g.updatedAt)}
                       </time>
                     </div>
                   </Link>

@@ -5,6 +5,7 @@ import { officialNews, updates } from "@/lib/content";
 import styles from "@/style/page/inner.module.css";
 import InnerPageHero from "@/components/content/InnerPageHero";
 import { siteName, siteUrl } from "@/config/site";
+import { formatMonthYear, monthDateTime } from "@/lib/dates";
 
 export const metadata = metadataFor("updates", "/updates");
 
@@ -111,7 +112,7 @@ export default function UpdatesPage() {
             <article className="panel" id={item.slug} key={item.slug}>
               <div className={styles.updateMarker} aria-hidden="true" />
               <div className={styles.updateDate}>
-                <time dateTime={item.date}>{new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${item.date}T00:00:00Z`))}</time>
+                <time dateTime={monthDateTime(item.date)}>{formatMonthYear(item.date)}</time>
                 <span className="badge">{item.tag}</span>
               </div>
               <div className={styles.updateBody}>
