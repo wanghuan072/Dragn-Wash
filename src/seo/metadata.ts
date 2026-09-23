@@ -22,8 +22,8 @@ export function pageMetadata(
       images: [
         {
           url: `${siteUrl}${image}`,
-          width: 1200,
-          height: 630,
+          width: 1731,
+          height: 909,
           alt: "Drag'n Wash player field manual",
         },
       ],

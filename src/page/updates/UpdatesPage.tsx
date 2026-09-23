@@ -135,7 +135,7 @@ export default function UpdatesPage() {
         <div className={styles.compare}>
           <div><strong>Requested feature</strong><strong>Current status</strong><strong>Where to check</strong></div>
           <div><span>Job Mode or endless washing</span><span>Not confirmed as released</span><Link href="/walkthrough#playtime">Current play structure →</Link></div>
-          <div><span>Scene gallery or chapter select</span><span>Not confirmed as released</span><Link href="/endings#feature-status">Replay status →</Link></div>
+          <div><span>Scene gallery or chapter select</span><span>Not confirmed as released</span><Link href="/endings#replay-all-endings">Replay status →</Link></div>
           <div><span>SFW mode</span><span>Player request; no official option confirmed</span><Link href="/#adult-content">Content questions →</Link></div>
           <div><span>Custom dragons</span><span>No verified official workflow yet</span><Link href="/mods#status">Mod status →</Link></div>
           <div><span>Steam Workshop</span><span>Named as a development priority; no release date supplied</span><Link href="/mods#workshop">Workshop notes →</Link></div>

@@ -109,6 +109,7 @@ const secondaryImages: Record<string, { src: string; alt: string }> = {
 };
 export default function DragonDetailPage({ slug }: { slug: string }) {
   const dragon = dragons.find((d) => d.slug === slug)!;
+  const endingRouteHref = `/endings#${slug === "dagon" ? "conrad" : slug}-route`;
   const notes = routeNotes[slug];
   const scenes = sceneRecords.filter((scene) => scene.character.toLowerCase() === slug);
   const faq = [
@@ -194,7 +195,7 @@ export default function DragonDetailPage({ slug }: { slug: string }) {
           <section id="route">
             <h2>{notes.focusTitle}</h2>
             <p>
-              {notes.focus} See the <Link href="/endings">Drag&apos;n Wash endings guide</Link>{" "}
+              {notes.focus} See the <Link href={endingRouteHref}>{dragon.name} ending route</Link>{" "}
               before a replay.
             </p>
             <p>
@@ -261,7 +262,7 @@ export default function DragonDetailPage({ slug }: { slug: string }) {
               requested feature, not a confirmed tool for revisiting this point.
               The exact branch point has not been independently verified.
             </p>
-            <Link href="/endings#replay-strategy">Full replay strategy →</Link>
+            <Link href="/endings#replay-all-endings">Full replay strategy →</Link>
           </section>
           <section id="replay">
             <h2>{dragon.name} replay checklist</h2>
@@ -303,7 +304,7 @@ export default function DragonDetailPage({ slug }: { slug: string }) {
               specific {dragon.name} finale trigger as guaranteed unless the
               same choices still produce it on the current build.
             </p>
-            <Link href="/endings">Drag&apos;n Wash endings and replay guide →</Link>
+            <Link href={endingRouteHref}>{dragon.name} ending route →</Link>
           </section>
           <section id="faq">
             <h2>{dragon.name} FAQ</h2>
@@ -349,7 +350,7 @@ export default function DragonDetailPage({ slug }: { slug: string }) {
             <Link href="/guides/how-to-wash">Washing basics →</Link>
             <a href="#scenes">Character scenes →</a>
             <Link href="/romance">Relationship choices →</Link>
-            <Link href="/endings">Endings and replay →</Link>
+            <Link href={endingRouteHref}>{dragon.name} route in the ending tree →</Link>
             <Link href="/troubleshooting">Troubleshooting →</Link>
           </div>
         </aside>

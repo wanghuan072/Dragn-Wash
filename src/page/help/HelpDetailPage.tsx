@@ -113,7 +113,7 @@ export default function HelpDetailPage({ slug }: { slug: string }) {
             <br />
             <Link href="/guides/washing-tools">Washing Tools →</Link>
             <br />
-            <Link href="/endings#replay-strategy">Replay planning →</Link>
+            <Link href="/endings#replay-all-endings">Replay planning →</Link>
             <br />
             <Link href="/troubleshooting">Search all known issues →</Link>
           </section>

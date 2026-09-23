@@ -128,7 +128,7 @@ export default function DragonsPage() {
           <div><strong>Ryan</strong><span>A picnic sequence exists and received official edge-case fixes.</span><Link href="/dragons/ryan">Follow Ryan&apos;s scenes →</Link></div>
           <div><strong>Conrad</strong><span>Official hotfix notes name him and document level 8 and level 14 fixes.</span><Link href="/dragons/conrad">Follow Conrad&apos;s scenes →</Link></div>
         </div>
-        <div className={styles.inlineLinks}><Link href="/walkthrough#story-flow">Follow the shared story order →</Link><Link href="/endings#feature-status">Check scene replay options →</Link><Link href="/endings">Compare the three endings →</Link></div>
+        <div className={styles.inlineLinks}><Link href="/walkthrough#story-flow">Follow the shared story order →</Link><Link href="/endings#replay-all-endings">Check scene replay options →</Link><Link href="/endings#choice-tree">Compare the ending choice tree →</Link></div>
       </section>
       <section className="panel" id="interactions">
         <h2>Player-reported interactions worth checking</h2>

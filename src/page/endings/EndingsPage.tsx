@@ -1,243 +1,195 @@
-import { metadataFor } from "@/seo/metadata";
 import Link from "@/components/DocumentLink";
 import Image from "next/image";
-import { dragons } from "@/lib/content";
-import styles from "@/style/page/inner.module.css";
 import InnerPageHero from "@/components/content/InnerPageHero";
+import VideoEvidence from "@/components/content/VideoEvidence";
+import { endingFaq, endingNodes, evidenceLabels, type EndingEvidence, type EndingNode } from "@/data/endings";
 import { siteName, siteUrl } from "@/config/site";
+import { metadataFor } from "@/seo/metadata";
+import inner from "@/style/page/inner.module.css";
+import styles from "@/style/page/endings.module.css";
+
 export const metadata = metadataFor("endings", "/endings");
+
+const nodeById = Object.fromEntries(endingNodes.map((node) => [node.id, node])) as Record<string, EndingNode>;
+const evidenceClass: Record<EndingEvidence, string> = {
+  official: styles.official,
+  video: styles.video,
+  "multi-report": styles.multiReport,
+  "single-report": styles.singleReport,
+  unverified: styles.unverified,
+};
+
+function EvidenceBadge({ evidence }: { evidence: EndingEvidence }) {
+  return <span className={`${styles.evidenceBadge} ${evidenceClass[evidence]}`}>{evidenceLabels[evidence]}</span>;
+}
+
+function TreeNode({ id, compact = false }: { id: string; compact?: boolean }) {
+  const node = nodeById[id];
+  return (
+    <article className={`${styles.treeNode} ${styles[node.character]} ${evidenceClass[node.evidence]} ${compact ? styles.compactNode : ""}`} aria-labelledby={`node-${node.id}`}>
+      <div className={styles.nodeTopline}><span>{node.stage}</span><EvidenceBadge evidence={node.evidence} /></div>
+      <h3 id={`node-${node.id}`}>{node.title}</h3>
+      {node.choiceText && <p className={styles.choiceText}><strong>Choice shown:</strong> {node.choiceText}</p>}
+      {node.unlockText && <p className={styles.unlockText}>SYSTEM · {node.unlockText}</p>}
+      <p>{node.result}</p>
+      {node.media && <div className={styles.nodeMedia}><Image src={node.media.poster ?? `https://i.ytimg.com/vi/${node.media.youtubeId}/mqdefault.jpg`} width={960} height={540} unoptimized loading="lazy" referrerPolicy="no-referrer" alt={node.media.alt} /></div>}
+    </article>
+  );
+}
+
+function RouteEvidence({ id }: { id: string }) {
+  const node = nodeById[id];
+  return node.media ? <VideoEvidence {...node.media} /> : null;
+}
+
 export default function EndingsPage() {
   const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: "Drag'n Wash Endings: Three Outcomes and Replay Guide",
-      description: "A spoiler-aware guide to the three confirmed Drag'n Wash endings, relationship choices, replay limits and current route evidence.",
-      image: `${siteUrl}/images/home/steam-5.webp`,
-      dateModified: "2026-09-23",
-      mainEntityOfPage: `${siteUrl}/endings`,
-      publisher: { "@type": "Organization", name: siteName },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-        { "@type": "ListItem", position: 2, name: "Endings", item: `${siteUrl}/endings` },
-      ],
-    },
+    { "@context": "https://schema.org", "@type": "Article", headline: "Drag'n Wash Endings Choice Tree and Route Guide", description: "A filmed choice tree for Drag'n Wash relationship routes, route locks, three confirmed endings and replay planning.", image: `${siteUrl}/images/og-image.png`, dateModified: "2026-09-23", mainEntityOfPage: `${siteUrl}/endings`, publisher: { "@type": "Organization", name: siteName } },
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: siteUrl }, { "@type": "ListItem", position: 2, name: "Endings", item: `${siteUrl}/endings` }] },
+    { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: endingFaq.map((item) => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })) },
   ];
+
   return (
-    <main className={`container inner-page ${styles.endingsPage}`}>
+    <main className={`container inner-page ${inner.endingsPage} ${styles.page}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <InnerPageHero
-        eyebrow="ROUTES & OUTCOMES"
+        eyebrow="FULL SPOILERS · ROUTE EVIDENCE"
         keyword="DRAG'N WASH ENDINGS"
-        title="THREE OUTCOMES"
-        subtitle="What Changes and How to Replay"
-        lead="There are three confirmed endings, but the game does not publish a complete choice chart. Learn what to watch during a run, what remains uncertain and how to compare a different outcome without changing everything at once."
+        title="YOUR CHOICES SHAPE THE ENDING"
+        subtitle="See How Each Decision Changes the Route"
+        lead="Use the choices we see in the game to plan a Conrad, Ryan, Ryan–Conrad or Alexander run. Each branch shows what to choose, what changes next and how confident we can be in the result."
         image="/images/home/steam-5.webp"
-        imageAlt="A later Drag'n Wash story scene used for the endings field record"
+        imageAlt="Late Drag'n Wash scene used to introduce the endings choice tree"
         reviewedAt="2026-09-23"
-        plate="ENDING GUIDE"
-        stamp={"SPOILER\nAHEAD"}
+        plate="ENDING FIELD MAP"
+        stamp={"FULL\nSPOILERS"}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Endings" }]}
       />
-      <div className={styles.warning}>
-        <strong>⚠ Spoiler warning</strong>
-        <p>
-          This page discusses route structure and late-game planning. It avoids
-          unverified ending scenes and precise dialogue solutions.
-        </p>
+
+      <div className={styles.spoilerWarning} role="note">
+        <span aria-hidden="true">!</span>
+        <div><strong>Full spoiler warning</strong><p>This page names late relationship choices and outcomes. It does not hide the route tree behind accordions, so stop here if you want a blind first run.</p></div>
       </div>
-      <div className={styles.articleGrid}>
-        <article className={`${styles.article} ${styles.endingsArticle}`}>
-          <section className={styles.answer} id="overview">
-            <span className="badge">OFFICIAL</span>
-            <h2>Three endings are confirmed</h2>
-            <p>
-              The official game description states there are{" "}
-              <strong>three endings</strong>, with approximately{" "}
-              <strong>90 minutes of content per ending</strong>. It does not
-              provide a public decision tree or the exact conditions for each
-              result.
-            </p>
-            <a href="https://gatordragongames.itch.io/dragnwash" target="_blank" rel="noreferrer">
-              Check the official description ↗
-            </a>
-          </section>
-          <section id="characters">
-            <h2>Choose a character focus</h2>
-            <div className={styles.routeLinks}>
-              {dragons.map((d) => (
-                <Link href={`/dragons/${d.slug}`} key={d.slug}>
-                  <strong>{d.name}</strong>
-                  <span>Route overview and replay notes →</span>
-                </Link>
-              ))}
+
+      <section className={styles.quickAnswer} aria-labelledby="quick-answer-title">
+        <div>
+          <p className={styles.kicker}>QUICK ANSWER</p>
+          <h2 id="quick-answer-title">Three endings, several relationship states</h2>
+          <p>We can finish <strong>three endings</strong>, with the developer estimating about <strong>90 minutes of content for each one</strong>. The clearest decisions happen in Conrad&apos;s conversation and Ryan&apos;s picnic. Those choices shape who we date, whether Ryan and Conrad get together, and how Alexander speaks to us later.</p>
+        </div>
+        <dl>
+          <div><dt>Official endings</dt><dd>3</dd></div>
+          <div><dt>Estimated content</dt><dd>~90 min / ending</dd></div>
+          <div><dt>Route model</dt><dd>One shared story</dd></div>
+          <div><dt>Manual branch return</dt><dd>Not confirmed</dd></div>
+        </dl>
+      </section>
+
+      <div className={`${inner.articleGrid} ${styles.endingsGrid}`}>
+        <article className={`${inner.article} ${styles.article}`}>
+          <section id="choice-tree" className={styles.treeSection}>
+            <header className={styles.sectionHeader}>
+              <p className={styles.kicker}>THE DECISIONS THAT ACTUALLY MATTER</p>
+              <h2>Drag&apos;n Wash Ending Choice Tree</h2>
+              <p>Read from top to bottom. Solid cyan paths are shown directly in video; dashed paths combine filmed entry points with repeated player reports; dotted paths still need a complete current-build recording. “Leads to” labels preserve the same order on mobile.</p>
+            </header>
+            <div className={styles.legend} aria-label="Evidence line legend">
+              <span className={styles.video}>Filmed choice</span><span className={styles.multiReport}>Repeated player reports</span><span className={styles.singleReport}>Incomplete verification</span><span className={styles.official}>Official count</span>
+            </div>
+            <div className={styles.choiceTree}>
+              <div className={`${styles.treeRow} ${styles.startRow}`}><TreeNode id="shared-run" compact /></div>
+              <div className={styles.connectorLabel}>LEADS TO TWO FILMED ROUTE LOCKS</div>
+              <div className={`${styles.treeRow} ${styles.forkRow}`}><TreeNode id="conrad-lock" /><TreeNode id="ryan-picnic" /></div>
+              <div className={styles.connectorLabel}>CHOOSE THE PLAYER OR CONNECT THE DRAGONS</div>
+              <div className={`${styles.treeRow} ${styles.outcomeRow}`}><TreeNode id="conrad-romance" compact /><TreeNode id="ryan-romance" compact /><TreeNode id="ryan-conrad" compact /></div>
+              <div className={styles.connectorLabel}>YOUR EXISTING RELATIONSHIP CHANGES THE LATE VISIT</div>
+              <div className={`${styles.treeRow} ${styles.alexanderRow}`}><TreeNode id="alexander-open" compact /><TreeNode id="alexander-locked" compact /><TreeNode id="alexander-romance" compact /></div>
+              <div className={styles.connectorLabel}>FINISH THE RUN</div>
+              <div className={`${styles.treeRow} ${styles.finalRow}`}><TreeNode id="ending-count" compact /></div>
             </div>
           </section>
-          <section id="confirmed">
-            <h2>What the game tells you</h2>
-            <p>
-              <span className="badge">OFFICIAL</span> Three dragons appear in
-              the game, three endings are listed in the developer&apos;s description, and
-              the developer estimates about 90 minutes of content per ending.
-              That figure is not a minimum or a fixed timer.
-            </p>
+
+          <section id="conrad-route" className={styles.routeSection}>
+            <div className={styles.routeCopy}>
+              <div className={styles.routeHeading}><span className={styles.routeNumber}>01</span><div><p className={styles.kicker}>FILMED ROUTE LOCK</p><h2>Conrad Ending Route</h2></div></div>
+              <p>When Conrad asks who he should spend time with, we get a clear fork: point him toward Ryan or offer to spend time with him ourselves. If we choose Conrad, the game shows <strong>“Unlock Conrad Romance”</strong> and the conversation immediately moves toward a date.</p>
+              <div className={styles.routeFacts}><div><span>When</span><strong>Late Conrad conversation</strong></div><div><span>Choose</span><strong>Spend time with Conrad yourself</strong></div><div><span>Immediate change</span><strong>Romance unlock appears</strong></div><div><span>Alternative</span><strong>Introduce Conrad to Ryan</strong></div></div>
+              <p className={styles.caution}>The romance unlock is filmed. A fan-made “Conrad Good Ending” name, score threshold or required wash grade is not.</p>
+              <div className={styles.inlineLinks}><Link href="/dragons/conrad">Read Conrad&apos;s route profile →</Link><a href="#ryan-conrad-route">Compare the pairing branch ↓</a></div>
+            </div>
+            <RouteEvidence id="conrad-lock" />
           </section>
-          <section id="evidence-map">
-            <h2>What is known about the three endings</h2>
-            <div className={styles.compare}>
-              <div><strong>Question</strong><strong>Current answer</strong><strong>Where to go next</strong></div>
-              <div><span>Three endings exist</span><span>Official developer description</span><a href="https://gatordragongames.itch.io/dragnwash" target="_blank" rel="noreferrer">Official page ↗</a></div>
-              <div><span>Do the endings have official names?</span><span>No public names have been confirmed.</span><a href="#outcome-records">Compare late scenes ↓</a></div>
-              <div><span>Is there an exact choice chart?</span><span>No complete chart is published; player-reported paths remain incomplete.</span><Link href="/romance">Relationship choices →</Link></div>
-              <div><span>Are scene variations separate endings?</span><span>Not necessarily. A changed scene does not automatically increase the ending count.</span><a href="#branch-ledger">Review observed branches ↓</a></div>
+
+          <section id="ryan-route" className={styles.routeSection}>
+            <RouteEvidence id="ryan-picnic" />
+            <div className={styles.routeCopy}>
+              <div className={styles.routeHeading}><span className={styles.routeNumber}>02</span><div><p className={styles.kicker}>PICNIC DECISION</p><h2>Ryan Ending Route</h2></div></div>
+              <p>At the picnic, Ryan asks whether we know someone he could date. The menu spells out the result before we commit: <strong>“I know this one red dragon. I think you&apos;d like him!”</strong> pairs Ryan with Conrad, while <strong>“I wouldn&apos;t mind… if I was that someone.”</strong> locks in Ryan&apos;s romance.</p>
+              <div className={styles.routeFacts}><div><span>When</span><strong>Ryan&apos;s picnic conversation</strong></div><div><span>Choose Ryan</span><strong>“If I was that someone”</strong></div><div><span>Choose pairing</span><strong>“This one red dragon”</strong></div><div><span>Menu result</span><strong>Route lock shown on screen</strong></div></div>
+              <p className={styles.caution}>The screenshot confirms both route labels. It does not, by itself, prove every later scene or give the final ending an official name.</p>
+              <div className={styles.inlineLinks}><Link href="/dragons/ryan">Follow Ryan&apos;s scenes →</Link><Link href="/romance#how-choices-connect">Compare relationship locks →</Link></div>
             </div>
           </section>
-          <section id="outcome-records">
-            <h2>How to compare one ending with the next</h2>
-            <div className={styles.walkthroughList}>
-              <article><Image src="/images/home/steam-6.webp" width={520} height={293} alt="Purple dragon scene used when recording an Alexander-focused run"/><div><span className="eyebrow">CHARACTER CONTEXT</span><h3>Note who the late scene centers on</h3><p>Write down the character, any earlier date references and the exact later dialogue. A character appearing near the finale does not by itself prove a one-character-one-ending rule.</p></div></article>
-              <article><Image src="/images/home/steam-10.webp" width={520} height={293} alt="Pale dragon reacting during a relationship scene"/><div><span className="eyebrow">CHOICE AND RESULT</span><h3>Separate the response from its consequence</h3><p>Keep the response, first visible change and final outcome separate. That makes it easier to tell whether a memorable scene was actually the decisive branch.</p></div></article>
-              <article><Image src="/images/home/steam-11.webp" width={520} height={293} alt="Red dragon wash scene before a later route outcome"/><div><span className="eyebrow">NEXT RUN</span><h3>Change one meaningful choice</h3><p>On the next run, change one uncertain relationship response while keeping unrelated dialogue and cleaning behavior consistent.</p></div></article>
+
+          <section id="ryan-conrad-route" className={styles.routeSection}>
+            <div className={styles.routeCopy}>
+              <div className={styles.routeHeading}><span className={styles.routeNumber}>03</span><div><p className={styles.kicker}>TWO ENTRY POINTS</p><h2>Ryan–Conrad Pairing Route</h2></div></div>
+              <p>We have two opportunities to bring Ryan and Conrad together. We can introduce Conrad to Ryan during Conrad&apos;s conversation, or recommend Conrad when Ryan asks about a date at the picnic. Both choices point toward the same pairing instead of starting a romance with either dragon ourselves.</p>
+              <ol className={styles.branchSteps}><li><strong>At Conrad&apos;s choice:</strong> choose Ryan instead of ourselves.</li><li><strong>At Ryan&apos;s picnic:</strong> describe or recommend Conrad.</li><li><strong>Later in the run:</strong> watch for dialogue that treats them as a pair.</li><li><strong>When Alexander returns:</strong> his invitation can remain open because we did not date Ryan or Conrad.</li></ol>
+              <p className={styles.caution}>The image shows the picnic option exactly as it appears, including “Hooks up Ryan with Conrad.” It proves the route lock, not a fourth official ending; the published total remains three.</p>
+              <div className={styles.inlineLinks}><Link href="/romance#ryan-conrad">Read the relationship context →</Link><a href="#alexander-route">Continue to Alexander ↓</a></div>
+            </div>
+            <RouteEvidence id="ryan-conrad" />
+          </section>
+
+          <section id="alexander-route" className={styles.routeSection}>
+            <RouteEvidence id="alexander-open" />
+            <div className={styles.routeCopy}>
+              <div className={styles.routeHeading}><span className={styles.routeNumber}>04</span><div><p className={styles.kicker}>LATE RELATIONSHIP CHECK</p><h2>Alexander Ending Route</h2></div></div>
+              <p>Alexander&apos;s late visit gives us a direct choice between accepting his invitation and turning it down. The recorded menu labels the answers <strong>“Will lead to Alexander romance”</strong> and <strong>“Will lead to no romance”</strong>, so we no longer have to infer the immediate result from a generic conversation clip.</p>
+              <div className={styles.alexanderStates}><article><EvidenceBadge evidence="multi-report" /><h3>No Ryan or Conrad romance</h3><p>Alexander&apos;s invitation remains available; accept it to continue his relationship outcome.</p></article><article><EvidenceBadge evidence="multi-report" /><h3>Already dating Ryan or Conrad</h3><p>The dialogue acknowledges that date instead of presenting the same invitation path.</p></article></div>
+              <p className={styles.caution}>The romance/no-romance choice is filmed at 51:55. What remains less certain is the full prerequisite list that makes this menu appear, so ordinary friendly answers should not be converted into invented affection points.</p>
+              <Link href="/dragons/alexander">Read Alexander&apos;s late-scene notes →</Link>
             </div>
           </section>
-          <section id="branch-ledger">
-            <h2>Reported branches and their current status</h2>
-            <div className={styles.compare}>
-              <div><strong>Observed branch</strong><strong>What is supported</strong><strong>Status</strong></div>
-              <div><strong>Alexander late dialogue</strong><span>Players report acknowledgement of an earlier date with Ryan or Conrad.</span><span>Community report; exact prerequisite unverified</span></div>
-              <div><strong>Ryan picnic</strong><span>The scene exists and received official edge-case fixes.</span><span>Scene official; ending effect unverified</span></div>
-              <div><strong>Ryan–Conrad pairing</strong><span>Players report being able to connect the two characters.</span><span>Community outcome; choice chain incomplete</span></div>
-              <div><strong>Three final outcomes</strong><span>The developer publishes a total of three endings.</span><span>Official count; names and mapping unpublished</span></div>
+
+          <section id="what-counts" className={styles.definitionSection}>
+            <div className={styles.sectionHeader}><p className={styles.kicker}>SCENE, ROUTE OR ENDING?</p><h2>What Counts as a Drag&apos;n Wash Ending?</h2><p>When we see a new line or romance unlock, it is tempting to count it as another ending. It is better to separate the choice we made, the relationship it opened and the final result that reaches the credits.</p></div>
+            <div className={styles.definitionGrid}>
+              <article><span>01</span><h3>Choice</h3><p>A response selected from an on-screen menu, such as choosing Conrad or recommending him to Ryan.</p></article>
+              <article><span>02</span><h3>Route state</h3><p>A persistent relationship change: Conrad romance, Ryan romance, the Ryan–Conrad pairing or Alexander remaining open.</p></article>
+              <article><span>03</span><h3>Scene variation</h3><p>Later dialogue reacting to that state. Useful evidence, but not proof of another official ending.</p></article>
+              <article><span>04</span><h3>Official ending</h3><p>One of the three final outcomes counted by the developer. No official Good, Bad or True names are published.</p></article>
             </div>
-            <p className={styles.note}>A recorded scene can establish that an outcome exists without proving the exact trigger that caused it.</p>
+            <aside className={styles.unverifiedCallout}><strong>Why “All Dragons Happy” is not a fourth ending</strong><p>A video title can describe a satisfying run, a montage or several saves. Without an uncut choice-to-credits sequence, the title alone cannot change the official total of three.</p><span className={styles.sourceLabel}>Reviewed video claim · “All Dragons Happy”</span></aside>
           </section>
-          <section id="feature-status">
-            <h2>How to replay Drag&apos;n Wash ending scenes</h2>
-            <p>The current official descriptions do not advertise a scene gallery or chapter selector. Treat a completed progress slot as a record of that run, not as a guaranteed menu for reopening every earlier scene.</p>
-            <div className={styles.compare}>
-              <div><strong>Question</strong><strong>Current answer</strong><strong>Next step</strong></div>
-              <div><span>How many endings?</span><span>Three are listed by the developer.</span><a href="https://gatordragongames.itch.io/dragnwash" target="_blank" rel="noreferrer">Official source ↗</a></div>
-              <div><span>Scene gallery?</span><span>Not confirmed as a released feature.</span><a href="#replay-strategy">Plan another run ↓</a></div>
-              <div><span>Chapter select?</span><span>Requested by players; not a confirmed unlock.</span><Link href="/updates#future-of-drag-n-wash">Development status →</Link></div>
-              <div><span>Manual branch save?</span><span>Developer described save/load as requested.</span><a href="#replay-strategy">Replay strategy ↓</a></div>
-            </div>
-          </section>
-          <section id="community">
-            <h2>Community Observations</h2>
-            <p>
-              <span className="badge muted">COMMUNITY</span> Players discuss
-              meeting all three dragons in a run. Reports describe an exclusive
-              player romance and later dialogue that acknowledges an earlier
-              date. Other players report being able to pair Ryan with Conrad.
-              These are firsthand observations, not an official decision tree. {" "}
-              <a href="https://steamcommunity.com/app/4739660/discussions/0/525387040750137310/" target="_blank" rel="noreferrer">Read the player discussion ↗</a>
-            </p>
-          </section>
-          <section id="unverified">
-            <h2>Still Being Tested</h2>
-            <p>
-              The exact dialogue requirements, affection thresholds, and point
-              of no return for each ending are not confirmed by the official
-              description. One player reports four outcomes, in tension with
-              the developer&apos;s published count of three. It is unclear whether
-              that player counted scene variants as separate outcomes, so
-              unsupported “good”, “bad”, or “true” categories are not used here. {" "}
-              <a href="https://steamcommunity.com/app/4739660/reviews/?browsefilter=toprated" target="_blank" rel="noreferrer">See the player review ↗</a>
-            </p>
-          </section>
-          <section id="replay-strategy">
-            <h2>Plan your next replay</h2>
-            <p>
-              <span className="badge">OFFICIAL</span> A developer said manual
-              save/load is a highly requested feature still on the team&apos;s
-              radar. Progress slots may exist, but do not assume they provide
-              a manual checkpoint before any late choice. {" "}
-              <a
-                href="https://steamcommunity.com/app/4739660/discussions/0/525387040750131252/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Read the developer reply ↗
-              </a>
-            </p>
-            <ol className={styles.timeline}>
-              <li>
-                <strong>Run 1 · Follow the shared story</strong>
-                <span>
-                  Meet all three dragons and complete a first ending. You can
-                  follow one relationship more closely without skipping others.
-                </span>
-              </li>
-              <li>
-                <strong>During the run · Keep short notes</strong>
-                <span>
-                  Record meaningful responses and requests. There may be no
-                  manual checkpoint to revisit them later.
-                </span>
-              </li>
-              <li>
-                <strong>After the ending · Record the result</strong>
-                <span>
-                  Note which character and ending you saw, plus any late choice
-                  that seemed important.
-                </span>
-              </li>
-              <li>
-                <strong>Run 2 · Change one thing</strong>
-                <span>
-                  Focus on a different dragon or test one uncertain response so
-                  you can compare outcomes.
-                </span>
-              </li>
+
+          <section id="replay-all-endings" className={styles.replaySection}>
+            <div className={styles.sectionHeader}><p className={styles.kicker}>CONTROLLED REPLAY</p><h2>How to Replay All Three Endings</h2><p>The current public feature descriptions do not promise a scene gallery, chapter select or manual save before every route lock. Treat each completed slot as a record of one run.</p></div>
+            <ol className={styles.replaySteps}>
+              <li><span>01</span><div><strong>Finish one route</strong><p>Record the relationship unlock, late Alexander state and what appears before the credits.</p></div></li>
+              <li><span>02</span><div><strong>Keep the rest of the run stable</strong><p>Use the same general wash order and do not change every optional response at once.</p></div></li>
+              <li><span>03</span><div><strong>Change one route lock</strong><p>Switch Conrad&apos;s answer or Ryan&apos;s picnic recommendation, then follow the new relationship state.</p></div></li>
+              <li><span>04</span><div><strong>Start a fresh run if credits loop</strong><p>If Continue returns to the completed ending, begin another slot instead of treating it as a chapter menu.</p></div></li>
             </ol>
-            <a href="#feature-status">Review gallery and chapter-select status ↑</a>
+            <div className={styles.replayLinks}><Link href="/walkthrough#choices">Use the complete walkthrough →</Link><Link href="/troubleshooting/stuck-softlock">Recover a stalled scene →</Link><Link href="/romance">Compare relationship choices →</Link></div>
           </section>
-          <section id="another-ending">
-            <h2>Starting another ending</h2>
-            <p>If Continue on a completed slot returns to the credits, do not assume the save is a scene selector. Note the ending and relationship you saw, begin another run and change one meaningful response at a time. You will get a much clearer comparison than if you change every dialogue choice.</p>
-            <Link href="/romance">Compare relationship choices →</Link>
+
+          <section id="faq" className={styles.faqSection}>
+            <div className={styles.sectionHeader}><p className={styles.kicker}>DIRECT ANSWERS</p><h2>Drag&apos;n Wash Endings FAQ</h2></div>
+            <div className={styles.faqGrid}>{endingFaq.map((item) => <article key={item.question}><h3>{item.question}</h3><p>{item.answer}</p></article>)}</div>
           </section>
-          <section id="faq">
-            <h2>Drag&apos;n Wash endings FAQ</h2>
-            <h3>How many endings are confirmed?</h3><p>Three. The developer&apos;s game description is the strongest source for the count.</p>
-            <h3>Are there official Good, Bad or True Ending names?</h3><p>No such names were published in the official sources reviewed for this page. They are excluded until a first-party source or controlled current-build test supports them.</p>
-            <h3>Does every dragon have a separate ending?</h3><p>That mapping is not established by the official three-ending statement. Character pages list observable scenes without converting them into a guaranteed finale formula.</p>
-            <h3>Does cleaning quality decide the ending?</h3><p>No official numeric cleaning-to-ending rule has been published. Complete the requested care, then record relationship choices separately.</p>
+
+          <section id="evidence-notes" className={styles.evidenceSection}>
+            <div><p className={styles.kicker}>EVIDENCE & VERSION NOTES</p><h2>How We Checked Each Route</h2><p>We use the choice visible on screen first, then compare what happens later in the same run. When only other players have repeated a result, we say so instead of turning it into a guaranteed recipe. The map was checked again on September 23, 2026.</p></div>
+            <ul><li><span>Official game description · ending count and playtime</span></li><li><span>Steam player discussion · late relationship changes</span></li><li><span>Alexander route recording · Conrad route choice at 24:00</span></li><li><span>Ryan route recording · picnic route choice at 13:57</span></li><li><span>Alexander route recording · romance/no-romance choice at 51:55</span></li></ul>
           </section>
         </article>
-        <aside className={styles.sidebar}>
-          <div className="panel">
-            <p className="eyebrow">PAGE GUIDE</p>
-            <p className={styles.sidebarTitle}>On this page</p>
-            <a href="#overview">Ending overview →</a>
-            <a href="#characters">Character focus →</a>
-            <a href="#confirmed">Confirmed facts →</a>
-            <a href="#evidence-map">What is known →</a>
-            <a href="#outcome-records">Compare endings →</a>
-            <a href="#branch-ledger">Reported branches →</a>
-            <a href="#feature-status">Replay status →</a>
-            <a href="#unverified">Still being tested →</a>
-            <a href="#replay-strategy">Replay strategy →</a>
-            <a href="#faq">FAQ →</a>
-          </div>
-          <div className="panel">
-            <p className="eyebrow">KEEP PLAYING</p>
-            <p className={styles.sidebarTitle}>Plan the next run</p>
-            <Link href="/dragons">Compare Drag&apos;n Wash dragon routes →</Link>
-            <Link href="/romance">Relationship choices →</Link>
-            <Link href="/walkthrough#playtime">Playtime and current modes →</Link>
-            <Link href="/dragons#story-moments">Dragon visits and story moments →</Link>
-            <Link href="/sources">How changing details are checked →</Link>
-          </div>
-          <div className="panel">
-            <p className="eyebrow">RECOVERY</p>
-            <p className={styles.sidebarTitle}>Progress stalled?</p>
-            <Link href="/troubleshooting/stuck-softlock">Stuck / softlock fix →</Link>
-          </div>
+
+        <aside className={`${inner.sidebar} ${styles.sidebar}`}>
+          <div className="panel"><p className="eyebrow">ROUTE INDEX</p><p className={inner.sidebarTitle}>On this page</p><a href="#choice-tree">Ending choice tree →</a><a href="#conrad-route">Conrad route →</a><a href="#ryan-route">Ryan route →</a><a href="#ryan-conrad-route">Ryan–Conrad pairing →</a><a href="#alexander-route">Alexander route →</a><a href="#what-counts">What counts as an ending? →</a><a href="#replay-all-endings">Replay all three endings →</a><a href="#faq">Endings FAQ →</a></div>
+          <div className="panel"><p className="eyebrow">CHARACTER FILES</p><p className={inner.sidebarTitle}>Follow the route</p><Link href="/dragons/alexander">Alexander route profile →</Link><Link href="/dragons/ryan">Ryan route profile →</Link><Link href="/dragons/conrad">Conrad route profile →</Link><Link href="/romance">Romance and relationship guide →</Link></div>
+          <div className="panel"><p className="eyebrow">RUN SUPPORT</p><p className={inner.sidebarTitle}>Before the next ending</p><Link href="/walkthrough">Complete walkthrough →</Link><Link href="/troubleshooting/stuck-softlock">Stuck or softlocked? →</Link><Link href="/sources">How route claims are checked →</Link></div>
         </aside>
       </div>
     </main>

@@ -51,7 +51,7 @@ export default function AppHeader() {
     <header className={styles.header} ref={headerRef}>
       <div className={`container ${styles.inner}`}>
         <Link className={styles.brand} href="/" onClick={closeNavigation} aria-label="Drag'n Wash Field Manual home">
-          <span className={styles.brandMark} aria-hidden="true"><Image src="/images/logo.png" width={48} height={48} alt="" priority /></span>
+          <span className={styles.brandMark} aria-hidden="true"><Image src="/images/logo.png" width={56} height={56} alt="" priority sizes="56px" /></span>
           <span className={styles.brandText}><strong>Drag&apos;n <b>Wash</b></strong><small>PLAYER FIELD MANUAL</small></span>
         </Link>
         <button className={styles.toggle} type="button" aria-label="Toggle navigation" aria-expanded={mobileOpen} onClick={() => setMobileOpen(!mobileOpen)}>

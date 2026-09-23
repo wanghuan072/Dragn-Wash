@@ -9,16 +9,16 @@
   box-shadow: inset 0 -8px #080d0e, 0 6px 20px #0009;
 }
 .header:before { content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px; background: #2d3a3a; }
-.inner { display: grid; grid-template-columns: auto minmax(500px, 1fr) 220px auto; align-items: center; gap: 22px; min-height: 76px; padding-top: 5px; padding-bottom: 9px; }
+.inner { display: grid; grid-template-columns: auto minmax(500px, 1fr) 220px auto; align-items: center; gap: 22px; min-height: 84px; padding-top: 5px; padding-bottom: 9px; }
 
-.brand { display: flex; align-items: center; gap: 9px; min-width: 215px; color: #f4eddf; font-family: Impact, "Arial Narrow", Arial, sans-serif; line-height: 1; white-space: nowrap; }
+.brand { display: flex; align-items: center; gap: 11px; min-width: 228px; color: #f4eddf; font-family: Impact, "Arial Narrow", Arial, sans-serif; line-height: 1; white-space: nowrap; }
 .brand:hover { color: #fff; }
 .brandText { display: grid; line-height: .88; }
 .brandText strong { font-size: 1.78rem; font-weight: 500; font-style: italic; letter-spacing: .01em; text-shadow: 0 3px 0 #000; }
 .brandText strong b { color: #47d6e8; font-weight: inherit; }
 .brandText small { margin-top: 5px; color: #9db1af; font: 800 .49rem "Courier New", monospace; letter-spacing: .13em; }
-.brandMark { position: relative; width: 44px; height: 44px; flex: none; }
-.brandMark img { width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 2px 5px #000a); }
+.brandMark { position: relative; width: 56px; height: 56px; flex: none; overflow: hidden; border: 1px solid #685b45; border-radius: 8px; background: #0b1719; box-shadow: inset 0 0 0 2px #162527, 0 3px 8px #000a; }
+.brandMark img { width: 56px; height: 56px; object-fit: cover; filter: drop-shadow(0 2px 5px #000a); }
 
 .nav { position: relative; display: flex; align-items: end; justify-content: center; min-width: 0; height: 58px; padding: 0 8px 7px; border-bottom: 1px solid #4a4c43; }
 .nav:before, .nav:after { content: ""; position: absolute; bottom: 3px; width: 5px; height: 5px; border: 1px solid #493f31; border-radius: 50%; background: #a38b61; }
@@ -100,6 +100,7 @@
   .inner { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 7px; }
   .brand { width: calc(100% - 50px); min-width: 0; height: 48px; margin-right: auto; }
   .brandText strong { font-size: 1.55rem; }
+  .brandMark, .brandMark img { width: 48px; height: 48px; }
   .toggle { flex: 0 0 42px; }
   .search { order: 3; width: 100%; height: 40px; margin-bottom: 2px; }
   .nav { order: 4; }

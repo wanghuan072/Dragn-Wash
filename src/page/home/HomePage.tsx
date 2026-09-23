@@ -522,7 +522,7 @@ export default function HomePage() {
               <a href="#buy">Stores & platforms →</a>
               <a href="#adult-content">Adult content →</a>
               <Link href="/mods/localization">Language mod →</Link>
-              <Link href="/endings#feature-status">Scene replay status →</Link>
+              <Link href="/endings#replay-all-endings">Scene replay status →</Link>
               <Link href="/sources">How we check changing game information →</Link>
             </p>
             <a href={steamStore} target="_blank" rel="noreferrer">

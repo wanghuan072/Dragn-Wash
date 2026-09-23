@@ -18,6 +18,7 @@ export default function InnerPageHero({
   plate = "PLAYER GUIDE",
   stamp = "PLAY\nYOUR WAY",
   priority = true,
+  keywordOnlyHeading = false,
 }: {
   eyebrow: string;
   keyword?: string;
@@ -31,6 +32,7 @@ export default function InnerPageHero({
   plate?: string;
   stamp?: string;
   priority?: boolean;
+  keywordOnlyHeading?: boolean;
 }) {
   const reviewedLabel = reviewedAt ? formatMonthYear(reviewedAt) : undefined;
 
@@ -52,10 +54,17 @@ export default function InnerPageHero({
           <div className={styles.stamp} aria-hidden="true">
             {stamp.split("\n").map((line) => <span key={line}>{line}</span>)}
           </div>
-          <h1>
-            <span className={styles.keyword}>{keyword ?? eyebrow}</span>
-            <span className={styles.heroTitle}>{title}</span>
-          </h1>
+          {keywordOnlyHeading ? (
+            <>
+              <h1><span className={styles.keyword}>{keyword ?? eyebrow}</span></h1>
+              <div className={styles.heroTitle}>{title}</div>
+            </>
+          ) : (
+            <h1>
+              <span className={styles.keyword}>{keyword ?? eyebrow}</span>
+              <span className={styles.heroTitle}>{title}</span>
+            </h1>
+          )}
           {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
           <p className={styles.lead}>{lead}</p>
           <div className={styles.paperFooter}>

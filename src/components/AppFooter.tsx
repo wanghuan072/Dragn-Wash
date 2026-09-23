@@ -12,7 +12,7 @@ export default function AppFooter() {
       <div className={`container ${styles.inner}`}>
         <div>
           <Link href="/" className={styles.brand}>
-            <Image src="/images/logo.png" width={58} height={58} alt="" />
+            <Image src="/images/logo.png" width={68} height={68} alt="" sizes="68px" />
             <span><b>Drag&apos;n <em>Wash</em></b><small>PLAYER FIELD MANUAL</small></span>
           </Link>
           <p>Walkthroughs, dragon stories, endings and practical fixes for your next shift in the wash bay.</p>
