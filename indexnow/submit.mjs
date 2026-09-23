@@ -282,7 +282,7 @@ async function fetchWithRetry(url, attempts = 3, init) {
       const response = await fetch(url, {
         ...init,
         headers: {
-          "user-agent": "testdragnwash.com IndexNow deployment notifier",
+          "user-agent": "dragnwash.com IndexNow deployment notifier",
           ...init?.headers,
         },
         redirect: "follow",
@@ -349,7 +349,7 @@ function normalizeOrigin(value) {
 
 function assertProductionOrigin(origin) {
   const url = new URL(origin);
-  if (url.protocol !== "https:" || url.hostname !== "testdragnwash.com") {
+  if (url.protocol !== "https:" || url.hostname !== "dragnwash.com") {
     throw new Error(`Refusing to submit non-production origin: ${origin}`);
   }
 }

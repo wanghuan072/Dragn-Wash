@@ -12,7 +12,7 @@ const canonicalUrl = new URL(indexNowConfig.canonicalOrigin);
 assert.equal(canonicalUrl.protocol, "https:", "IndexNow must use HTTPS.");
 assert.equal(
   canonicalUrl.hostname,
-  "testdragnwash.com",
+  "dragnwash.com",
   "IndexNow must only submit the production hostname.",
 );
 assert.match(
