@@ -85,22 +85,22 @@
   font-size: .78rem;
   line-height: 1.55;
 }
-.inner > div:first-child > div {
+.coverage {
   display: flex;
   width: fit-content;
   margin-bottom: 17px;
   border-top: 1px solid #465351;
   border-bottom: 1px solid #465351;
 }
-.inner > div:first-child > div span {
+.coverage span {
   padding: 8px 13px;
   color: #91a4a2;
   font: 700 .54rem "Courier New", monospace;
   letter-spacing: .05em;
   text-transform: uppercase;
 }
-.inner > div:first-child > div span + span { border-left: 1px solid #465351; }
-.inner > div:first-child > div b {
+.coverage span + span { border-left: 1px solid #465351; }
+.coverage b {
   margin-right: 3px;
   color: #f0e4d1;
   font: 500 1.05rem Impact, "Arial Narrow", sans-serif;

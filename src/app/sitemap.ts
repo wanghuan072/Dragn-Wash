@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: path === "/updates" ? "weekly" as const : "monthly" as const,
     priority,
     ...(path === ""
-      ? { images: screenshotRecords.slice(0, 5).map((item) => `${siteUrl}${item.image}`) }
+      ? { images: screenshotRecords.map((item) => `${siteUrl}${item.image}`) }
       : {}),
   }));
 }

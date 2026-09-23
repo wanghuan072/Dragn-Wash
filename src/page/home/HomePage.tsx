@@ -390,7 +390,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className={styles.discoveryGrid}>
-            {screenshotRecords.slice(0, 5).map((item) => (
+            {screenshotRecords.map((item) => (
               <Link href={item.relatedHref} className={styles.discoveryCard} key={item.id}>
                 <div className={styles.cardImage}>
                   <Image src={item.image} alt={item.alt} fill sizes="20vw" />

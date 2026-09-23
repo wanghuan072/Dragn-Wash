@@ -3,6 +3,7 @@ import Image from "next/image";
 import { siteName } from "@/config/site";
 import { steamStore } from "@/lib/content";
 import styles from "@/style/layout/footer.module.css";
+import SocialShare from "@/components/SocialShare";
 
 export default function AppFooter() {
   const year = new Date().getFullYear();
@@ -15,7 +16,8 @@ export default function AppFooter() {
             <span><b>Drag&apos;n <em>Wash</em></b><small>PLAYER FIELD MANUAL</small></span>
           </Link>
           <p>Walkthroughs, dragon stories, endings and practical fixes for your next shift in the wash bay.</p>
-          <div aria-label="Guide coverage">
+          <SocialShare />
+          <div className={styles.coverage} aria-label="Guide coverage">
             <span><b>3</b> Dragons</span><span><b>3</b> Endings</span><span><b>5</b> Guides</span>
           </div>
           <a href={steamStore} target="_blank" rel="noopener noreferrer">Official game on Steam <span aria-hidden="true">↗</span></a>

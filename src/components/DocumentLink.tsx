@@ -1,11 +1,11 @@
-import type { AnchorHTMLAttributes, ReactNode } from "react";
+import Link from "next/link";
+import type { ComponentProps, ReactNode } from "react";
 
-type DocumentLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
+type DocumentLinkProps = Omit<ComponentProps<typeof Link>, "href"> & {
   href: string;
   children: ReactNode;
 };
 
-/** Uses a normal anchor so a new content URL performs a full document navigation. */
 export default function DocumentLink({ href, children, ...props }: DocumentLinkProps) {
-  return <a href={href} {...props}>{children}</a>;
+  return <Link href={href} {...props}>{children}</Link>;
 }

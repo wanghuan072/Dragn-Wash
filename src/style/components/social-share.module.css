@@ -1,0 +1,109 @@
+.share {
+  --share-border: #796b55;
+  --share-metal: #172224;
+  --share-highlight: #47d6e8;
+  color: #e8dfce;
+}
+
+.label {
+  color: #8fa4a1;
+  font: 800 .52rem "Courier New", monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.button {
+  position: relative;
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid #53615e;
+  border-radius: 3px;
+  color: #eef3ef;
+  background:
+    linear-gradient(#ffffff0a 1px, transparent 1px),
+    linear-gradient(145deg, #263235, #11191b);
+  background-size: 100% 9px, auto;
+  box-shadow: inset 0 0 0 1px #080d0e, 0 3px 7px #0006;
+  transition: border-color .18s, background .18s, transform .18s;
+}
+
+.button:before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #a68d64;
+  box-shadow: inset 0 1px #fff8;
+}
+
+.button img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  opacity: .88;
+  filter: drop-shadow(0 2px 2px #000b);
+}
+
+.button:hover {
+  border-color: var(--share-highlight);
+  color: #fff;
+  background: linear-gradient(145deg, #17444a, #102326);
+  transform: translateY(-2px);
+}
+
+.button:hover img { opacity: 1; }
+
+.button:focus-visible {
+  outline: 2px solid #80d8ff;
+  outline-offset: 2px;
+}
+
+.unavailable {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.status {
+  min-height: 1em;
+  color: #71d9e5;
+  font: 700 .54rem "Courier New", monospace;
+  letter-spacing: .04em;
+}
+
+.footer {
+  display: grid;
+  width: fit-content;
+  gap: 7px;
+  margin: 0 0 15px;
+  padding: 10px 12px 8px;
+  border: 1px solid #44514f;
+  background: #070c0d66;
+  box-shadow: inset 3px 0 var(--share-highlight);
+}
+
+@media (max-width: 768px) {
+  .footer .buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 36px);
+  }
+}
+
+@media print {
+  .footer {
+    display: none !important;
+  }
+}
