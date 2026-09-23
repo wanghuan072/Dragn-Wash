@@ -77,7 +77,11 @@ async function copyText(value: string) {
   if (!copied) throw new Error("Copy command failed");
 }
 
-export default function SocialShare() {
+type SocialShareProps = {
+  variant?: "footer" | "floating";
+};
+
+export default function SocialShare({ variant = "footer" }: SocialShareProps) {
   const nativeShareAvailable = useSyncExternalStore(
     subscribeToBrowserCapabilities,
     browserSupportsNativeShare,
@@ -112,11 +116,13 @@ export default function SocialShare() {
 
   return (
     <div
-      className={`${styles.share} ${styles.footer}`}
+      className={`${styles.share} ${styles[variant]}`}
       role="group"
       aria-label="Share this page"
     >
-      <span className={styles.label}>Share this page</span>
+      <span className={styles.label} aria-hidden={variant === "floating"}>
+        {variant === "floating" ? "Share" : "Share this page"}
+      </span>
       <div className={styles.buttons}>
         {socialChannels.map((channel) => (
           <button
@@ -124,6 +130,7 @@ export default function SocialShare() {
             className={styles.button}
             aria-label={`Share this page on ${channel.label}`}
             title={`Share on ${channel.label}`}
+            data-tooltip={channel.label}
             onClick={() => shareOnSocial(channel)}
             key={channel.id}
           >
@@ -136,6 +143,7 @@ export default function SocialShare() {
           aria-label="Share this page with your device"
           aria-hidden={!nativeShareAvailable}
           title="Share with your device"
+          data-tooltip="Device"
           tabIndex={nativeShareAvailable ? 0 : -1}
           disabled={!nativeShareAvailable}
           onClick={shareWithDevice}
@@ -147,6 +155,7 @@ export default function SocialShare() {
           className={styles.button}
           aria-label="Copy a link to this page"
           title="Copy page link"
+          data-tooltip="Copy link"
           onClick={copyPageLink}
         >
           <Image src="/images/ui/social/copy.png" width={22} height={22} alt="" aria-hidden="true" />
