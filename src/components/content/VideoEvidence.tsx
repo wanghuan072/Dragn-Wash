@@ -9,7 +9,7 @@ type VideoEvidenceProps = {
   startSeconds: number;
   title: string;
   sourceUrl: string;
-  duration: string;
+  timestampLabel: string;
   alt: string;
   poster?: string;
 };
@@ -18,7 +18,7 @@ export default function VideoEvidence({
   youtubeId,
   startSeconds,
   title,
-  duration,
+  timestampLabel,
   alt,
   poster,
 }: VideoEvidenceProps) {
@@ -41,7 +41,7 @@ export default function VideoEvidence({
             type="button"
             className={styles.preview}
             onClick={() => setIsPlaying(true)}
-            aria-label={`Play ${title} from ${duration}`}
+            aria-label={`Play ${title} from ${timestampLabel}`}
           >
             <Image
               src={poster ?? `https://i.ytimg.com/vi/${youtubeId}/mqdefault.jpg`}

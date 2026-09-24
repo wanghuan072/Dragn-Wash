@@ -27,7 +27,7 @@ const routeNotes: Record<
     overview:
       "Alexander is the tall purple dragon shown in the official game imagery. Players often single out his quieter conversations, but personality summaries are community impressions rather than formal route rules.",
     focus:
-      "During Alexander's late conversation, watch for acknowledgement of an earlier date with Ryan or Conrad. Note the exact response if you plan to compare it on another run; a complete branch table has not been published.",
+      "Alexander's late conversation changes when we already have a date. In the clearest filmed route, pairing Ryan with Conrad leaves us unattached and opens Alexander's final invitation, where the menu labels romance and no-romance outcomes directly.",
     atGlanceTitle: "Alexander Route at a Glance",
     identityTitle: "Alexander Profile and Visual Identification",
     overviewTitle: "Alexander's Character and Wash-Station Role",
@@ -37,7 +37,7 @@ const routeNotes: Record<
     endingTitle: "Alexander Ending Evidence",
     evidenceTitle: "Alexander Facts, Reports and Open Questions",
     reportContext:
-      "Alexander's late dialogue and references to earlier Ryan or Conrad choices",
+      "Alexander's full question menu, existing-date dialogue and final invitation",
     interactions: [
       "Read his conversation after the wash rather than leaving as soon as the cleaning stage ends.",
       "Watch his late conversation for a reference to an earlier date with Ryan or Conrad (community report).",
@@ -63,7 +63,7 @@ const routeNotes: Record<
     endingTitle: "Ryan Ending Evidence",
     evidenceTitle: "Ryan Facts, Reports and Open Questions",
     reportContext:
-      "Ryan's picnic sequence and reports about a possible Ryan–Conrad pairing",
+      "Ryan's filmed picnic choice between his romance and the Ryan–Conrad pairing",
     interactions: [
       "Check each wash prompt and the following conversation before trying to advance.",
       "At the picnic scene, complete the current request before using a workaround from an older guide.",
@@ -79,7 +79,7 @@ const routeNotes: Record<
     overview:
       "Conrad is the smaller red dragon. The official hotfix explicitly names him, which is why this site uses Conrad instead of the Dagon label found in some early fan guides.",
     focus:
-      "Pay attention to prompts and relationship choices involving Conrad and Ryan. Players report that the two can be paired, so note what you chose without treating an incomplete choice chain as proven. The September 2026 hotfix fixed two level 8 issues involving Conrad.",
+      "Conrad's late conversation is the first filmed relationship fork. Spending time with him unlocks his romance; introducing him to Ryan carries the decision into Ryan's later picnic. The September 2026 hotfix also fixed two level 8 issues involving Conrad.",
     atGlanceTitle: "Conrad Route at a Glance",
     identityTitle: "Why Some Guides Call Conrad Dagon",
     overviewTitle: "Conrad's Character and Wash-Station Role",
@@ -89,7 +89,7 @@ const routeNotes: Record<
     endingTitle: "Conrad Ending Evidence",
     evidenceTitle: "Conrad Facts, Reports and Open Questions",
     reportContext:
-      "Conrad's level 8 interactions and reports about a possible Ryan–Conrad pairing",
+      "Conrad's level 8 interactions and filmed relationship choice involving Ryan",
     interactions: [
       "Complete the current request before changing scene items.",
       "If level 8 stalls, verify the game build first; the official patch addressed an interaction-order softlock and a separate window issue.",
@@ -109,7 +109,11 @@ const secondaryImages: Record<string, { src: string; alt: string }> = {
 };
 export default function DragonDetailPage({ slug }: { slug: string }) {
   const dragon = dragons.find((d) => d.slug === slug)!;
-  const endingRouteHref = `/endings#${slug}-route`;
+  const endingRouteHref = {
+    alexander: "/endings#alexander-final-invitation",
+    ryan: "/endings#ryan-picnic-choice",
+    conrad: "/endings#conrad-introduction-choice",
+  }[slug] ?? "/endings#ending-routes";
   const notes = routeNotes[slug];
   const scenes = sceneRecords.filter((scene) => scene.character.toLowerCase() === slug);
   const faq = [
@@ -124,7 +128,7 @@ export default function DragonDetailPage({ slug }: { slug: string }) {
     ...(slug === "ryan"
       ? [{
           question: "Can Ryan and Conrad get together?",
-          answer: "Players report a Ryan–Conrad pairing, but a guaranteed current-build choice sequence has not been independently confirmed.",
+          answer: "Yes. A filmed route first introduces Conrad to Ryan, then recommends the red dragon during Ryan's picnic. The second menu explicitly labels the result as hooking up Ryan with Conrad.",
         }]
       : []),
     ...(slug === "conrad"
