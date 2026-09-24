@@ -29,16 +29,7 @@ export const primaryNavigation: NavigationItem[] = [
       { label: "Romance & Choices", description: "How stories connect", href: "/romance" },
     ],
   },
-  {
-    label: "Endings",
-    href: "/endings",
-  },
-  {
-    label: "Mods",
-    href: "/mods",
-    children: [
-      { label: "Localization", description: "Languages, setup and removal", href: "/mods/localization" },
-    ],
-  },
+  { label: "Endings", href: "/endings" },
+  { label: "Mods", href: "/mods" },
   { label: "Updates", href: "/updates" },
 ];

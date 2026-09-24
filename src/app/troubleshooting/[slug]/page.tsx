@@ -1,4 +1,4 @@
-import HelpDetailPage from "@/page/help/HelpDetailPage";
+import HelpDetailPage from "@/page/troubleshooting/HelpDetailPage";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { metadataFor } from "@/seo/metadata";

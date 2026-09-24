@@ -1,8 +1,7 @@
-/* eslint-disable @next/next/next-script-for-ga */
 import type { Metadata } from "next";
+import Script from "next/script";
 import AppHeader from "@/components/AppHeader";
 import AppFooter from "@/components/AppFooter";
-import SocialShare from "@/components/SocialShare";
 import { metadataFor } from "@/seo/metadata";
 import { siteName, siteUrl } from "@/config/site";
 import "@/style/globals.css";
@@ -20,17 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body id="top">
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EK27YWLDC3" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-EK27YWLDC3');
-            `,
-          }}
-        />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-EK27YWLDC3" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-EK27YWLDC3');`}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -46,7 +41,6 @@ export default function RootLayout({
         <AppHeader />
         {children}
         <AppFooter />
-        <SocialShare variant="floating" />
       </body>
     </html>
   );

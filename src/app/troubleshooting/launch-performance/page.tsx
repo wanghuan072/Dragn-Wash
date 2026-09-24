@@ -1,2 +1,2 @@
-export { default, metadata } from "@/page/help/LaunchPerformancePage";
+export { default, metadata } from "@/page/troubleshooting/LaunchPerformancePage";
 

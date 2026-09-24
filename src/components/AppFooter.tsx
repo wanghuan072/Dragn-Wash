@@ -45,11 +45,11 @@ export default function AppFooter() {
         <div>
           <strong><small>03</small> Legal & Site</strong>
           <nav aria-label="Legal navigation">
-            <Link href="/legal/about-us" rel="noopener noreferrer nofollow">About Us <span>How we work</span></Link>
-            <Link href="/legal/contact-us" rel="noopener noreferrer nofollow">Contact Us <span>Corrections & notices</span></Link>
-            <Link href="/legal/privacy-policy" rel="noopener noreferrer nofollow">Privacy Policy</Link>
-            <Link href="/legal/terms-of-service" rel="noopener noreferrer nofollow">Terms of Service</Link>
-            <Link href="/legal/copyright" rel="noopener noreferrer nofollow">Copyright</Link>
+            <Link href="/legal/about-us">About Us <span>How we work</span></Link>
+            <Link href="/legal/contact-us">Contact Us <span>Corrections & notices</span></Link>
+            <Link href="/legal/privacy-policy">Privacy Policy</Link>
+            <Link href="/legal/terms-of-service">Terms of Service</Link>
+            <Link href="/legal/copyright">Copyright</Link>
             <Link href="/sources">Editorial Standards <span>How facts are checked</span></Link>
           </nav>
         </div>

@@ -639,6 +639,20 @@
   border-bottom: 1px solid #a08f73;
   padding-bottom: 10px;
 }
+.routeBoard :global(.section-heading) {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+.routeBoard :global(.section-heading) h2 {
+  font-size: 1.55rem;
+  line-height: 0.98;
+}
+.routeBoard :global(.section-heading) > a {
+  align-self: flex-start;
+  white-space: normal;
+  line-height: 1.35;
+}
 .continueBoard :global(.section-heading) h2 {
   margin-bottom: 2px;
   color: #182021;
@@ -920,43 +934,41 @@
   font-size: .82rem;
 }
 .contentGrid a { color: #087f91 !important; font-weight: 700; }
-.faq {
-  columns: 2;
-  column-gap: 12px;
+.faqBoard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid #88775e;
+  background: #7d6d56;
+  box-shadow: 0 6px 0 #080d0e;
 }
 .faqItem {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  margin: 0 0 12px;
-  padding: 16px 17px 15px 52px;
-  break-inside: avoid;
-  border: 1px solid #88775e;
-  border-radius: 3px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 10px;
+  height: 100%;
+  padding: 18px 18px 16px;
   color: #172021;
   background:
-    radial-gradient(circle at 18% 16%, #765c4214 0 1px, transparent 2px),
-    linear-gradient(135deg, #f2e7d3, #dccbad);
+    radial-gradient(circle at 16% 12%, #765c4212 0 1px, transparent 2px),
+    linear-gradient(160deg, #f3ead8, #dcc9ab);
   background-size: 13px 13px, auto;
-  box-shadow: inset 0 0 20px #8064491b, 0 4px 0 #080d0e;
 }
 .faqItem > span {
-  position: absolute;
-  top: 16px;
-  left: 16px;
   color: #c65c4a;
-  font: 900 .66rem "Courier New", monospace;
-  letter-spacing: .08em;
+  font: 900 0.66rem/1.4 "Courier New", monospace;
+  letter-spacing: 0.08em;
 }
 .faqItem h3 {
-  margin: 0 0 7px;
+  margin: 0 0 6px;
   color: #172021;
-  font-size: .92rem;
+  font-size: 0.95rem;
 }
 .faqItem p {
-  color: #495556;
-  font-size: 0.78rem;
   margin: 0;
+  color: #445153;
+  font-size: 0.8rem;
 }
 @media (max-width: 1024px) {
   .heroInner {
@@ -1138,5 +1150,5 @@
     font-size: 0.68rem;
   }
   .about dl { grid-template-columns: 1fr 1fr; }
-  .faq { columns: 1; }
+  .faqBoard { grid-template-columns: 1fr; }
 }

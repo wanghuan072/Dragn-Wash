@@ -1,2 +1,2 @@
-export { default, metadata } from "@/page/help/KnownIssuesPage";
+export { default, metadata } from "@/page/troubleshooting/KnownIssuesPage";
 

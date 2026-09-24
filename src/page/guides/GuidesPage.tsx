@@ -7,16 +7,72 @@ import InnerPageHero from "@/components/content/InnerPageHero";
 import { siteName, siteUrl } from "@/config/site";
 import { formatMonthYear, monthDateTime } from "@/lib/dates";
 export const metadata = metadataFor("guides", "/guides");
+
+const guideDirectory = guides.map((guide) => ({
+  ...guide,
+  href: `/guides/${guide.slug}`,
+}));
+
+const troubleshootingDirectory = [
+  {
+    slug: "troubleshooting",
+    title: "Troubleshooting & Known Issues",
+    description: "Match the symptom on your screen to the safest current fix.",
+    category: "Fixes",
+    image: "/images/home/steam-2.webp",
+    imageAlt: "Drag'n Wash bucket and water station used for troubleshooting",
+    updatedAt: "2026-09-21",
+    href: "/troubleshooting",
+  },
+  {
+    slug: "wash-progress",
+    title: "Wash Progress & Missed Spots",
+    description: "Fix a full clean bar, remaining soap or a wash that will not finish.",
+    category: "Cleaning Fix",
+    image: "/images/home/steam-11.webp",
+    imageAlt: "Sprayer rinsing a red dragon while checking wash progress",
+    updatedAt: "2026-09-23",
+    href: "/troubleshooting/wash-progress",
+  },
+  {
+    slug: "stuck-softlock",
+    title: "Stuck Scenes & Softlocks",
+    description: "Recover movement, dialogue and scene progression without risking your run.",
+    category: "Run Recovery",
+    image: "/images/home/steam-5.webp",
+    imageAlt: "Later Drag'n Wash story scene used for stuck-scene recovery",
+    updatedAt: "2026-09-23",
+    href: "/troubleshooting/stuck-softlock",
+  },
+  {
+    slug: "launch-performance",
+    title: "Launch & Performance Fixes",
+    description: "Check slow startup, black screens, graphics, audio and frame-rate problems.",
+    category: "PC Fixes",
+    image: "/images/home/steam-3.webp",
+    imageAlt: "Drag'n Wash station interior used for launch and performance checks",
+    updatedAt: "2026-09-23",
+    href: "/troubleshooting/launch-performance",
+  },
+];
+
 const groups = [
   {
     title: "Drag'n Wash Beginner Guides",
-    slugs: ["beginner-guide", "how-to-wash"],
+    items: guideDirectory.filter((guide) => ["beginner-guide", "how-to-wash"].includes(guide.slug)),
   },
   {
     title: "Drag'n Wash Gameplay & Washing Guides",
-    slugs: ["washing-tools", "controls", "cleaning-tips"],
+    items: guideDirectory.filter((guide) => ["washing-tools", "controls", "cleaning-tips"].includes(guide.slug)),
+  },
+  {
+    title: "Drag'n Wash Troubleshooting & Fixes",
+    items: troubleshootingDirectory,
   },
 ];
+
+const directoryItems = groups.flatMap((group) => group.items);
+
 export default function GuidesPage() {
   const jsonLd = [
     {
@@ -28,11 +84,11 @@ export default function GuidesPage() {
       isPartOf: { "@type": "WebSite", name: siteName, url: siteUrl },
       mainEntity: {
         "@type": "ItemList",
-        itemListElement: guides.map((guide, index) => ({
+        itemListElement: directoryItems.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
-          name: guide.title,
-          url: `${siteUrl}/guides/${guide.slug}`,
+          name: item.title,
+          url: `${siteUrl}${item.href}`,
         })),
       },
     },
@@ -66,28 +122,27 @@ export default function GuidesPage() {
           <section className="panel" key={group.title}>
             <h2>{group.title}</h2>
             <div className={styles.guideListGrid}>
-              {group.slugs.map((slug) => {
-                const g = guides.find((item) => item.slug === slug)!;
+              {group.items.map((item) => {
                 return (
                   <Link
-                    key={slug}
+                    key={item.href}
                     className={styles.listCard}
-                    href={`/guides/${slug}`}
+                    href={item.href}
                   >
                     <div className={styles.listCardImage}>
                       <Image
-                        src={g.image}
+                        src={item.image}
                         fill
                         sizes="(max-width: 600px) 130px, 190px"
-                        alt={g.imageAlt}
+                        alt={item.imageAlt}
                       />
                     </div>
                     <div>
-                      <small className="badge">{g.category}</small>
-                      <h3>{g.title}</h3>
-                      <p>{g.description}</p>
-                      <time dateTime={monthDateTime(g.updatedAt)}>
-                        Updated {formatMonthYear(g.updatedAt)}
+                      <small className="badge">{item.category}</small>
+                      <h3>{item.title}</h3>
+                      <p>{item.description}</p>
+                      <time dateTime={monthDateTime(item.updatedAt)}>
+                        Updated {formatMonthYear(item.updatedAt)}
                       </time>
                     </div>
                   </Link>

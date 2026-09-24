@@ -1,10 +1,10 @@
 import { dragons } from "@/lib/content";
 import DragonDetailPage from "@/page/dragons/DragonDetailPage";
-import { notFound, permanentRedirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/seo/metadata";
 export function generateStaticParams() {
-  return [...dragons.map(({ slug }) => ({ slug })), { slug: "dagon" }];
+  return dragons.map(({ slug }) => ({ slug }));
 }
 type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -20,7 +20,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 export default async function Page({ params }: Props) {
   const { slug } = await params;
-  if (slug === "dagon") permanentRedirect("/dragons/conrad");
   if (!dragons.some((d) => d.slug === slug)) notFound();
   return <DragonDetailPage slug={slug} />;
 }

@@ -69,64 +69,80 @@ const fixes = [
     "/troubleshooting",
   ],
 ];
-const faq = [
-  [
-    "What is Drag'n Wash?",
-    "A first-person dragon washing simulation with a short narrative involving three dragons. It contains adult material.",
-  ],
-  [
-    "How many endings are there?",
-    "The developer lists three endings. Exact branch requirements are not published; player reports of additional variants are not yet verified against that official count.",
-  ],
-  [
-    "How long does one ending take?",
-    "The developer describes approximately 90 minutes of content per ending. That is an estimate, not a minimum: players report both shorter and longer runs.",
-  ],
-  [
-    "How many dragons are in Drag'n Wash?",
-    "Three: Alexander, Ryan, and Conrad, as named in official patch notes and game material.",
-  ],
-  [
-    "Does Drag'n Wash work on Steam Deck?",
-    "Yes. The developers announced Steam Deck Verified status in September 2026.",
-  ],
-  [
-    "Does Drag'n Wash support a controller?",
-    "Yes. The official Steam listing includes full controller support. Use the current in-game prompts for exact buttons.",
-  ],
-  [
-    "Can I reload a choice from a manual save?",
-    "Do not count on it in the current release. In September 2026 a developer described save/load as a highly requested feature still on the team's radar. Plan another run and record important responses instead.",
-  ],
-  [
-    "Is there VR or Workshop support?",
-    "Native VR support is not confirmed in the official materials checked. The developers said Steam Workshop support is their first development priority; do not treat it as already released.",
-  ],
-  [
-    "Is Drag'n Wash free to download?",
-    "No official free full-game download is listed. Buy through Steam or the developer's itch.io page; this site does not link to cracked files or download mirrors.",
-  ],
-  [
-    "What languages does Drag'n Wash support?",
-    "Steam currently lists English. An unofficial localization project adds Japanese, Simplified Chinese, native-proofread Korean and multiple provisional language packs through Drag'n Wash ModFramework.",
-  ],
-  [
-    "Can I replay scenes from a gallery?",
-    "A scene gallery or chapter-select feature is not confirmed as released. The Endings page explains completed saves, credits and the safest way to plan another run.",
-  ],
-  [
-    "Is there an SFW or uncensored version?",
-    "The current official listings do not show an SFW mode or separate censored and uncensored editions. The game is sold as an adult title, so check the official description before buying or streaming it.",
-  ],
-  [
-    "Is Drag'n Wash on GOG, Android or iOS?",
-    "No official GOG, Android or iOS release is confirmed in the developer and store information reviewed for this page. A third-party listing is not proof of an authorized port.",
-  ],
-  [
-    "Where can I find the latest patch?",
-    "Use the Updates page here for player impact, then follow its link to the official Steam news feed.",
-  ],
+const faqGroups = [
+  {
+    label: "The game",
+    items: [
+      [
+        "What is Drag'n Wash?",
+        "A first-person dragon washing simulation with a short narrative involving three dragons. It contains adult material.",
+      ],
+      [
+        "How many endings are there?",
+        "The developer lists three endings. Exact branch requirements are not published; player reports of additional variants are not yet verified against that official count.",
+      ],
+      [
+        "How long does one ending take?",
+        "The developer describes approximately 90 minutes of content per ending. That is an estimate, not a minimum: players report both shorter and longer runs.",
+      ],
+      [
+        "How many dragons are in Drag'n Wash?",
+        "Three: Alexander, Ryan, and Conrad, as named in official patch notes and game material.",
+      ],
+    ],
+  },
+  {
+    label: "Playing",
+    items: [
+      [
+        "Does Drag'n Wash work on Steam Deck?",
+        "Yes. The developers announced Steam Deck Verified status in September 2026.",
+      ],
+      [
+        "Does Drag'n Wash support a controller?",
+        "Yes. The official Steam listing includes full controller support. Use the current in-game prompts for exact buttons.",
+      ],
+      [
+        "Can I reload a choice from a manual save?",
+        "Do not count on it in the current release. In September 2026 a developer described save/load as a highly requested feature still on the team's radar. Plan another run and record important responses instead.",
+      ],
+      [
+        "Can I replay scenes from a gallery?",
+        "A scene gallery or chapter-select feature is not confirmed as released. The Endings page explains completed saves, credits and the safest way to plan another run.",
+      ],
+      [
+        "Where can I find the latest patch?",
+        "Use the Updates page here for player impact, then follow its link to the official Steam news feed.",
+      ],
+    ],
+  },
+  {
+    label: "Buying & content",
+    items: [
+      [
+        "Is there VR or Workshop support?",
+        "Native VR support is not confirmed in the official materials checked. The developers said Steam Workshop support is their first development priority; do not treat it as already released.",
+      ],
+      [
+        "Is Drag'n Wash free to download?",
+        "No official free full-game download is listed. Buy through Steam or the developer's itch.io page; this site does not link to cracked files or download mirrors.",
+      ],
+      [
+        "What languages does Drag'n Wash support?",
+        "Steam currently lists English. An unofficial localization project adds Japanese, Simplified Chinese, native-proofread Korean and multiple provisional language packs through Drag'n Wash ModFramework.",
+      ],
+      [
+        "Is there an SFW or uncensored version?",
+        "The current official listings do not show an SFW mode or separate censored and uncensored editions. The game is sold as an adult title, so check the official description before buying or streaming it.",
+      ],
+      [
+        "Is Drag'n Wash on GOG, Android or iOS?",
+        "No official GOG, Android or iOS release is confirmed in the developer and store information reviewed for this page. A third-party listing is not proof of an authorized port.",
+      ],
+    ],
+  },
 ];
+const faq = faqGroups.flatMap((group) => group.items);
 export default function HomePage() {
   const jsonLd = [
     {
@@ -569,19 +585,22 @@ export default function HomePage() {
               <article><span>03</span><h3>Requests are not released features</h3><p>Players discuss additions such as a vore option, more characters and lighter-content settings. A comment is not an in-game feature. Check the <Link href="/updates">update timeline</Link> before relying on a claimed mode or patch.</p></article>
             </div>
         </section>
-        <section className="panel">
+        <section className="panel" id="faq">
           <div className="section-heading">
             <div>
+              <p className={styles.boardEyebrow}>PLAYER BRIEFING</p>
               <h2>Frequently Asked Questions</h2>
-              <p>Buying, starting and replay questions answered without another click.</p>
+              <p>Buying, play and content questions answered on this page.</p>
             </div>
           </div>
-          <div className={styles.faq}>
+          <div className={styles.faqBoard}>
             {faq.map(([question, answer], index) => (
               <article className={styles.faqItem} key={question}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{question}</h3>
-                <p>{answer}</p>
+                <div>
+                  <h3>{question}</h3>
+                  <p>{answer}</p>
+                </div>
               </article>
             ))}
           </div>

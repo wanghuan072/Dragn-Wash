@@ -109,7 +109,7 @@ const secondaryImages: Record<string, { src: string; alt: string }> = {
 };
 export default function DragonDetailPage({ slug }: { slug: string }) {
   const dragon = dragons.find((d) => d.slug === slug)!;
-  const endingRouteHref = `/endings#${slug === "dagon" ? "conrad" : slug}-route`;
+  const endingRouteHref = `/endings#${slug}-route`;
   const notes = routeNotes[slug];
   const scenes = sceneRecords.filter((scene) => scene.character.toLowerCase() === slug);
   const faq = [
@@ -350,7 +350,7 @@ export default function DragonDetailPage({ slug }: { slug: string }) {
             <Link href="/guides/how-to-wash">Washing basics →</Link>
             <a href="#scenes">Character scenes →</a>
             <Link href="/romance">Relationship choices →</Link>
-            <Link href={endingRouteHref}>{dragon.name} route in the ending tree →</Link>
+            <Link href={endingRouteHref}>{dragon.name} route →</Link>
             <Link href="/troubleshooting">Troubleshooting →</Link>
           </div>
         </aside>

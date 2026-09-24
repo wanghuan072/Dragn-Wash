@@ -13,7 +13,7 @@ export const searchIndex: SearchItem[] = [
   ...guides.map((item) => ({ title: item.title, description: item.description, href: `/guides/${item.slug}`, category: "Guide" })),
   ...dragons.map((item) => ({ title: `${item.name} Route`, description: item.description, href: `/dragons/${item.slug}`, category: "Dragon" })),
   ...updates.map((item) => ({ title: item.title, description: item.description, href: `/updates#${item.slug}`, category: "Update" })),
-  { title: "Drag'n Wash Ending Choice Tree", description: "Filmed route locks for Conrad, Ryan, Alexander and the Ryan–Conrad pairing, plus all-three-endings replay steps.", href: "/endings#choice-tree", category: "Ending", keywords: "dragn wash endings choice tree routes conrad romance ryan romance alexander ending ryan conrad pairing all scenes gallery chapter select credits save" },
+  { title: "Drag'n Wash Ending Routes", description: "Filmed route locks for Conrad, Ryan, Alexander and the Ryan–Conrad pairing, plus all-three-endings replay steps.", href: "/endings#ending-routes", category: "Ending", keywords: "dragn wash endings routes conrad romance ryan romance alexander ending ryan conrad pairing all scenes gallery chapter select credits save" },
   { title: "Complete Walkthrough", description: "Phone, window, gate, wash, rinse and post-wash steps.", href: "/walkthrough", category: "Guide", keywords: "walkthrough playthrough first shift phone open door gate bucket sponge refill" },
   { title: "Romance & Relationships", description: "Character choices and community observations.", href: "/romance", category: "Dragon" },
   { title: "Ryan and Conrad Pairing", description: "Player reports and what remains unverified.", href: "/romance#ryan-conrad", category: "Dragon", keywords: "ryan x conrad" },

@@ -106,13 +106,15 @@ export default function UpdatesPage() {
         <p>The current official posts are titled announcements rather than numbered release notes. Build identifiers from itch.io packages or third-party mods are not relabeled as Steam patch versions.</p>
       </div>
       <div className={styles.updateTimeline}>
-        {updates.map((item) => {
+        {updates.map((item, index) => {
           const detail = details[item.slug];
+          const month = monthDateTime(item.date);
+          const showMonth = index === 0 || monthDateTime(updates[index - 1].date) !== month;
           return (
             <article className="panel" id={item.slug} key={item.slug}>
               <div className={styles.updateMarker} aria-hidden="true" />
               <div className={styles.updateDate}>
-                <time dateTime={monthDateTime(item.date)}>{formatMonthYear(item.date)}</time>
+                {showMonth && <time dateTime={month}>{formatMonthYear(item.date)}</time>}
                 <span className="badge">{item.tag}</span>
               </div>
               <div className={styles.updateBody}>
