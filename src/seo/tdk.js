@@ -2,7 +2,7 @@
 
 /** Public-page metadata. Detail-page metadata stays with its content record. */
 export const pageTdk = {
-  home: { title: "DRAG'N WASH - Walkthroughs, Endings & Game Help", description: "Use this Drag'n Wash guide for gameplay, walkthroughs, dragon stories, endings, screenshots, official stores, content answers, mods, fixes and updates." },
+  home: { title: "DRAG'N WASH - Walkthroughs, Endings & Game Help", description: "Use this Drag'n Wash guide for gameplay, walkthroughs, dragon stories, endings, official stores, content answers, mods, troubleshooting and updates." },
   guides: { title: "DRAG'N WASH Guides - Washing, Controls & First Run", description: "Use our Drag'n Wash guides to finish your first shift, learn every washing tool, clear missed spots, recover stuck scenes, and plan a smoother replay." },
   walkthrough: { title: "DRAG'N WASH Walkthrough - First Shift to All Endings", description: "Follow the Drag'n Wash walkthrough from the opening phone call through washing, conversations, dragon visits, route choices, credits, and your next run." },
   dragons: { title: "DRAG'N WASH Wiki - Alexander, Ryan & Conrad", description: "Meet every Drag'n Wash dragon with practical profiles for Alexander, Ryan, and Conrad, including their visits, interactions, relationships, and route notes." },

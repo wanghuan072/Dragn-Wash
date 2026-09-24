@@ -1,7 +1,6 @@
 import Link from "@/components/DocumentLink";
 import Image from "next/image";
 import { dragons, guides, updates, steamStore } from "@/lib/content";
-import { screenshotRecords } from "@/data/knowledge";
 import { siteName, siteUrl } from "@/config/site";
 import { formatMonthYear, monthDateTime } from "@/lib/dates";
 import styles from "@/style/page/home/home.module.css";
@@ -135,7 +134,7 @@ export default function HomePage() {
       "@type": "WebSite",
       name: siteName,
       url: siteUrl,
-      description: "Player-focused Drag'n Wash walkthroughs, character guides, endings, troubleshooting, screenshots, mods and update notes.",
+      description: "Player-focused Drag'n Wash walkthroughs, character guides, endings, troubleshooting, mods and update notes.",
     },
     {
       "@context": "https://schema.org",
@@ -379,25 +378,6 @@ export default function HomePage() {
               <Link href={href} key={problem}>
                 <span>{problem}</span>
                 <span>{fix}</span>
-              </Link>
-            ))}
-          </div>
-        </section>
-        <section className="panel" id="screenshots">
-          <div className="section-heading">
-            <div>
-              <h2>Drag&apos;n Wash Screenshots</h2>
-              <p>A visual look at washing, characters, story moments and the station.</p>
-            </div>
-          </div>
-          <div className={styles.discoveryGrid}>
-            {screenshotRecords.map((item) => (
-              <Link href={item.relatedHref} className={styles.discoveryCard} key={item.id}>
-                <div className={styles.cardImage}>
-                  <Image src={item.image} alt={item.alt} fill sizes="20vw" />
-                </div>
-                <h3>{item.title}</h3>
-                <p>{item.caption}</p>
               </Link>
             ))}
           </div>

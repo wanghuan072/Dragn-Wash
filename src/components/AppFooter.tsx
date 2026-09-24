@@ -40,7 +40,6 @@ export default function AppFooter() {
             <Link href="/updates">Updates <span>Patch timeline</span></Link>
             <Link href="/#buy">Stores & Platforms <span>Where to play</span></Link>
             <Link href="/#adult-content">Content Questions <span>Before you buy</span></Link>
-            <Link href="/#screenshots">Screenshots <span>Visual field log</span></Link>
           </nav>
         </div>
         <div>

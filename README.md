@@ -27,7 +27,6 @@ This field manual is built for the questions that appear during an actual run: w
 ## Gameplay, stores and community projects
 
 - [Gameplay Overview](https://dragnwash.com/#gameplay) explains how washing, conversation, requests and story progression fit into one run.
-- [Screenshots](https://dragnwash.com/#screenshots) presents non-graphic images of the dragons, tools, wash station and story atmosphere with links to the relevant guides.
 - [Stores & Platforms](https://dragnwash.com/#buy) covers official purchase options, desktop downloads, Steam Deck status and common GOG, mobile and free-download questions.
 - [Adult Content Questions](https://dragnwash.com/#adult-content) explains the official content description, SFW requests and censored or uncensored version claims without explicit imagery.
 - [Mods](https://dragnwash.com/mods) separates official Workshop plans from third-party localization, VR and other community work.
