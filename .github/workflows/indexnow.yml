@@ -7,7 +7,7 @@ on:
       current_origin:
         description: Deployment origin to inspect
         required: true
-        default: https://testdragnwash.com
+        default: https://dragnwash.com
       previous_origin:
         description: Previous deployment origin (leave empty when submitting explicit URLs)
         required: false
@@ -39,7 +39,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Resolve production deployments
         id: deployments

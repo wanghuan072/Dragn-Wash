@@ -8,7 +8,7 @@ export const metadata = metadataFor("romance", "/romance");
 export default function RomancePage() {
   return <EditorialPage
     path="/romance"
-    reviewedAt="2026-09-24"
+    reviewedAt="2026-09-29"
     breadcrumbs={[{label:"Dragons",href:"/dragons"}]}
     eyebrow="CHARACTERS & CHOICES"
     keyword="DRAG'N WASH ROMANCE"

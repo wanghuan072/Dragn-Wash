@@ -237,7 +237,10 @@ async function waitForCanonicalDeployment(changes, sourceOrigin, publicOrigin) {
     }
   }
 
-  for (let attempt = 1; attempt <= 6; attempt += 1) {
+  const maximumAttempts = 30;
+  const retryDelayMilliseconds = 10_000;
+
+  for (let attempt = 1; attempt <= maximumAttempts; attempt += 1) {
     const ready = await mapConcurrent(changes, 6, async (item) => {
       const response = await fetchWithRetry(new URL(item.pathname, publicOrigin), 1);
       if (item.change === "deleted") {
@@ -247,7 +250,10 @@ async function waitForCanonicalDeployment(changes, sourceOrigin, publicOrigin) {
       return fingerprintHtml(await response.text()) === expected.get(item.pathname);
     });
     if (ready.every(Boolean)) return;
-    if (attempt < 6) await delay(5_000);
+    console.log(
+      `Canonical deployment is still propagating (${attempt}/${maximumAttempts}).`,
+    );
+    if (attempt < maximumAttempts) await delay(retryDelayMilliseconds);
   }
 
   throw new Error(
