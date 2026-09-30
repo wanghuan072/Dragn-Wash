@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import AppHeader from "@/components/AppHeader";
 import AppFooter from "@/components/AppFooter";
+import SocialShare from "@/components/SocialShare";
 import { metadataFor } from "@/seo/metadata";
 import { siteName, siteUrl } from "@/config/site";
 import "@/style/globals.css";
@@ -40,6 +41,7 @@ export default function RootLayout({
         />
         <AppHeader />
         {children}
+        <SocialShare variant="floating" />
         <AppFooter />
       </body>
     </html>
