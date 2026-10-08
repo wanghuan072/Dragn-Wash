@@ -27,6 +27,7 @@ export default function EditorialPage({
   breadcrumbs = [],
   faq = [],
   variant = "feature",
+  verification,
 }: {
   eyebrow: string;
   keyword?: string;
@@ -44,6 +45,7 @@ export default function EditorialPage({
   breadcrumbs?: Breadcrumb[];
   faq?: Faq[];
   variant?: "feature" | "reference" | "checklist";
+  verification?: { scope: string; platforms: string; method: string };
 }) {
   const breadcrumbItems = [
     { label: "Home", href: "/" },
@@ -105,6 +107,13 @@ export default function EditorialPage({
           href: index === breadcrumbItems.length - 1 ? undefined : item.href,
         }))}
       />
+      {verification && (
+        <dl className={editorial.verificationBar} aria-label="Content verification">
+          <div><dt>Checked scope</dt><dd>{verification.scope}</dd></div>
+          <div><dt>Platforms</dt><dd>{verification.platforms}</dd></div>
+          <div><dt>Method</dt><dd>{verification.method}</dd></div>
+        </dl>
+      )}
       <div className={`${styles.articleGrid} ${editorial.layout}`}>
         <article className={`${styles.article} ${editorial.article} ${editorial[`${variant}Article`]}`}>
           <section className={styles.answer}>

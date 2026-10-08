@@ -1,142 +1,80 @@
-import Link from "@/components/DocumentLink";
 import Image from "next/image";
-import { dragons } from "@/lib/content";
-import { sceneRecords } from "@/data/knowledge";
-import styles from "@/style/page/inner.module.css";
+import Link from "@/components/DocumentLink";
 import InnerPageHero from "@/components/content/InnerPageHero";
+import { dragons } from "@/lib/content";
+import { characterNameStatus, contentReview, gameStatus } from "@/data/currentFacts";
+import { effectLabels, evidenceLabels, scenesByCharacter, type EndingCharacter } from "@/data/endings";
 import { siteName, siteUrl } from "@/config/site";
-const routeNotes: Record<
-  string,
-  {
-    overview: string;
-    focus: string;
-    atGlanceTitle: string;
-    identityTitle: string;
-    overviewTitle: string;
-    focusTitle: string;
-    interactionTitle: string;
-    issueTitle: string;
-    endingTitle: string;
-    evidenceTitle: string;
-    reportContext: string;
-    interactions: string[];
-    replayChecks: string[];
-  }
-> = {
+import styles from "@/style/page/inner.module.css";
+import editorial from "@/style/content/editorial-page.module.css";
+
+type CharacterSlug = Exclude<EndingCharacter, "shared">;
+
+const profiles: Record<CharacterSlug, {
+  visual: string;
+  heroLead: string;
+  overviewTitle: string;
+  timelineTitle: string;
+  routeSummary: string;
+  issueTitle: string;
+  issueText: string;
+  routeHref: string;
+  routeLabel: string;
+}> = {
   alexander: {
-    overview:
-      "Alexander is the tall purple dragon shown in the official game imagery. Players often single out his quieter conversations, but personality summaries are community impressions rather than formal route rules.",
-    focus:
-      "Alexander's late conversation changes when we already have a date. In the clearest filmed route, pairing Ryan with Conrad leaves us unattached and opens Alexander's final invitation, where the menu labels romance and no-romance outcomes directly.",
-    atGlanceTitle: "Alexander Route at a Glance",
-    identityTitle: "Alexander Profile and Visual Identification",
-    overviewTitle: "Alexander's Character and Wash-Station Role",
-    focusTitle: "Alexander's Late Relationship Dialogue",
-    interactionTitle: "Important Alexander Interactions",
-    issueTitle: "Alexander Model-Clipping Fix and Patch History",
-    endingTitle: "Alexander Ending Evidence",
-    evidenceTitle: "Alexander Facts, Reports and Open Questions",
-    reportContext:
-      "Alexander's full question menu, existing-date dialogue and final invitation",
-    interactions: [
-      "Read his conversation after the wash rather than leaving as soon as the cleaning stage ends.",
-      "Watch his late conversation for a reference to an earlier date with Ryan or Conrad (community report).",
-      "On a replay, change one response and compare the ending rather than changing every earlier interaction.",
-    ],
-    replayChecks: [
-      "Note whether you dated Ryan or Conrad before Alexander's late conversation.",
-      "Record Alexander's actual response rather than guessing at a hidden score.",
-      "On a later run, compare that response after changing one relationship choice.",
-    ],
+    visual: "the tall purple dragon",
+    heroLead: "Follow Alexander's optional questions, existing-date dialogue and final invitation without treating every reply as a hidden romance point.",
+    overviewTitle: "Where Alexander Fits Into the Shared Story",
+    timelineTitle: "Alexander's Questions, Relationship Check and Invitation",
+    routeSummary: "Alexander's early menus add character detail. The recorded route does not show a relationship lock until his late invitation, where the game labels both romance and no-romance outcomes.",
+    issueTitle: "Alexander's Model-Clipping Fix",
+    issueText: "The Kobold Hotfix includes an Alexander model-clipping correction. It is a presentation fix, not evidence that an early question changes his ending.",
+    routeHref: "/endings#alexander-final-invitation",
+    routeLabel: "Alexander's final invitation",
   },
   ryan: {
-    overview:
-      "Ryan is one of the three returning dragon customers. Players describe his expressions as especially lively; treat that as a community impression, not a hidden score indicator.",
-    focus:
-      "Follow Ryan's requests in order and pay special attention to the picnic interaction. Choices involving the other dragons may affect later dialogue, so note any response you want to compare. The September 2026 hotfix corrected a picnic-scene edge case.",
-    atGlanceTitle: "Ryan Route at a Glance",
-    identityTitle: "Ryan Profile and Visual Identification",
-    overviewTitle: "Ryan's Character and Wash-Station Role",
-    focusTitle: "Ryan's Picnic Scene",
-    interactionTitle: "Ryan's Picnic and Relationship Interactions",
-    issueTitle: "Ryan Picnic Scene Fixes",
-    endingTitle: "Ryan Ending Evidence",
-    evidenceTitle: "Ryan Facts, Reports and Open Questions",
-    reportContext:
-      "Ryan's filmed picnic choice between his romance and the Ryan–Conrad pairing",
-    interactions: [
-      "Check each wash prompt and the following conversation before trying to advance.",
-      "At the picnic scene, complete the current request before using a workaround from an older guide.",
-      "If the scene stops responding, confirm the hotfix is installed and try the game-menu recovery option.",
-    ],
-    replayChecks: [
-      "Write down the response you chose in Ryan's relationship conversations.",
-      "Finish the picnic request before judging whether a scene is blocked.",
-      "Compare later dialogue on a second run; do not assume a named ending from one scene.",
-    ],
+    visual: "the pale blue-white dragon",
+    heroLead: "Follow Ryan from the picnic opening through the choice that either locks his romance or completes the Ryan–Conrad pairing.",
+    overviewTitle: "Why Ryan's Picnic Is the Deciding Scene",
+    timelineTitle: "Ryan's Picnic Choices and Relationship States",
+    routeSummary: "Ryan's picnic contains one confirmed route lock. Volunteering ourselves opens Ryan's romance; recommending the red dragon completes the pairing prepared in Conrad's earlier conversation.",
+    issueTitle: "Ryan's Picnic Hotfix",
+    issueText: "The Kobold Hotfix corrected picnic-scene edge cases. Update before using an older workaround, then separate a real interaction lock from an ordinary dialogue pause.",
+    routeHref: "/endings#ryan-picnic-choice",
+    routeLabel: "Ryan's picnic route choice",
   },
   conrad: {
-    overview:
-      "Conrad is the smaller red dragon. The official hotfix explicitly names him, which is why this site uses Conrad instead of the Dagon label found in some early fan guides.",
-    focus:
-      "Conrad's late conversation is the first filmed relationship fork. Spending time with him unlocks his romance; introducing him to Ryan carries the decision into Ryan's later picnic. The September 2026 hotfix also fixed two level 8 issues involving Conrad.",
-    atGlanceTitle: "Conrad Route at a Glance",
-    identityTitle: "Why Some Guides Call Conrad Dagon",
-    overviewTitle: "Conrad's Character and Wash-Station Role",
-    focusTitle: "Conrad and Ryan Relationship Reports",
-    interactionTitle: "Conrad's Level 8 Interactions",
+    visual: "the smaller red dragon",
+    heroLead: "Follow Conrad's recovery, first relationship fork and later route scenes, including the choice that can carry his story into Ryan's picnic.",
+    overviewTitle: "Why Conrad Opens the First Relationship Fork",
+    timelineTitle: "Conrad's Recovery, Introduction Choice and Route",
+    routeSummary: "Conrad presents the first filmed relationship fork. Spending time with him opens his romance; introducing him to Ryan postpones the final relationship decision until Ryan's picnic.",
     issueTitle: "Conrad Level 8 and Level 14 Fixes",
-    endingTitle: "Conrad Ending Evidence",
-    evidenceTitle: "Conrad Facts, Reports and Open Questions",
-    reportContext:
-      "Conrad's level 8 interactions and filmed relationship choice involving Ryan",
-    interactions: [
-      "Complete the current request before changing scene items.",
-      "If level 8 stalls, verify the game build first; the official patch addressed an interaction-order softlock and a separate window issue.",
-      "Treat the level 14 texture fix as a visual correction, not a route trigger.",
-    ],
-    replayChecks: [
-      "Record dialogue involving Conrad and Ryan separately from the wash steps.",
-      "If level 8 fails, note the installed build before trying a route change.",
-      "Compare the ending after altering only one relationship response.",
-    ],
+    issueText: "The Kobold Hotfix fixed a level 8 interaction-order softlock, a separate level 8 window problem and a level 14 texture issue involving Conrad. These fixes are not route requirements.",
+    routeHref: "/endings#conrad-introduction-choice",
+    routeLabel: "Conrad's first relationship choice",
   },
 };
-const secondaryImages: Record<string, { src: string; alt: string }> = {
-  alexander: { src: "/images/home/steam-7.webp", alt: "Wide station view of Alexander for visual identification" },
-  ryan: { src: "/images/home/steam-10.webp", alt: "Ryan reacting during a later Drag'n Wash interaction" },
-  conrad: { src: "/images/home/steam-4.webp", alt: "Conrad speaking during a station scene" },
-};
+
 export default function DragonDetailPage({ slug }: { slug: string }) {
-  const dragon = dragons.find((d) => d.slug === slug)!;
-  const endingRouteHref = {
-    alexander: "/endings#alexander-final-invitation",
-    ryan: "/endings#ryan-picnic-choice",
-    conrad: "/endings#conrad-introduction-choice",
-  }[slug] ?? "/endings#ending-routes";
-  const notes = routeNotes[slug];
-  const scenes = sceneRecords.filter((scene) => scene.character.toLowerCase() === slug);
+  const character = slug as CharacterSlug;
+  const dragon = dragons.find((item) => item.slug === slug)!;
+  const profile = profiles[character];
+  const scenes = scenesByCharacter(character);
+  const scenesWithChoices = scenes.filter((scene) => scene.choices.length > 0);
   const faq = [
     {
       question: `Is ${dragon.name} a separate campaign?`,
-      answer: `No. You meet all three dragons during the shared story run; this guide keeps ${dragon.name}'s conversations and scene-specific issues together so they are easier to follow.`,
+      answer: `No. ${dragon.name} appears inside the same shared run as the other two dragons. This page isolates his scenes so we can follow them without pretending the game starts three separate campaigns.`,
     },
     {
-      question: `Does ${dragon.name} have a confirmed unique ending?`,
-      answer: "The developer confirms three endings but has not published a one-character-one-ending map. Treat exact fan route labels as unverified until reproduced.",
+      question: `Does every ${dragon.name} dialogue choice change the ending?`,
+      answer: "No. The scene archive separates route locks from dialogue changes and ordinary scene variations. Only a choice with a demonstrated later result is presented as a branch.",
     },
-    ...(slug === "ryan"
-      ? [{
-          question: "Can Ryan and Conrad get together?",
-          answer: "Yes. A filmed route first introduces Conrad to Ryan, then recommends the red dragon during Ryan's picnic. The second menu explicitly labels the result as hooking up Ryan with Conrad.",
-        }]
-      : []),
-    ...(slug === "conrad"
-      ? [{
-          question: "Is Conrad the character some guides call Dagon?",
-          answer: "Official hotfix notes use Conrad. This site uses the official name and treats Dagon as an older community label.",
-        }]
-      : []),
+    {
+      question: `Does ${dragon.name} have an official named ending?`,
+      answer: `The developer confirms ${gameStatus.endings} endings but does not publish character-ending names. “${dragon.name} route” is a navigation label used by this guide.`,
+    },
   ];
   const jsonLd = [
     {
@@ -145,7 +83,7 @@ export default function DragonDetailPage({ slug }: { slug: string }) {
       headline: `${dragon.name} Route Guide`,
       description: dragon.seoDescription,
       image: `${siteUrl}${dragon.image}`,
-      dateModified: dragon.updatedAt,
+      dateModified: contentReview.checkedAt,
       mainEntityOfPage: `${siteUrl}/dragons/${slug}`,
       publisher: { "@type": "Organization", name: siteName },
     },
@@ -168,193 +106,117 @@ export default function DragonDetailPage({ slug }: { slug: string }) {
       })),
     },
   ];
+
   return (
     <main className={`container inner-page ${styles.characterPage}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <InnerPageHero
-        eyebrow="CHARACTER GUIDE · LIGHT SPOILERS"
+        eyebrow="CHARACTER SCENE GUIDE · LIGHT SPOILERS"
         keyword="DRAG'N WASH"
         title={`${dragon.name} Route Guide`}
-        subtitle="Scenes, Choices & Route Notes"
-        lead={`Follow ${dragon.name}'s visits in the shared story, spot the interactions worth remembering and prepare for scene-specific problems before your next run.`}
+        subtitle="Scenes, Choices & Visible Results"
+        lead={profile.heroLead}
         image={dragon.image}
         imageAlt={dragon.imageAlt}
-        reviewedAt="2026-09-23"
+        reviewedAt={contentReview.checkedAt}
         plate="DRAGON STORY"
-        stamp={"MEET\nTHE DRAGON"}
+        stamp={"SCENE\nRECORD"}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Dragons", href: "/dragons" }, { label: dragon.name }]}
       />
+      <dl className={editorial.verificationBar} aria-label="Content verification">
+        <div><dt>Checked scope</dt><dd>{dragon.name}&apos;s recorded menus and later scene results</dd></div>
+        <div><dt>Platforms</dt><dd>Recorded PC playthroughs · official patch notes</dd></div>
+        <div><dt>Method</dt><dd>Complete choice frames matched to later relationship states</dd></div>
+      </dl>
+
       <div className={styles.articleGrid}>
         <article className={`${styles.article} ${styles.characterArticle}`}>
           <section className={styles.answer} id="overview">
-            <span className="badge">ROUTE AT A GLANCE</span>
-            <h2>{notes.atGlanceTitle}</h2>
-            <p>
-              You meet all three dragons in the same run. Use this page to
-              follow {dragon.name}&apos;s scenes rather than treating him as a
-              separate campaign: finish his current request, note meaningful
-              responses and compare what changes later.
-            </p>
+            <span className="badge">CHARACTER AT A GLANCE</span>
+            <h2>{profile.overviewTitle}</h2>
+            <p>{profile.routeSummary}</p>
+            <p className={styles.note}><strong>Name record:</strong> {characterNameStatus[character]}</p>
           </section>
-          <section id="route">
-            <h2>{notes.focusTitle}</h2>
-            <p>
-              {notes.focus} See the <Link href={endingRouteHref}>{dragon.name} ending route</Link>{" "}
-              before a replay.
-            </p>
-            <p>
-              <span className="badge muted">COMMUNITY</span> These relationship
-              observations come from player reports about {notes.reportContext}. {" "}
-              <a href="https://steamcommunity.com/app/4739660/discussions/0/525387040750137310/" target="_blank" rel="noreferrer">Read the firsthand discussion ↗</a>
-            </p>
-          </section>
-          <section id="identity">
-            <h2>{notes.identityTitle}</h2>
-            <div className={styles.compare}>
-              <div><strong>Field</strong><strong>Current record</strong><strong>Confidence</strong></div>
-              <div><strong>Name</strong><span>{dragon.name}</span><span>{slug === "conrad" ? "Official patch text" : "Established community name"}</span></div>
-              <div><strong>Visual ID</strong><span>{slug === "alexander" ? "Tall purple dragon" : slug === "ryan" ? "Pale blue-white dragon" : "Smaller red dragon"}</span><span>Official screenshots + community identification</span></div>
-              <div><strong>Campaign structure</strong><span>Appears in the shared story run</span><span>Consistent across current guides</span></div>
-              <div><strong>Unique ending formula</strong><span>Not published</span><span>Verification required</span></div>
-            </div>
-            <p className={styles.note}>{slug === "conrad" ? "Conrad is named directly in the official Kobold Hotfix." : `${dragon.name}'s name is widely used by players and route videos, but has not been found in the official store copy reviewed for this page.`}</p>
-          </section>
-          <section id="character">
-            <h2>{notes.overviewTitle}</h2>
-            <p>
-              <span className="badge muted">COMMUNITY</span> {notes.overview}
-            </p>
-            <Image className={styles.inlineImage} src={secondaryImages[slug].src} width={900} height={506} alt={secondaryImages[slug].alt} />
-          </section>
-          <section id="interactions">
-            <h2>{notes.interactionTitle}</h2>
-            <ul>
-              {notes.interactions.map((item) => (
-                <li key={item}>{item}</li>
+
+          <section id="scene-timeline">
+            <h2>{profile.timelineTitle}</h2>
+            <p>These scenes are ordered inside {dragon.name}&apos;s recorded story. A highlighted choice is not automatically an ending branch; the label beside each answer tells us what the recording actually demonstrates.</p>
+            <div className={styles.sceneArchive}>
+              {scenes.map((scene, index) => (
+                <article id={scene.id} key={scene.id} className={styles.sceneRecord}>
+                  <header>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <div><small>{scene.stage}</small><h3>{scene.title}</h3></div>
+                    <em>{evidenceLabels[scene.evidence]}</em>
+                  </header>
+                  {scene.media && <Image src={scene.media.image} width={scene.media.width} height={scene.media.height} alt={scene.media.alt} />}
+                  <p>{scene.description}</p>
+                  {scene.choices.length > 0 && (
+                    <div className={styles.choiceList}>
+                      {scene.choices.map((choice) => (
+                        <div key={choice.text}>
+                          <strong>{choice.text}</strong>
+                          {choice.systemText && <small>{choice.systemText}</small>}
+                          <p>{choice.result}</p>
+                          <span>{effectLabels[choice.effect]}</span>
+                          {choice.targetSceneId && <Link href={`/endings#${choice.targetSceneId}`}>Follow the result in the endings guide →</Link>}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </article>
               ))}
-            </ul>
-          </section>
-          <section id="tools">
-            <h2>{dragon.name} Wash Tools and Scene States</h2>
-            <div className={styles.compare}>
-              <div><strong>State</strong><strong>What to watch</strong><strong>Next step</strong></div>
-              <div><strong>Normal wash</strong><span>Follow bucket, sponge, rinse and post-wash prompts.</span><Link href="/guides/how-to-wash">Wash guide →</Link></div>
-              <div><strong>Contextual request</strong><span>Later care can use dialogue or scene items rather than ordinary washing.</span><a href="#scenes">Character scenes ↓</a></div>
-              <div><strong>Relationship response</strong><span>Record the exact line and later observable consequence.</span><Link href="/romance">Relationship choices →</Link></div>
-              <div><strong>Interaction lock</strong><span>Update first; use Unstick only when movement or interaction is blocked.</span><Link href="/troubleshooting/stuck-softlock">Fix a Drag&apos;n Wash softlock →</Link></div>
             </div>
           </section>
-          <section id="scenes">
-            <h2>{dragon.name}&apos;s scenes</h2>
+
+          <section id="choices">
+            <h2>{dragon.name} Choices That Are Worth Recording</h2>
             <div className={styles.compare}>
-              <div><strong>Scene</strong><strong>What is known</strong><strong>Open</strong></div>
-              {scenes.map((scene) => (
+              <div><strong>Scene</strong><strong>Demonstrated effect</strong><strong>Full route</strong></div>
+              {scenesWithChoices.map((scene) => (
                 <div key={scene.id}>
                   <strong>{scene.title}</strong>
-                  <span>{scene.evidence} · {scene.availability}. {scene.notes}</span>
-                  <Link href="/dragons#story-moments">Compare all dragon story visits →</Link>
+                  <span>{scene.choices.some((choice) => choice.effect === "route-lock" || choice.effect === "cross-character") ? "Contains a route or cross-character decision" : "Changes this conversation while the same route continues"}</span>
+                  <Link href={`/endings#${scene.id}`}>See every visible option →</Link>
                 </div>
               ))}
             </div>
-            <p className={styles.note}>These records keep what is known on the character page without turning an unverified visit order into a route requirement.</p>
           </section>
-          <section id="branch-points">
-            <h2>{dragon.name} Relationship Choices to Record</h2>
-            <p>
-              Before a meaningful response or late route scene, write down your
-              choice. Manual save/load was described by the developer as a
-              requested feature, not a confirmed tool for revisiting this point.
-              The exact branch point has not been independently verified.
-            </p>
-            <Link href="/endings#replay-all-endings">Full replay strategy →</Link>
-          </section>
-          <section id="replay">
-            <h2>{dragon.name} replay checklist</h2>
-            <ol>
-              {notes.replayChecks.map((check) => <li key={check}>{check}</li>)}
-            </ol>
-            <Link href="/romance">Compare relationship observations →</Link>
-          </section>
+
           <section id="issues">
-            <h2>{notes.issueTitle}</h2>
-            {slug === "conrad" ? (
-              <p>
-                <span className="badge">OFFICIAL</span> The September 2026 Kobold
-                Hotfix addressed a level 8 interaction-order softlock, a
-                separate level 8 window issue, and a level 14 texture issue
-                involving Conrad. Update before retrying those scenes.
-              </p>
-            ) : slug === "ryan" ? (
-              <p>
-                <span className="badge">OFFICIAL</span> The September 2026 hotfix
-                addressed edge cases during Ryan&apos;s picnic scene. If your
-                scene gets stuck, update first and then try{" "}
-                <Link href="/troubleshooting/stuck-softlock">Unstick or a restart</Link>.
-              </p>
-            ) : (
-              <p>
-                <span className="badge">OFFICIAL</span> The September 2026 hotfix
-                included a model-clipping fix for Alexander. No exact
-                route-choice table was published in that update.
-              </p>
-            )}
-            <Link href="/updates#kobold-hotfix">Read the Drag&apos;n Wash Kobold Hotfix →</Link>
+            <h2>{profile.issueTitle}</h2>
+            <p><span className="badge">OFFICIAL PATCH</span> {profile.issueText}</p>
+            <div className={styles.inlineLinks}><Link href="/updates#kobold-hotfix">Read the player-impact summary →</Link><Link href="/troubleshooting/stuck-softlock">Recover a stuck interaction →</Link></div>
           </section>
-          <section id="ending-impact">
-            <h2>{notes.endingTitle}</h2>
-            <p>
-              Official information lists three endings in total, but it does
-              not establish a one-dragon-one-ending mapping. Do not treat a
-              specific {dragon.name} finale trigger as guaranteed unless the
-              same choices still produce it on the current build.
-            </p>
-            <Link href={endingRouteHref}>{dragon.name} ending route →</Link>
+
+          <section id="identity">
+            <h2>How to Recognize {dragon.name}</h2>
+            <p>{dragon.name} is {profile.visual}. His name status is shown above because a common player name and a name printed in official patch notes are different levels of evidence.</p>
+            <Image className={styles.inlineImage} src={dragon.image} width={900} height={506} alt={dragon.imageAlt} />
           </section>
+
           <section id="faq">
-            <h2>{dragon.name} FAQ</h2>
-            {faq.map((item) => (
-              <div className={styles.faqItem} key={item.question}>
-                <h3>{item.question}</h3>
-                <p>{item.answer}</p>
-              </div>
-            ))}
-            {slug === "ryan" && <Link href="/romance#ryan-conrad">Read the Ryan and Conrad pairing notes →</Link>}
-          </section>
-          <section id="sources">
-            <h2>{notes.evidenceTitle}</h2>
-            <p>
-              Official patch notes confirm the named fixes
-              {slug === "conrad" ? " and Conrad's character name" : " for this character"}.
-              The store description confirms the shared premise and three-ending
-              count. Personality, pairing and precise route observations remain
-              player findings until the same result can be repeated.
-            </p>
-            <div className={styles.inlineLinks}><Link href="/sources">How game details are checked →</Link><a href="https://steamcommunity.com/app/4739660/allnews/" target="_blank" rel="noreferrer">Official announcements ↗</a></div>
+            <h2>{dragon.name} Route FAQ</h2>
+            {faq.map((item) => <div className={styles.faqItem} key={item.question}><h3>{item.question}</h3><p>{item.answer}</p></div>)}
           </section>
         </article>
+
         <aside className={styles.sidebar}>
           <div className="panel">
             <p className="eyebrow">PAGE GUIDE</p>
-            <p className={styles.sidebarTitle}>On this page</p>
-            <a href="#overview">Route at a glance →</a>
-            <a href="#route">Shared route role →</a>
-            <a href="#identity">Character identity →</a>
-            <a href="#character">Character overview →</a>
-            <a href="#interactions">Important interactions →</a>
-            <a href="#tools">Tools & scene states →</a>
-            <a href="#scenes">Character scenes →</a>
-            <a href="#replay">Replay checklist →</a>
-            <a href="#issues">Known issues →</a>
-            <a href="#ending-impact">Ending impact →</a>
-            <a href="#faq">FAQ →</a>
+            <p className={styles.sidebarTitle}>{dragon.name}&apos;s scenes</p>
+            <a href="#overview">Story role →</a>
+            <a href="#scene-timeline">Scene timeline →</a>
+            <a href="#choices">Choices to record →</a>
+            <a href="#issues">Patch notes →</a>
+            <a href="#faq">Route FAQ →</a>
           </div>
           <div className="panel">
-            <p className="eyebrow">KEEP PLAYING</p>
-            <p className={styles.sidebarTitle}>Continue the route</p>
-            <Link href="/guides/how-to-wash">Washing basics →</Link>
-            <a href="#scenes">Character scenes →</a>
-            <Link href="/romance">Relationship choices →</Link>
-            <Link href={endingRouteHref}>{dragon.name} route →</Link>
+            <p className="eyebrow">CONTINUE THE RUN</p>
+            <p className={styles.sidebarTitle}>Related player guides</p>
+            <Link href={profile.routeHref}>{profile.routeLabel} →</Link>
+            <Link href="/romance">Relationship states explained →</Link>
+            <Link href="/walkthrough">Complete shared walkthrough →</Link>
             <Link href="/troubleshooting">Troubleshooting →</Link>
           </div>
         </aside>

@@ -6,6 +6,7 @@ import styles from "@/style/page/inner.module.css";
 import InnerPageHero from "@/components/content/InnerPageHero";
 import { siteName, siteUrl } from "@/config/site";
 import { formatMonthYear, monthDateTime } from "@/lib/dates";
+import { contentReview, gameStatus } from "@/data/currentFacts";
 
 export const metadata = metadataFor("updates", "/updates");
 
@@ -96,15 +97,11 @@ export default function UpdatesPage() {
         lead="Follow each announced change in date order and see what it means for stuck scenes, controls, Steam Deck play, mods and older guide steps."
         image="/images/updates/steam-1.webp"
         imageAlt="Drag'n Wash official update artwork"
-        reviewedAt="2026-09-22"
+        reviewedAt={contentReview.gameUpdateCheckedAt}
         plate="PATCH TIMELINE"
         stamp={"DATED\nRECORD"}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Updates" }]}
       />
-      <div className={styles.warning}>
-        <strong>No invented version numbers</strong>
-        <p>The current official posts are titled announcements rather than numbered release notes. Build identifiers from itch.io packages or third-party mods are not relabeled as Steam patch versions.</p>
-      </div>
       <div className={styles.updateTimeline}>
         {updates.map((item, index) => {
           const detail = details[item.slug];
@@ -137,10 +134,10 @@ export default function UpdatesPage() {
         <div className={styles.compare}>
           <div><strong>Requested feature</strong><strong>Current status</strong><strong>Where to check</strong></div>
           <div><span>Job Mode or endless washing</span><span>Not confirmed as released</span><Link href="/walkthrough#playtime">Current play structure →</Link></div>
-          <div><span>Scene gallery or chapter select</span><span>Not confirmed as released</span><Link href="/endings#replay-all-endings">Replay status →</Link></div>
+          <div><span>Scene gallery or chapter select</span><span>{gameStatus.gallery}</span><Link href="/endings#replay-all-endings">Replay status →</Link></div>
           <div><span>SFW mode</span><span>Player request; no official option confirmed</span><Link href="/#adult-content">Content questions →</Link></div>
           <div><span>Custom dragons</span><span>No verified official workflow yet</span><Link href="/mods#status">Mod status →</Link></div>
-          <div><span>Steam Workshop</span><span>Named as a development priority; no release date supplied</span><Link href="/mods#workshop">Workshop notes →</Link></div>
+          <div><span>Steam Workshop</span><span>{gameStatus.workshop}</span><Link href="/mods#workshop">Workshop notes →</Link></div>
         </div>
       </section>
       <section className="panel">

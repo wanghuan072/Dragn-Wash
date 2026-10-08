@@ -59,7 +59,10 @@ export default function IssueFinder() {
             <dl>
               <div><dt>Try first</dt><dd>{issue.firstAction}</dd></div>
               <div><dt>If it persists</dt><dd>{issue.nextAction}</dd></div>
-              <div><dt>Status</dt><dd>{issue.evidence}</dd></div>
+              <div><dt>Build scope</dt><dd>{issue.buildScope}</dd></div>
+              <div><dt>Fixed when</dt><dd>{issue.successSignal}</dd></div>
+              <div><dt>Old advice</dt><dd>{issue.legacyNote}</dd></div>
+              <div><dt>Evidence</dt><dd>{issue.evidence}</dd></div>
             </dl>
             <div className={styles.issueLinks}>
               <Link href={issue.relatedHref}>Open {issue.title} troubleshooting →</Link>

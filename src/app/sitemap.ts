@@ -15,19 +15,19 @@ type StaticPage = {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: StaticPage[] = [
-    { path: "", fallback: "2026-09-23", priority: 1, contentPaths: ["src/app/page.tsx", "src/page/home/HomePage.tsx", "src/data/guides/guides.json", "src/data/dragons/dragons.json", "src/data/updates/updates.json"] },
+    { path: "", fallback: "2026-09-23", priority: 1, contentPaths: ["src/app/page.tsx", "src/page/home/HomePage.tsx", "src/data/currentFacts.ts", "src/data/guides/guides.json", "src/data/dragons/dragons.json", "src/data/updates/updates.json"] },
     { path: "/guides", fallback: "2026-09-23", priority: .9, contentPaths: ["src/app/guides/page.tsx", "src/page/guides/GuidesPage.tsx", "src/data/guides/guides.json"] },
-    { path: "/walkthrough", fallback: "2026-09-22", priority: .9, contentPaths: ["src/app/walkthrough/page.tsx", "src/page/guides/WalkthroughPage.tsx"] },
-    { path: "/dragons", fallback: "2026-09-23", priority: .9, contentPaths: ["src/app/dragons/page.tsx", "src/page/dragons/DragonsPage.tsx", "src/data/dragons/dragons.json"] },
+    { path: "/walkthrough", fallback: "2026-09-22", priority: .9, contentPaths: ["src/app/walkthrough/page.tsx", "src/page/guides/WalkthroughPage.tsx", "src/data/currentFacts.ts"] },
+    { path: "/dragons", fallback: "2026-09-23", priority: .9, contentPaths: ["src/app/dragons/page.tsx", "src/page/dragons/DragonsPage.tsx", "src/data/currentFacts.ts", "src/data/dragons/dragons.json"] },
     { path: "/endings", fallback: "2026-09-29", priority: .9, contentPaths: ["src/app/endings/page.tsx", "src/page/endings/EndingsPage.tsx", "src/page/endings/EndingRouteMap.tsx", "src/data/endings.ts"] },
-    { path: "/troubleshooting", fallback: "2026-09-21", priority: .85, contentPaths: ["src/app/troubleshooting/page.tsx", "src/page/troubleshooting/KnownIssuesPage.tsx", "src/data/knowledge.ts"] },
+    { path: "/troubleshooting", fallback: "2026-09-21", priority: .85, contentPaths: ["src/app/troubleshooting/page.tsx", "src/page/troubleshooting/KnownIssuesPage.tsx", "src/data/currentFacts.ts", "src/data/knowledge.ts"] },
     { path: "/troubleshooting/stuck-softlock", fallback: "2026-09-23", priority: .8, contentPaths: ["src/app/troubleshooting/[slug]/page.tsx", "src/page/troubleshooting/HelpDetailPage.tsx"] },
     { path: "/troubleshooting/wash-progress", fallback: "2026-09-23", priority: .8, contentPaths: ["src/app/troubleshooting/[slug]/page.tsx", "src/page/troubleshooting/HelpDetailPage.tsx"] },
     { path: "/troubleshooting/launch-performance", fallback: "2026-09-23", priority: .8, contentPaths: ["src/app/troubleshooting/launch-performance/page.tsx", "src/page/troubleshooting/LaunchPerformancePage.tsx"] },
-    { path: "/updates", fallback: "2026-09-23", priority: .8, contentPaths: ["src/app/updates/page.tsx", "src/page/updates/UpdatesPage.tsx", "src/data/updates/updates.json"] },
-    { path: "/romance", fallback: "2026-09-29", priority: .8, contentPaths: ["src/app/romance/page.tsx", "src/page/romance/RomancePage.tsx", "src/data/endings.ts"] },
-    { path: "/mods", fallback: "2026-09-22", priority: .85, contentPaths: ["src/app/mods/page.tsx", "src/page/mods/ModsPage.tsx"] },
-    { path: "/mods/localization", fallback: "2026-09-22", priority: .8, contentPaths: ["src/app/mods/localization/page.tsx", "src/page/mods/LocalizationPage.tsx"] },
+    { path: "/updates", fallback: "2026-09-23", priority: .8, contentPaths: ["src/app/updates/page.tsx", "src/page/updates/UpdatesPage.tsx", "src/data/currentFacts.ts", "src/data/updates/updates.json"] },
+    { path: "/romance", fallback: "2026-09-29", priority: .8, contentPaths: ["src/app/romance/page.tsx", "src/page/romance/RomancePage.tsx", "src/data/currentFacts.ts", "src/data/endings.ts"] },
+    { path: "/mods", fallback: "2026-09-22", priority: .85, contentPaths: ["src/app/mods/page.tsx", "src/page/mods/ModsPage.tsx", "src/data/currentFacts.ts"] },
+    { path: "/mods/localization", fallback: "2026-09-22", priority: .8, contentPaths: ["src/app/mods/localization/page.tsx", "src/page/mods/LocalizationPage.tsx", "src/data/currentFacts.ts"] },
     { path: "/sources", fallback: "2026-09-21", priority: .5, contentPaths: ["src/app/sources/page.tsx", "src/page/about/SourcesPage.tsx", "src/data/knowledge.ts"] },
     ...legalPages(),
   ];
@@ -47,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       modified: lastModifiedForJsonEntry(
         "src/data/dragons/dragons.json",
         item.slug,
-        ["src/app/dragons/[slug]/page.tsx", "src/page/dragons/DragonDetailPage.tsx"],
+        ["src/app/dragons/[slug]/page.tsx", "src/page/dragons/DragonDetailPage.tsx", "src/data/endings.ts", "src/data/currentFacts.ts"],
         item.updatedAt,
       ),
       priority: .8,

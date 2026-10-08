@@ -1,9 +1,10 @@
 import Link from "@/components/DocumentLink";
 import Image from "next/image";
-import { dragons, guides, updates, steamStore } from "@/lib/content";
+import { dragons, guides, updates } from "@/lib/content";
 import { siteName, siteUrl } from "@/config/site";
 import { formatMonthYear, monthDateTime } from "@/lib/dates";
 import styles from "@/style/page/home/home.module.css";
+import { characterNameStatus, gameStatus } from "@/data/currentFacts";
 
 const access = [
   { title: "First Wash", description: "Step-by-step guide", href: "/walkthrough", icon: "bubbles" },
@@ -79,7 +80,7 @@ const faqGroups = [
       ],
       [
         "How many endings are there?",
-        "The developer lists three endings. Exact branch requirements are not published; player reports of additional variants are not yet verified against that official count.",
+        `The developer lists ${gameStatus.endings} endings. The endings guide separates filmed relationship branches from that official count instead of turning every scene variation into another ending.`,
       ],
       [
         "How long does one ending take?",
@@ -87,7 +88,7 @@ const faqGroups = [
       ],
       [
         "How many dragons are in Drag'n Wash?",
-        "Three: Alexander, Ryan, and Conrad, as named in official patch notes and game material.",
+        `Three. ${characterNameStatus.conrad} Alexander and Ryan are the names used in the game interface and established route records.`,
       ],
     ],
   },
@@ -99,30 +100,18 @@ const faqGroups = [
         "Yes. The developers announced Steam Deck Verified status in September 2026.",
       ],
       [
-        "Does Drag'n Wash support a controller?",
-        "Yes. The official Steam listing includes full controller support. Use the current in-game prompts for exact buttons.",
-      ],
-      [
         "Can I reload a choice from a manual save?",
         "Do not count on it in the current release. In September 2026 a developer described save/load as a highly requested feature still on the team's radar. Plan another run and record important responses instead.",
       ],
       [
         "Can I replay scenes from a gallery?",
-        "A scene gallery or chapter-select feature is not confirmed as released. The Endings page explains completed saves, credits and the safest way to plan another run.",
-      ],
-      [
-        "Where can I find the latest patch?",
-        "Use the Updates page here for player impact, then follow its link to the official Steam news feed.",
+        `${gameStatus.gallery} The Endings page explains completed saves, credits and the safest way to plan another run.`,
       ],
     ],
   },
   {
     label: "Buying & content",
     items: [
-      [
-        "Is there VR or Workshop support?",
-        "Native VR support is not confirmed in the official materials checked. The developers said Steam Workshop support is their first development priority; do not treat it as already released.",
-      ],
       [
         "Is Drag'n Wash free to download?",
         "No official free full-game download is listed. Buy through Steam or the developer's itch.io page; this site does not link to cracked files or download mirrors.",
@@ -134,10 +123,6 @@ const faqGroups = [
       [
         "Is there an SFW or uncensored version?",
         "The current official listings do not show an SFW mode or separate censored and uncensored editions. The game is sold as an adult title, so check the official description before buying or streaming it.",
-      ],
-      [
-        "Is Drag'n Wash on GOG, Android or iOS?",
-        "No official GOG, Android or iOS release is confirmed in the developer and store information reviewed for this page. A third-party listing is not proof of an authorized port.",
       ],
     ],
   },
@@ -505,14 +490,7 @@ export default function HomePage() {
               story run, so you do not pick a separate campaign from the title
               screen.
             </p>
-            <p>
-              This guide is built for the moments when you want a clear next
-              step: opening the station, finishing a stubborn wash, following a
-              character&apos;s scenes, understanding the three-ending structure or
-              checking whether a mod, platform or requested feature is actually
-              available. Start with the walkthrough for a first playthrough, or
-              jump straight to troubleshooting if your run has stopped moving.
-            </p>
+            <p>Start with the walkthrough for a first run, use the character and ending guides when a choice appears, or open troubleshooting when the objective stops moving. Each detailed page keeps the full steps so this homepage can stay a map rather than a second copy of every guide.</p>
             <p className={styles.aboutLinks}>
               <a href="#gameplay">Gameplay overview →</a>
               <a href="#buy">Stores & platforms →</a>
@@ -521,13 +499,6 @@ export default function HomePage() {
               <Link href="/endings#replay-all-endings">Scene replay status →</Link>
               <Link href="/sources">How we check changing game information →</Link>
             </p>
-            <a href={steamStore} target="_blank" rel="noreferrer">
-              See the official Steam page ↗
-            </a>
-            {" · "}
-            <a href="https://gatordragongames.itch.io/dragnwash" target="_blank" rel="noreferrer">
-              Official itch.io downloads ↗
-            </a>
           </div>
           <dl>
             <div>
@@ -569,7 +540,7 @@ export default function HomePage() {
               <div><span>GOG or mobile</span><span>No official GOG, Android or iOS release is confirmed.</span></div>
               <div><span>Free download</span><span>No official free full-game release is listed; avoid cracked mirrors.</span></div>
             </div>
-            <p className={styles.aboutLinks}><a href={steamStore} target="_blank" rel="noreferrer">Buy on Steam ↗</a><a href="https://gatordragongames.itch.io/dragnwash" target="_blank" rel="noreferrer">Buy on itch.io ↗</a><Link href="/updates#steam-deck-verified">Steam Deck notes →</Link></p>
+            <p className={styles.aboutLinks}><Link href="/updates#steam-deck-verified">Read the Steam Deck status →</Link></p>
         </section>
         <section className="panel" id="adult-content">
             <div className="section-heading">

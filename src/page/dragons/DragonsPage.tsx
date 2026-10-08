@@ -5,6 +5,7 @@ import { dragons } from "@/lib/content";
 import styles from "@/style/page/inner.module.css";
 import InnerPageHero from "@/components/content/InnerPageHero";
 import { siteName, siteUrl } from "@/config/site";
+import { characterNameStatus, contentReview } from "@/data/currentFacts";
 export const metadata = metadataFor("dragons", "/dragons");
 export default function DragonsPage() {
   const jsonLd = [
@@ -45,7 +46,7 @@ export default function DragonsPage() {
         lead="All three dragons visit during the same story. Choose a character below to follow his wash visits, later conversations, relationship moments and patch-related issues."
         image="/images/home/steam-7.webp"
         imageAlt="A dragon in the Drag'n Wash station"
-        reviewedAt="2026-09-23"
+        reviewedAt={contentReview.checkedAt}
         plate="MEET THE DRAGONS"
         stamp={"THREE\nSTORIES"}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Dragons" }]}
@@ -87,12 +88,11 @@ export default function DragonsPage() {
         ))}
       </section>
       <p className={styles.note}>
-        The official patch names Conrad. Some early fan material calls the third
-        character “Dagon”; the in-game/official name Conrad is used here.
+        {characterNameStatus.conrad} Alexander and Ryan are identified by the names used in the game interface and established player route records. Some early fan material calls Conrad “Dagon”; this guide uses Conrad consistently.
       </p>
       <section className="panel">
         <h2>How their stories connect</h2>
-        <p>The same run includes all three dragons. Player reports suggest that a dating choice can change later dialogue, and that Ryan and Conrad can be paired. Exact conditions are not published as an official route chart.</p>
+        <p>The same run includes all three dragons. Recorded menus now show Conrad&apos;s first relationship fork, Ryan&apos;s picnic decision and Alexander&apos;s late invitation. Those visible choices form a practical route map, but the developer has not published official names or hidden point requirements for the three endings.</p>
         <Link href="/romance">Explore romance and relationship choices →</Link>
       </section>
       <section className={styles.columns}>
@@ -124,9 +124,9 @@ export default function DragonsPage() {
         <p>Use this overview to locate a character moment without treating every variation as a separate ending. Visit order belongs to the shared playthrough; ending interpretation and replay limitations are covered on the Endings page.</p>
         <div className={styles.compare}>
           <div><strong>Character</strong><strong>Documented story lead</strong><strong>Open the character page</strong></div>
-          <div><strong>Alexander</strong><span>Late dialogue may acknowledge earlier dating choices; exact branch rules remain under review.</span><Link href="/dragons/alexander">Follow Alexander&apos;s scenes →</Link></div>
-          <div><strong>Ryan</strong><span>A picnic sequence exists and received official edge-case fixes.</span><Link href="/dragons/ryan">Follow Ryan&apos;s scenes →</Link></div>
-          <div><strong>Conrad</strong><span>Official hotfix notes name him and document level 8 and level 14 fixes.</span><Link href="/dragons/conrad">Follow Conrad&apos;s scenes →</Link></div>
+          <div><strong>Alexander</strong><span>Optional questions, existing-date dialogue and a recorded late romance or no-romance invitation.</span><Link href="/dragons/alexander">Follow Alexander&apos;s scenes →</Link></div>
+          <div><strong>Ryan</strong><span>Picnic dialogue, a filmed romance lock and the second step of the Ryan–Conrad pairing.</span><Link href="/dragons/ryan">Follow Ryan&apos;s scenes →</Link></div>
+          <div><strong>Conrad</strong><span>Early recovery, the first filmed relationship fork and official level 8 and level 14 fixes.</span><Link href="/dragons/conrad">Follow Conrad&apos;s scenes →</Link></div>
         </div>
         <div className={styles.inlineLinks}><Link href="/walkthrough#story-flow">Follow the shared story order →</Link><Link href="/endings#replay-all-endings">Check scene replay options →</Link><Link href="/endings#ending-routes">Compare the ending routes →</Link></div>
       </section>

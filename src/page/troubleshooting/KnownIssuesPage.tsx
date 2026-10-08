@@ -4,6 +4,7 @@ import IssueFinder from "@/components/IssueFinder";
 import { knownIssues } from "@/data/knowledge";
 import { metadataFor } from "@/seo/metadata";
 import styles from "@/style/content/editorial-page.module.css";
+import { contentReview } from "@/data/currentFacts";
 
 export const metadata = metadataFor("troubleshooting", "/troubleshooting");
 
@@ -13,7 +14,7 @@ export default function KnownIssuesPage() {
   return <EditorialPage
     variant="reference"
     path="/troubleshooting"
-    reviewedAt="2026-09-21"
+    reviewedAt={contentReview.checkedAt}
     eyebrow="VERSION-AWARE TROUBLESHOOTING"
     keyword="DRAG'N WASH TROUBLESHOOTING"
     title="Drag'n Wash Troubleshooting – Fix Stuck Washes and Softlocks"
@@ -22,7 +23,8 @@ export default function KnownIssuesPage() {
     lead="Start with the symptom on your screen—full clean bar, missed dirt, frozen interaction, slow launch or display trouble—and try the shortest safe fix before restarting your run."
     image="/images/home/steam-2.webp"
     imageAlt="The wash station bucket and tap used during Drag'n Wash troubleshooting"
-    answer={<><p>Choose from {knownIssues.length} specific symptoms instead of trying every workaround at once. {fixed} were addressed in official hotfix notes, while {reports} are player-reported problems that may not affect every setup. Update first, remove third-party mods, then follow the steps for the problem you can actually see.</p><p className={styles.source}><span className="badge">UPDATED SEP 2026</span> A fixed issue can still return as a regression, so record your platform and build if the same problem comes back.</p></>}
+    verification={{scope:"Official hotfixes and clearly labelled player reports",platforms:"Platform shown on each issue",method:"Official patch notes separated from unverified reproduction reports"}}
+    answer={<><p>Choose from {knownIssues.length} specific symptoms instead of trying every workaround at once. {fixed} were addressed in official hotfix notes, while {reports} are player-reported problems that may not affect every setup. Update first, remove third-party mods, then follow the steps for the problem you can actually see.</p><p className={styles.source}><span className="badge">RECHECKED OCT 8, 2026</span> A fixed issue can still return as a regression, so record your platform and build if the same problem comes back.</p></>}
     sections={[
       {id:"finder",title:"Find a matching symptom",content:<IssueFinder/>},
       {id:"report",title:"Record a useful bug report",content:<ol><li>Write down the storefront, operating system and game build.</li><li>Name the character and scene or objective.</li><li>List the exact steps immediately before the problem.</li><li>Say whether Unstick, a restart or changing resolution altered it.</li><li>Remove mods and try once in the base game.</li><li>Separate “happened once” from a repeatable result.</li></ol>},
