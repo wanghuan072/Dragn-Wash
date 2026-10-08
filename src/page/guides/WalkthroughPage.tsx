@@ -27,9 +27,8 @@ export default function WalkthroughPage() {
     breadcrumbs={[{ label: "Guides", href: "/guides" }]}
     eyebrow="COMPLETE STORY FLOW"
     keyword="DRAG'N WASH WALKTHROUGH"
-    title="Drag'n Wash Walkthrough – From the First Phone Call to the Credits"
-    displayTitle="FULL PLAYTHROUGH"
-    subtitle="From the First Phone Call to the Credits"
+    title="Drag'n Wash Walkthrough"
+    subtitle="From the first phone call to the credits"
     lead="Follow the shared story without losing your place: open the station, finish each care task, keep up with all three dragons and know what to check before starting another ending."
     image="/images/guides/steam-9.webp"
     imageAlt="A dragon being cleaned during a Drag'n Wash playthrough"

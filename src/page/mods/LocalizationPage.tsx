@@ -32,9 +32,8 @@ export default function LocalizationPage() {
     breadcrumbs={[{label:"Mods & VR",href:"/mods"}]}
     eyebrow="UNOFFICIAL LANGUAGE MOD"
     keyword="DRAG'N WASH LOCALIZATION"
-    title="Drag'n Wash Localization Mod – Chinese, Japanese & More"
-    displayTitle="PLAY IN YOUR LANGUAGE"
-    subtitle="Chinese, Japanese & More"
+    title="Drag'n Wash Translation Mod"
+    subtitle="Languages, install and removal"
     lead="Add a community translation on Windows, Steam Deck or Linux, choose the right release file and check current language quality and platform limits before installing."
     image="/images/home/steam-6.webp"
     imageAlt="A dragon inside the Drag'n Wash wash station"

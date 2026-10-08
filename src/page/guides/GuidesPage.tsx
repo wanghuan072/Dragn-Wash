@@ -107,8 +107,8 @@ export default function GuidesPage() {
       <InnerPageHero
         eyebrow="THE FIELD GUIDE"
         keyword="DRAG'N WASH GUIDES"
-        title="MASTER THE WASH"
-        subtitle="From Your First Shift to a Clean Finish"
+        title="Drag'n Wash Guides"
+        subtitle="Washing, controls and the first run"
         lead="New to the wash bay? Start with the opening shift, then learn the tools, controls and cleaning checks that help you finish each visit without scrubbing the same spot forever."
         image="/images/guides/steam-0.webp"
         imageAlt="First-person dragon washing in Drag'n Wash"

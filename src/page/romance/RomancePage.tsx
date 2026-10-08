@@ -33,9 +33,8 @@ export default function RomancePage() {
     breadcrumbs={[{label:"Dragons",href:"/dragons"}]}
     eyebrow="RELATIONSHIP MECHANICS · SPOILER-LIGHT"
     keyword="DRAG'N WASH ROMANCE"
-    title="Drag'n Wash Romance – Alexander, Ryan & Conrad Choices"
-    displayTitle="HOW RELATIONSHIPS CONNECT"
-    subtitle="Dates, Route Locks & Pairing States"
+    title="Drag'n Wash Romance Choices"
+    subtitle="How the three relationships connect"
     lead="Understand when a conversation is just role-play, when the game actually locks a relationship and how Conrad, Ryan and Alexander connect across one shared run."
     image="/images/home/steam-4.webp"
     imageAlt="Conrad speaking to the player during a Drag'n Wash relationship scene"

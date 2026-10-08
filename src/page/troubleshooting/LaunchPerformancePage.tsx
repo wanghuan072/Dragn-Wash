@@ -34,8 +34,8 @@ export default function LaunchPerformancePage() {
       <InnerPageHero
         eyebrow="STARTUP & PERFORMANCE"
         keyword="DRAG'N WASH TROUBLESHOOTING"
-        title="FIX THE GAME"
-        subtitle="Launch & Performance Problems"
+        title="Drag'n Wash Launch and Performance Troubleshooting"
+        subtitle="Startup and performance"
         lead="Identify whether the problem is startup, performance during play, platform graphics or a frozen scene before trying a fix."
         image="/images/home/steam-2.webp"
         imageAlt="Drag'n Wash wash station used for launch and performance troubleshooting"

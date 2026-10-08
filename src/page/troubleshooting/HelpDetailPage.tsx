@@ -36,8 +36,8 @@ export default function HelpDetailPage({ slug }: { slug: string }) {
       <InnerPageHero
         eyebrow="FAST RECOVERY"
         keyword="DRAG'N WASH TROUBLESHOOTING"
-        title={stuck ? "STUCK OR SOFTLOCK" : "CLEAN BAR STUCK"}
-        subtitle={stuck ? "Recover Without Losing Your Run" : "Find the Missing Wash Step"}
+        title={title}
+        subtitle={stuck ? "Recover a stuck run" : "Missed spots and rinsing"}
         lead={stuck ? "Try the in-game recovery option before throwing away your progress." : "A short checklist for a wash that looks complete but does not advance."}
         image={stuck ? "/images/home/steam-2.webp" : "/images/guides/steam-11.webp"}
         imageAlt={stuck ? "Drag'n Wash station during a troubleshooting check" : "A dragon being rinsed while checking wash progress"}

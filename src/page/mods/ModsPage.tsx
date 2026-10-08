@@ -13,9 +13,8 @@ export default function ModsPage() {
     reviewedAt={contentReview.gameUpdateCheckedAt}
     eyebrow="CUSTOMIZATION STATUS"
     keyword="DRAG'N WASH MODS"
-    title="Drag'n Wash Mods – Localization, VR & Workshop Status"
-    displayTitle="CHANGE THE GAME"
-    subtitle="Localization, VR & Workshop Status"
+    title="Drag'n Wash Mods"
+    subtitle="Localization, VR and Workshop status"
     lead="Find the community projects you can try now, check whether they match your game version and see what the developer has—and has not—announced about Steam Workshop support."
     image="/images/home/steam-6.webp"
     imageAlt="A dragon inside the Drag'n Wash wash station"

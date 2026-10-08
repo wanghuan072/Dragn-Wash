@@ -121,7 +121,7 @@ function CharacterTimeline({ character }: { character: Exclude<EndingCharacter, 
 
 export default function EndingsPage() {
   const jsonLd = [
-    { "@context": "https://schema.org", "@type": "Article", headline: "Drag'n Wash Endings: How Different Choices Change the Route", description: "Follow every filmed Drag'n Wash relationship choice across Conrad, Ryan and Alexander, with full menus, immediate results and cross-character branches.", image: `${siteUrl}/images/og-image.png`, dateModified: "2026-09-29", mainEntityOfPage: `${siteUrl}/endings`, publisher: { "@type": "Organization", name: siteName } },
+    { "@context": "https://schema.org", "@type": "Article", headline: "Drag'n Wash Endings", description: "Follow every filmed Drag'n Wash relationship choice across Conrad, Ryan and Alexander, with full menus, immediate results and cross-character branches.", image: `${siteUrl}/images/og-image.png`, dateModified: "2026-09-29", mainEntityOfPage: `${siteUrl}/endings`, publisher: { "@type": "Organization", name: siteName } },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: siteUrl }, { "@type": "ListItem", position: 2, name: "Endings", item: `${siteUrl}/endings` }] },
     { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: endingFaq.map((item) => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })) },
   ];
@@ -132,8 +132,8 @@ export default function EndingsPage() {
       <InnerPageHero
         eyebrow="FULL SPOILERS · EVERY RECORDED CHOICE"
         keyword="DRAG'N WASH ENDINGS"
-        title="DIFFERENT CHOICES, DIFFERENT ENDINGS"
-        subtitle="Follow Conrad, Ryan and Alexander Through One Shared Story"
+        title="Drag'n Wash Endings"
+        subtitle="Conrad, Ryan and Alexander route choices"
         lead="Start with the complete route map, then check every filmed dialogue menu in scene order. We separate real route locks from ordinary replies so you can replay the ending you want without guessing at a hidden score."
         image="/images/home/steam-5.webp"
         imageAlt="Late Drag'n Wash character scene introducing the game's ending choices"

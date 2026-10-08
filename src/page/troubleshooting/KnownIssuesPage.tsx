@@ -17,9 +17,8 @@ export default function KnownIssuesPage() {
     reviewedAt={contentReview.checkedAt}
     eyebrow="VERSION-AWARE TROUBLESHOOTING"
     keyword="DRAG'N WASH TROUBLESHOOTING"
-    title="Drag'n Wash Troubleshooting – Fix Stuck Washes and Softlocks"
-    displayTitle="GET UNSTUCK"
-    subtitle="Wash Progress, Softlocks & Launch Fixes"
+    title="Drag'n Wash Troubleshooting"
+    subtitle="Stuck washes, softlocks and launch fixes"
     lead="Start with the symptom on your screen—full clean bar, missed dirt, frozen interaction, slow launch or display trouble—and try the shortest safe fix before restarting your run."
     image="/images/home/steam-2.webp"
     imageAlt="The wash station bucket and tap used during Drag'n Wash troubleshooting"

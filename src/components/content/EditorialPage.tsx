@@ -14,7 +14,6 @@ export default function EditorialPage({
   eyebrow,
   keyword,
   title,
-  displayTitle,
   subtitle,
   lead,
   image,
@@ -32,7 +31,6 @@ export default function EditorialPage({
   eyebrow: string;
   keyword?: string;
   title: string;
-  displayTitle?: string;
   subtitle?: string;
   lead: string;
   image: string;
@@ -50,7 +48,7 @@ export default function EditorialPage({
   const breadcrumbItems = [
     { label: "Home", href: "/" },
     ...breadcrumbs,
-    { label: displayTitle ?? title, href: path },
+    { label: title, href: path },
   ];
   const jsonLd = [
     {
@@ -95,7 +93,7 @@ export default function EditorialPage({
       <InnerPageHero
         eyebrow={eyebrow}
         keyword={keyword}
-        title={displayTitle ?? title}
+        title={title}
         subtitle={subtitle}
         lead={lead}
         image={image}

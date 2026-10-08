@@ -41,8 +41,8 @@ export default function DragonsPage() {
       <InnerPageHero
         eyebrow="MEET THE DRAGONS"
         keyword="DRAG'N WASH CHARACTERS"
-        title="MEET THE DRAGONS"
-        subtitle="Alexander, Ryan & Conrad"
+        title="Alexander, Ryan and Conrad"
+        subtitle="The three dragons in one shared run"
         lead="All three dragons visit during the same story. Choose a character below to follow his wash visits, later conversations, relationship moments and patch-related issues."
         image="/images/home/steam-7.webp"
         imageAlt="A dragon in the Drag'n Wash station"

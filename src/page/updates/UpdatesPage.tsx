@@ -92,8 +92,8 @@ export default function UpdatesPage() {
       <InnerPageHero
         eyebrow="OFFICIAL CHANGE LOG"
         keyword="DRAG'N WASH UPDATES"
-        title="PATCH TIMELINE"
-        subtitle="Changes That Affect Your Playthrough"
+        title="Drag'n Wash Updates"
+        subtitle="Patches that change a playthrough"
         lead="Follow each announced change in date order and see what it means for stuck scenes, controls, Steam Deck play, mods and older guide steps."
         image="/images/updates/steam-1.webp"
         imageAlt="Drag'n Wash official update artwork"

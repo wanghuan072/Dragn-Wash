@@ -188,11 +188,9 @@ export default function HomePage() {
             <p className={styles.shiftStatus}>
               <i aria-hidden="true" /> SHIFT 01 · WASH BAY OPEN
             </p>
-            <h1>
-              <span className={styles.homeKeyword}>DRAG&apos;N WASH</span>
-              <span className={styles.homeTitle}>Choose Your Next Move</span>
-            </h1>
-            <p className={styles.homeSubtitle}>First wash · stuck scene · ending hunt</p>
+            <p className={styles.homeKeyword}>DRAG&apos;N WASH</p>
+            <h1 className={styles.homeTitle}>Drag&apos;n Wash Walkthrough, Endings and Help</h1>
+            <p className={styles.homeSubtitle}>Choose your next move</p>
             <p className={styles.heroLead}>
               Start clean, solve what stopped your run and follow all three
               dragon stories without guessing what the game wants next.
