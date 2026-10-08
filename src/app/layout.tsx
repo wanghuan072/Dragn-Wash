@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/next-script-for-ga */
 import type { Metadata } from "next";
-import Script from "next/script";
 import AppHeader from "@/components/AppHeader";
 import AppFooter from "@/components/AppFooter";
 import SocialShare from "@/components/SocialShare";
@@ -19,14 +19,21 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-EK27YWLDC3"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-EK27YWLDC3');`,
+          }}
+        />
+      </head>
       <body id="top">
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-EK27YWLDC3" strategy="afterInteractive" />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-EK27YWLDC3');`}
-        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
